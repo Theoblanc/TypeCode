@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // Non-relativ 모듈 혹은 paths 옵션의 기준 디렉토리
+    "target": "es5", // 사용할 ECMAScript 버전 설정
+    "module": "commonjs", // 모듈 설정
+    "moduleResolution": "node", // 모듈 (검색)해석 방식 설정
+    "lib": ["dom", "es2016", "esnext.asynciterable"], // 컴파일에 포함될 라이브러리 파일 목록
+    "outDir": "dest", // 출력할 디덱토리
+    "sourceMap": true, // 소스맵(*.map) 파일 생성 여부
+    "experimentalDecorators": true, // ES Decorator에 대한 실험적 기능 사용 여부
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true, // null과 undefined 타입 구분 여부
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true, // 사용안된 지역변수에 대한 오류 보고 여부
+    "esModuleInterop": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "webpack", "jest"]
+}
