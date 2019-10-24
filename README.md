@@ -8,6 +8,7 @@ Make Chatting Web with typescript and node.js
 - apollo
 - nodejs
 - graphql
+- mongoDb
 
 ## Setting
 
