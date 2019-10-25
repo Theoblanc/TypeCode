@@ -1,5 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
-import schema from "src/schema";
+import schema from "./schema";
 
 const server = new GraphQLServer({
   schema
