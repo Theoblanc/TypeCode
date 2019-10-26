@@ -5,8 +5,27 @@ type User {
   name: String!
   email: String!
   password: String!
+  friends: [User!]!
   rooms: [Room!]!
   createdAt: String
   updatedAt: String
   deletedAt: String
+}
+
+type Room {
+  id: ID!
+  participants: [User!]!
+  messages: [Message!]!
+  createdAt: String
+  updatedAt: String
+}
+
+type Message {
+  id: ID!
+  text: String!
+  from: User!
+  to: User!
+  room: Room!
+  createdAt: String
+  updatedAt: String
 }
