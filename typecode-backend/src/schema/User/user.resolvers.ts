@@ -1,10 +1,9 @@
-import { Resolvers } from "src/types/resolvers";
-import { User } from "src/entities/MongoDB/User/User.mongo";
+import { prisma } from "../../../generated/prisma-client";
 
-const resolvers: Resolvers = {
+const resolvers = {
   Query: {
     me: async () => {
-      return await User;
+      return await prisma.user;
     }
   }
 };
