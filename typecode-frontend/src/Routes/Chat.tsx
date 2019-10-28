@@ -1,4 +1,5 @@
 import React from "react";
+import ChatComponent from "../Pages/Chat";
 
-const Chat = () => <div>채팅 입니다.</div>;
+const Chat: React.FC = () => <ChatComponent />;
 export default Chat;

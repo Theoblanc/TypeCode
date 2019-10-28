@@ -11,8 +11,8 @@ const AppPresenter: React.SFC = () => (
 
 const LoggedInRoutes: React.SFC = () => (
   <Switch>
-    <Route path={"/"} exact={true} component={Home} />
-    <Route path={"/chat/:chatId"} exact={true} component={Chat} />
+    <Route path={"/"} exact={true} component={Chat} />
+    <Route path={"/chat/:chatId"} exact={true} component={Home} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
