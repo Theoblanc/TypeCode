@@ -1,0 +1,33 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+  prisma:
+    image: prismagraphql/prisma:1.13
+    ports:
+      - "4000:4000"
+    environment:
+      PRISMA_CONFIG: |
+        managementApiSecret: my-server-secret-123
+        port: 4000
+        databases:
+          default:
+            connector: mysql  
+            migrations: true
+            host: db
+            port: 3306        
+            user: root
+            password: prisma
+    env_file:
+      - ./.env
+    links:
+      - sql
+
+  sql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: prisma
+    ports:
+      - 3306:3306
