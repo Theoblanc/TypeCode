@@ -16,8 +16,8 @@ const Wrapper = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
-  padding-right: 16px;
-  padding-left: 16px;
+  padding-right: 24px;
+  padding-left: 24px;
   justify-content: space-between;
 `;
 
@@ -35,7 +35,7 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Logo>TYPE CODE</Logo>
-        <Login>로그인</Login>
+        <Login>로그아웃</Login>
       </Wrapper>
     </Container>
   );

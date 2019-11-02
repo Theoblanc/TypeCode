@@ -2,11 +2,18 @@ import React from "react";
 import { Container, MainWrapper } from "./ChatStyles";
 import Header from "src/Components/Header";
 import Footer from "src/Components/Footer";
+import Room from "src/Components/Room/RoomPresenter";
+import ChatUser from "src/Components/ChatUser";
+import ChatComponet from "src/Components/Chat/ChatComponet";
 
 const ChatPresenter: React.FC = () => (
   <Container>
     <Header />
-    <MainWrapper>채팅입니다.</MainWrapper>
+    <MainWrapper>
+      <Room />
+      <ChatUser />
+      <ChatComponet />
+    </MainWrapper>
     <Footer />
   </Container>
 );
