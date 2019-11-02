@@ -7,7 +7,13 @@ const Container = styled.div`
 `;
 
 const ChatComponet = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <div>@ 유저 아이디</div>
+      <div>순서대로 출력</div>
+      <div>대화창</div>
+    </Container>
+  );
 };
 
 export default ChatComponet;

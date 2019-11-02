@@ -11,8 +11,8 @@ const ChatPresenter: React.FC = () => (
     <Header />
     <MainWrapper>
       <Room />
-      <ChatUser />
       <ChatComponet />
+      <ChatUser />
     </MainWrapper>
     <Footer />
   </Container>

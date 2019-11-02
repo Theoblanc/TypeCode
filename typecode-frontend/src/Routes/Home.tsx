@@ -1,5 +1,5 @@
 import React from "react";
-
-const Home = () => <div>홈 입니다.</div>;
+import HomePage from "../Pages/Home";
+const Home: React.FC = () => <HomePage />;
 
 export default Home;
