@@ -1,4 +1,33 @@
 type User {
   id: ID! @id
   name: String!
+  email: String! @unique
+  password: String!
+  profile: String
+  phoneNumber: String
+  phoneNumberVerified: Boolean
+  fcmToken: String
+  rooms: [Room!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime @deletedAt
+}
+
+type Room {
+  id: ID! @id
+  participants: [User!]!
+  messages: [Message!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  deletedAt: DateTime @deletedAt
+}
+
+type Message {
+  id: ID! @id
+  text: String!
+  from: User! @relation(name: "From")
+  to: User! @relation(name: "To")
+  room: Room!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
