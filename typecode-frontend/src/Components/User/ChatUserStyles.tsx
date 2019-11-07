@@ -40,3 +40,28 @@ export const DirectMessageTitle = styled.div`
   text-align: center;
   font-size: 18px;
 `;
+
+//List
+
+export const ListContainer = styled.div`
+  width: 100%;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+`;
+
+export const ProfileContainer = styled.div`
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Profile = styled.image`
+  width: 40px;
+  height: 40px;
+  resize-mode: contain;
+`;
+
+export const UserNameContainer = styled.div``;

@@ -1,16 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+import { Profile, ListContainer, UserNameContainer } from "./ChatUserStyles";
 
 export const ChatUserList: React.FC = () => {
   return (
-    <Container>
-      <div>사진</div>
-      <div>이름</div>
-    </Container>
+    <ListContainer>
+      <Profile>
+        <Profile>사진</Profile>
+      </Profile>
+      <UserNameContainer>이름</UserNameContainer>
+    </ListContainer>
   );
 };

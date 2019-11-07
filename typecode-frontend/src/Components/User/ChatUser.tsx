@@ -6,6 +6,7 @@ import {
   FindChatInput,
   FindChatBtn
 } from "./ChatUserStyles";
+import { ChatUserList } from "./ChatUserList";
 const ChatUser = () => {
   return (
     <Container>
@@ -26,11 +27,11 @@ const ChatUser = () => {
         <button>친구</button>
       </div>
       <DirectMessageTitle>개인 메세지</DirectMessageTitle>
-      <li>히동히</li>
-      <li>지히</li>
-      <li>온재범</li>
-      <li>유수</li>
-      <li>노량진롤창</li>
+      <ChatUserList>히동히</ChatUserList>
+      <ChatUserList>지히</ChatUserList>
+      <ChatUserList>온재범</ChatUserList>
+      <ChatUserList>유수</ChatUserList>
+      <ChatUserList>노량진롤창</ChatUserList>
     </Container>
   );
 };
