@@ -1,5 +1,10 @@
 import React from "react";
-import { Container } from "./RoomStyles";
+import {
+  Container,
+  ListContainer,
+  CreateRoomBtn,
+  BtnContainer
+} from "./RoomStyles";
 import { HomeButton } from "../Button/HomeButton";
 import { ListButton } from "../Button/ListButton";
 
@@ -7,12 +12,17 @@ const Room = () => {
   return (
     <Container>
       <HomeButton />
-      <ListButton roomName={"방학"} />
-      <ListButton roomName={"방학"} />
-      <ListButton roomName={"방학"} />
-      <ListButton roomName={"방학"} />
-      <ListButton roomName={"방학"} />
-      <button>생성</button>
+      <ListContainer>
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+      </ListContainer>
+
+      <BtnContainer>
+        <CreateRoomBtn>생성</CreateRoomBtn>
+      </BtnContainer>
     </Container>
   );
 };
