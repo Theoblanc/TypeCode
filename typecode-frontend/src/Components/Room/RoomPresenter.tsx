@@ -11,6 +11,7 @@ const Room = () => {
       <li>방학</li>
       <li>방학</li>
       <li>방학</li>
+      <li>방학</li>
       <button>생성</button>
     </Container>
   );
