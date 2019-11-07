@@ -21,7 +21,6 @@ const Container = styled.div`
     }
   }
 `;
-
 const HoverBarContainer = styled.div`
   width: 4px;
 `;
@@ -40,7 +39,7 @@ const MoveButtonContainer = styled.div`
   padding-bottom: 16px;
 `;
 
-const MoveButton = styled.div`
+const MoveButton = styled.a`
   width: 50px;
   height: 50px;
   background-color: ${prop => prop.theme.grayColor};
@@ -57,7 +56,11 @@ const MoveButtonText = styled.span``;
 
 // render
 
-export const HomeButton = () => {
+interface IProps {
+  roomName: string;
+}
+
+export const ListButton: React.FC<IProps> = ({ roomName }) => {
   return (
     <Container>
       <HoverBarContainer>
@@ -65,7 +68,7 @@ export const HomeButton = () => {
       </HoverBarContainer>
       <MoveButtonContainer>
         <MoveButton className="movebutton">
-          <MoveButtonText>홈</MoveButtonText>
+          <MoveButtonText>{roomName}</MoveButtonText>
         </MoveButton>
       </MoveButtonContainer>
     </Container>

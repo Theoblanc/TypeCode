@@ -1,7 +1,11 @@
+import { prisma } from "src/generated/prisma-client";
+
 const resolvers = {
   Query: {
-    user: (_, args, context, info) => {
-      console.log("1234");
+    me: async (_, args, ctx) => {
+      const userId = ctx.user.id;
+      const getMe = await prisma.user({ id: userId });
+      console.log("getMe", getMe);
     }
   }
 };

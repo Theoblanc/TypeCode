@@ -4,7 +4,7 @@ import Header from "src/Components/Header";
 import Footer from "src/Components/Footer";
 import Room from "src/Components/Room/RoomPresenter";
 import ChatUser from "src/Components/ChatUser";
-import ChatComponet from "src/Components/Chat/ChatComponet";
+import ChatView from "src/Components/Chat/ChatView";
 
 const HomePresenter: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const HomePresenter: React.FC = () => {
       <MainWrapper>
         <Room />
         <ChatUser />
-        <ChatComponet />
+        <ChatView />
       </MainWrapper>
       <Footer />
     </Container>
