@@ -18,6 +18,10 @@ const Room = () => {
         <ListButton roomName={"방학"} />
         <ListButton roomName={"방학"} />
         <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} />
       </ListContainer>
 
       <BtnContainer>
