@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const ListContainer = styled.div`
   flex: 1;
-  background-color: black;
+  background-color: ${props => props.theme.blackColor};
   width: 100%;
 `;
 

@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: black;
+  background-color: ${props => props.theme.blackColor};
 `;
 const HoverBarContainer = styled.div`
   width: 4px;
@@ -32,7 +32,7 @@ const MoveButtonContainer = styled.div`
 const MoveButton = styled.div`
   width: 50px;
   height: 50px;
-  background-color: ${prop => prop.theme.grayColor};
+  background-color: ${props => props.theme.grayColor};
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@ export const ListButton: React.FC<IProps> = ({ roomName }) => {
       hoverBtnRef.current.style.color = "black";
       hoverBtnRef.current.style.borderRadius = "15px";
       hoverBarRef.current.style.backgroundColor = "#ffffff";
-      hoverBarRef.current.style.height = "30px";
+      hoverBarRef.current.style.height = "20px";
       console.log(hoverBtnRef.current.style);
     }
   };
