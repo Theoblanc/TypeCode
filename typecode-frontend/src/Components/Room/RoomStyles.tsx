@@ -12,8 +12,6 @@ export const Container = styled.div`
 `;
 
 export const ListContainer = styled.div`
-th: 0;
-  }
   flex: 1;
   background-color: black;
   width: 100%;

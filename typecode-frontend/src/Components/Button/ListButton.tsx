@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 // Style
@@ -10,16 +10,6 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   background-color: black;
-  :hover {
-    .leftIcon {
-      background-color: #ffffff;
-    }
-    .movebutton {
-      background-color: #fddf;
-      color: black;
-      border-radius: 15px;
-    }
-  }
 `;
 const HoverBarContainer = styled.div`
   width: 4px;
@@ -27,7 +17,7 @@ const HoverBarContainer = styled.div`
 
 const HoverBar = styled.div`
   width: 4px;
-  height: 50px;
+  height: 0px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 `;
@@ -39,7 +29,7 @@ const MoveButtonContainer = styled.div`
   padding-bottom: 16px;
 `;
 
-const MoveButton = styled.a`
+const MoveButton = styled.div`
   width: 50px;
   height: 50px;
   background-color: ${prop => prop.theme.grayColor};
@@ -51,9 +41,19 @@ const MoveButton = styled.a`
 
 const MoveButtonText = styled.span``;
 
-// onMouseEnter={this.onMouseEnterHandler}
-// onMouseLeave={this.onMouseLeaveHandler}
+// const OverMoiveButton = styled.div`
+//   background-color: #fddf;
+//   color: black;
+//   border-radius: 15px;
+//   width: 50px;
+//   height: 50px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
 
+// color: black;
+// border-radius: 15px;
 // render
 
 interface IProps {
@@ -61,13 +61,51 @@ interface IProps {
 }
 
 export const ListButton: React.FC<IProps> = ({ roomName }) => {
+  const hoverBarRef = useRef<HTMLInputElement>(null);
+  const hoverBtnRef = useRef<HTMLInputElement>(null);
+
+  const _onMouseEnter = () => {
+    if (
+      hoverBtnRef &&
+      hoverBtnRef.current &&
+      hoverBarRef &&
+      hoverBarRef.current
+    ) {
+      hoverBtnRef.current.style.backgroundColor = "#fddf";
+      hoverBtnRef.current.style.color = "black";
+      hoverBtnRef.current.style.borderRadius = "15px";
+      hoverBarRef.current.style.backgroundColor = "#ffffff";
+      hoverBarRef.current.style.height = "30px";
+      console.log(hoverBtnRef.current.style);
+    }
+  };
+
+  const _onMouseLeave = () => {
+    if (
+      hoverBtnRef &&
+      hoverBtnRef.current &&
+      hoverBarRef &&
+      hoverBarRef.current
+    ) {
+      hoverBtnRef.current.style.backgroundColor = "#36393f";
+      hoverBtnRef.current.style.color = "#ffffff";
+      hoverBtnRef.current.style.borderRadius = "30px";
+      hoverBarRef.current.style.backgroundColor = "#ffffff";
+      hoverBarRef.current.style.height = "0px";
+    }
+  };
+
   return (
     <Container>
       <HoverBarContainer>
-        <HoverBar className="leftIcon"></HoverBar>
+        <HoverBar ref={hoverBarRef}></HoverBar>
       </HoverBarContainer>
       <MoveButtonContainer>
-        <MoveButton className="movebutton">
+        <MoveButton
+          ref={hoverBtnRef}
+          onMouseLeave={_onMouseLeave}
+          onMouseEnter={_onMouseEnter}
+        >
           <MoveButtonText>{roomName}</MoveButtonText>
         </MoveButton>
       </MoveButtonContainer>

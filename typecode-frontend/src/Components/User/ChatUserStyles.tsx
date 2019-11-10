@@ -25,7 +25,7 @@ export const FindChatInput = styled.input`
   height: 28px;
 `;
 
-export const FindChatBtn = styled.image`
+export const FindChatBtn = styled.div`
   height: 28px;
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@ export const ProfileContainer = styled.div`
   justify-content: center;
 `;
 
-export const Profile = styled.image`
+export const Profile = styled.div`
   width: 40px;
   height: 40px;
   resize-mode: contain;
