@@ -1,5 +1,5 @@
 import React from "react";
-import ChatComponent from "../Pages/Chat";
+import RoomComponent from "../Pages/Room";
 
-const Chat: React.FC = () => <ChatComponent />;
-export default Chat;
+const Room: React.FC = () => <RoomComponent />;
+export default Room;

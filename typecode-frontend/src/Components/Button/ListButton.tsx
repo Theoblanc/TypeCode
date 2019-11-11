@@ -29,7 +29,7 @@ const MoveButtonContainer = styled.div`
   padding-bottom: 16px;
 `;
 
-const MoveButton = styled.div`
+const MoveButton = styled.a`
   width: 50px;
   height: 50px;
   background-color: ${props => props.theme.grayColor};
@@ -37,6 +37,12 @@ const MoveButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  text-decoration: none;
+  color: #ffffff;
+  a:visited {
+    color: black;
+  }
 `;
 
 const MoveButtonText = styled.span``;
@@ -102,6 +108,7 @@ export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
       </HoverBarContainer>
       <MoveButtonContainer onClick={moverRoom}>
         <MoveButton
+          href="/room"
           ref={hoverBtnRef}
           onMouseLeave={_onMouseLeave}
           onMouseEnter={_onMouseEnter}

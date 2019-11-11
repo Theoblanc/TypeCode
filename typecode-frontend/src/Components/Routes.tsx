@@ -14,7 +14,7 @@ const LoggedInRoutes: React.SFC = () => (
   <Switch>
     <Route path={"/"} exact={true} component={Home} />
     <Route path={"/chat/:chatId"} exact={true} component={Chat} />
-    <Route path={"/room/:roomId"} exact={true} component={Room} />
+    <Route path={"/room"} exact={true} component={Room} />
 
     {/* <Route path={"/chat/:chatId"} exact={true} component={Chat} /> */}
     <Redirect from={"*"} to={"/"} />
