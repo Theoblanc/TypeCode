@@ -58,9 +58,10 @@ const MoveButtonText = styled.span``;
 
 interface IProps {
   roomName: string;
+  moverRoom: any;
 }
 
-export const ListButton: React.FC<IProps> = ({ roomName }) => {
+export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
   const hoverBarRef = useRef<HTMLInputElement>(null);
   const hoverBtnRef = useRef<HTMLInputElement>(null);
 
@@ -76,7 +77,6 @@ export const ListButton: React.FC<IProps> = ({ roomName }) => {
       hoverBtnRef.current.style.borderRadius = "15px";
       hoverBarRef.current.style.backgroundColor = "#ffffff";
       hoverBarRef.current.style.height = "20px";
-      console.log(hoverBtnRef.current.style);
     }
   };
 
@@ -100,7 +100,7 @@ export const ListButton: React.FC<IProps> = ({ roomName }) => {
       <HoverBarContainer>
         <HoverBar ref={hoverBarRef}></HoverBar>
       </HoverBarContainer>
-      <MoveButtonContainer>
+      <MoveButtonContainer onClick={moverRoom}>
         <MoveButton
           ref={hoverBtnRef}
           onMouseLeave={_onMouseLeave}

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, MainWrapper } from "./ChatStyles";
 import Header from "src/Components/Header";
 import Footer from "src/Components/Footer";
-import Room from "src/Components/Room/RoomPresenter";
+import Room from "src/Components/Room";
 import ChatUser from "src/Components/User/ChatUser";
 import ChatView from "src/Components/ChatView/ChatView";
 

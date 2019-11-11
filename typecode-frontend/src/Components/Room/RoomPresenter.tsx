@@ -7,17 +7,21 @@ import {
 } from "./RoomStyles";
 import { HomeButton } from "../Button/HomeButton";
 import { ListButton } from "../Button/ListButton";
-
-const Room = () => {
+interface IProps {
+  moverRoom: any;
+}
+const RoomPresenter: React.FC<IProps> = ({ moverRoom }) => {
+  console.log(moverRoom);
   return (
     <Container>
       <HomeButton />
       <ListContainer>
-        <ListButton roomName={"방학"} />
-        <ListButton roomName={"방학"} />
-        <ListButton roomName={"방학"} />
-        <ListButton roomName={"방학"} />
-        <ListButton roomName={"방학"} />
+        <ListButton roomName={"방학"} moverRoom={moverRoom} />
+        <ListButton roomName={"방학"} moverRoom={moverRoom} />
+        <ListButton roomName={"방학"} moverRoom={moverRoom} />
+        <ListButton roomName={"방학"} moverRoom={moverRoom} />
+        <ListButton roomName={"방학"} moverRoom={moverRoom} />
+        <ListButton roomName={"방학"} moverRoom={moverRoom} />
       </ListContainer>
 
       <BtnContainer>
@@ -27,4 +31,4 @@ const Room = () => {
   );
 };
 
-export default Room;
+export default RoomPresenter;

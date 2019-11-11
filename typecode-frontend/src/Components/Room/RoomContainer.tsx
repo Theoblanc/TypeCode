@@ -2,7 +2,10 @@ import React from "react";
 import RoomPresenter from "./RoomPresenter";
 
 const RoomContainer: React.FC = () => {
-  return <RoomPresenter />;
+  const moverRoom = () => {
+    console.log("The link was clicked.");
+  };
+  return <RoomPresenter moverRoom={moverRoom} />;
 };
 
 export default RoomContainer;
