@@ -5,14 +5,13 @@ const createJWT = (id: number): string => {
 
   const token = jwt.sign(
     {
-      id
-    },
-    process.env.JWT_TOKEN || "",
-    {
-      sub: "",
+      id,
+      name,
+      sub: "TypeCode",
       aud: JWT_DEFAULT_AUDIENCE,
-      exp: 60 * 3 // 3m or 2h
-    }
+      exp: 60 * 3 // 3m or 2h,
+    },
+    process.env.JWT_TOKEN || ""
   );
   return token;
 };

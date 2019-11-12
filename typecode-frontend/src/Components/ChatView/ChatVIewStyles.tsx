@@ -12,7 +12,7 @@ export const ScrollView = styled.div`
   flex-direction: column;
   flex: 1;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const ChatHeader = styled.div`
