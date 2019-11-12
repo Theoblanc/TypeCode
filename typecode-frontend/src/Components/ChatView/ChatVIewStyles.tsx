@@ -12,6 +12,7 @@ export const ScrollView = styled.div`
   flex-direction: column;
   flex: 1;
   width: 100%;
+  overflow-y: scroll;
 `;
 
 export const ChatHeader = styled.div`
@@ -32,6 +33,26 @@ export const ChatHeaderWrap = styled.div`
   height: 30px;
 `;
 
-export const Chat = styled.div`
-  flex: 1;
+export const ChatFristWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+  padding-bottom: 24px;
 `;
+
+export const ProfileWrap = styled.div`
+  margin-top: 70px;
+`;
+
+export const Profile = styled.img`
+  width: 150px;
+  height: 150px;
+  resize-mode: contain;
+`;
+
+export const UserName = styled.div`
+  font-size: 36px;
+  padding-bottom: 24px;
+`;
+
+export const GreedMent = styled.div``;

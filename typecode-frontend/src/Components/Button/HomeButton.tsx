@@ -22,7 +22,7 @@ const HoverBar = styled.div`
   border-top-right-radius: 10px;
 `;
 
-const MoveButtonContainer = styled.div`
+const MoveButtonContainer = styled.a`
   padding-left: 8px;
   padding-right: 12px;
   padding-top: 16px;
@@ -89,7 +89,7 @@ export const HomeButton = () => {
       <HoverBarContainer>
         <HoverBar ref={hoverBarRef}></HoverBar>
       </HoverBarContainer>
-      <MoveButtonContainer>
+      <MoveButtonContainer href="/home">
         <MoveButton
           ref={hoverBtnRef}
           onMouseLeave={_onMouseLeave}
