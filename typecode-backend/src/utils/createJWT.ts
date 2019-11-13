@@ -5,18 +5,28 @@ import { prisma } from "src/generated/prisma-client";
 
 const PUBLIC_KEY = fs.readFileSync("../certs/publickey.pem");
 const PRIVATE_KEY = fs.readFileSync("./certs/private.pem");
+const protectedSubject = [
+  "access_token",
+  "refresh_token",
+  "authorization_code",
+  "password",
+  "client_credentials"
+];
 
-export const createJWT = async ({ id }): Promise<TokenModel> => {
+export const createJWT = async ({ id, sub }): Promise<TokenModel> => {
+  if (sub in protectedSubject) {
+    throw new Error("INVALID_SUBJECT");
+  }
   const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
-
+  console.log("sub", sub);
   const token = await jwt.sign(
     {
-      id
+      id //payload
     },
     process.env.JWT_TOKEN || "",
     {
       algorithm: "ES256",
-      sub: "",
+      sub,
       aud: JWT_DEFAULT_AUDIENCE,
       exp: 60 * 3, // 3m or 2h
       iss: ""
