@@ -5,6 +5,10 @@ import { prisma } from "src/generated/prisma-client";
 
 const PUBLIC_KEY = fs.readFileSync("../certs/publickey.pem");
 const PRIVATE_KEY = fs.readFileSync("./certs/private.pem");
+
+const JWT_ISSUER = process.env.JWT_ISSUER || "";
+const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
+
 const protectedSubject = [
   "access_token",
   "refresh_token",
@@ -17,7 +21,7 @@ export const createJWT = async ({ id, sub }): Promise<TokenModel> => {
   if (sub in protectedSubject) {
     throw new Error("INVALID_SUBJECT");
   }
-  const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
+
   console.log("sub", sub);
   const token = await jwt.sign(
     {
@@ -29,7 +33,7 @@ export const createJWT = async ({ id, sub }): Promise<TokenModel> => {
       sub,
       aud: JWT_DEFAULT_AUDIENCE,
       exp: 60 * 3, // 3m or 2h
-      iss: ""
+      iss: JWT_ISSUER
     },
     (err, token) => {
       console.log(token);
@@ -76,7 +80,7 @@ export const assessJWT = async (refreshToken: String): Promise<TokenModel> => {
       sub: "access_token",
       aud,
       expiresIn,
-      issuer: ""
+      issuer: JWT_ISSUER
     }
   );
 
@@ -100,7 +104,7 @@ export const refreshJWT = async ({ id, aud }): Promise<TokenModel> => {
     algorithm: "ES256",
     subject: "refresh_token",
     aud,
-    issuer: ""
+    issuer: JWT_ISSUER
   });
 
   return {
