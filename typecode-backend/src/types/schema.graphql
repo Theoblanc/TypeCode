@@ -1,5 +1,20 @@
 type Query {
-  user(id: ID!): User
+  findUser(id: ID!): User
+  me: User!
+}
+
+type mutation {
+  login(email: String!, password: String!): String!
+  signup(name: String!, email: String!): Boolean!
+}
+
+type Token {
+  id: String
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+  createdAt: String
+  updatedAt: String
 }
 
 type User {

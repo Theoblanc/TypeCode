@@ -31,3 +31,12 @@ type Message {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
+
+type Token {
+  id: ID! @id
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

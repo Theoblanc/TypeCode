@@ -1,10 +1,14 @@
 import passport from "passport";
+import fs from "fs";
 import { Strategy, ExtractJwt } from "passport-jwt";
 import { prisma } from "../generated/prisma-client";
 
+const PRIVATE_KEY = fs.readFileSync("../../certs/primarykey.pem");
+const PUBLIC_KEY = fs.readFileSync("../../certs/publickey.pem");
+
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET
+  secretOrKey: PRIVATE_KEY
 };
 
 const verifyUser = async (payload, done) => {

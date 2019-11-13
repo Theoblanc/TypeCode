@@ -1,0 +1,123 @@
+import jwt from "jsonwebtoken";
+import fs from "fs";
+import Token from "src/entities/Postgres/Token/Token.postgres";
+import User from "src/entities/Postgres/User/User.postgres";
+import { TokenModel } from "src/types/graph";
+
+const JWT_ISSUER = process.env.JWT_ISSUER || "";
+const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
+
+const PRIVATE_KEY = fs.readFileSync("./certs/private.pem");
+const PUBLIC_KEY = fs.readFileSync("./certs/public.pem");
+
+const protectedSubject = [
+  "access_token",
+  "refresh_token",
+  "authorization_code",
+  "password",
+  "client_credentials"
+];
+
+export const createToken = async function(
+  {
+    sub: subject = "",
+    aud: audience = JWT_DEFAULT_AUDIENCE,
+    exp: expiresIn = 60 * 3 // 3m or 2h
+  },
+  data = {}
+): Promise<TokenModel> {
+  if (subject in protectedSubject) {
+    throw new Error("INVALID_SUBJECT");
+  }
+
+  const token = await jwt.sign(data, PRIVATE_KEY, {
+    algorithm: "ES256",
+    subject,
+    audience,
+    expiresIn,
+    issuer: JWT_ISSUER
+  });
+
+  return {
+    token,
+    access_token: null,
+    refresh_token: null,
+    expires_in: expiresIn,
+    token_type: "Bearer"
+  };
+};
+
+export const createAccessToken = async function(
+  refreshToken: String
+): Promise<TokenModel> {
+  const expiresIn = 60 * 60 * 2; // 2h
+
+  const { id, aud: audience, jti } = await jwt.verify(refreshToken, PUBLIC_KEY);
+
+  const userToken = await Token.findOne({ id: jti });
+  if (!userToken) throw new Error("INVALID_TOKEN");
+  if (userToken.deleted) throw new Error("DELETED_TOKEN");
+
+  const maxLife =
+    new Date(userToken.accessedAt).getTime() + 1000 * 60 * 24 * 60; // 60d
+  if (maxLife < new Date().getTime()) throw new Error("EXPIRED_TOKEN");
+
+  await Token.update({ id: jti }, { accessedAt: new Date() });
+
+  const user = await User.findOne({ id });
+  if (!user) throw new Error("INVALID_USER");
+
+  const token = await jwt.sign(
+    {
+      id,
+      name: user.name,
+      email: user.email,
+      emailVerified: user.emailVerified,
+      phoneNumber: user.phoneNumber,
+      phoneNumberVerified: user.phoneNumberVerified,
+      role: user.role
+    },
+    PRIVATE_KEY,
+    {
+      algorithm: "ES256",
+      subject: "access_token",
+      audience,
+      expiresIn,
+      issuer: JWT_ISSUER
+    }
+  );
+
+  return {
+    token,
+    access_token: token,
+    refresh_token: null,
+    expires_in: expiresIn,
+    token_type: "Bearer"
+  };
+};
+
+export const createRefreshToken = async function(
+  { aud: audience = JWT_DEFAULT_AUDIENCE },
+  { id }
+): Promise<TokenModel> {
+  const token = await Token.insert({
+    user: id,
+    accessedAt: new Date()
+  });
+
+  const jwtToken = await jwt.sign({ id }, PRIVATE_KEY, {
+    jwtid: token.identifiers[0].id,
+    algorithm: "ES256",
+    subject: "refresh_token",
+    audience,
+    issuer: JWT_ISSUER
+  });
+
+  return {
+    token: jwtToken,
+    access_token: null,
+    refresh_token: jwtToken,
+    expires_in: null,
+    token_type: "Bearer"
+  };
+};

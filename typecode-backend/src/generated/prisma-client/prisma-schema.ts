@@ -10,6 +10,10 @@ type AggregateRoom {
   count: Int!
 }
 
+type AggregateToken {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -268,6 +272,12 @@ type Mutation {
   upsertRoom(where: RoomWhereUniqueInput!, create: RoomCreateInput!, update: RoomUpdateInput!): Room!
   deleteRoom(where: RoomWhereUniqueInput!): Room
   deleteManyRooms(where: RoomWhereInput): BatchPayload!
+  createToken(data: TokenCreateInput!): Token!
+  updateToken(data: TokenUpdateInput!, where: TokenWhereUniqueInput!): Token
+  updateManyTokens(data: TokenUpdateManyMutationInput!, where: TokenWhereInput): BatchPayload!
+  upsertToken(where: TokenWhereUniqueInput!, create: TokenCreateInput!, update: TokenUpdateInput!): Token!
+  deleteToken(where: TokenWhereUniqueInput!): Token
+  deleteManyTokens(where: TokenWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -300,6 +310,9 @@ type Query {
   room(where: RoomWhereUniqueInput!): Room
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room]!
   roomsConnection(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoomConnection!
+  token(where: TokenWhereUniqueInput!): Token
+  tokens(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Token]!
+  tokensConnection(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TokenConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -556,7 +569,159 @@ input RoomWhereUniqueInput {
 type Subscription {
   message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
   room(where: RoomSubscriptionWhereInput): RoomSubscriptionPayload
+  token(where: TokenSubscriptionWhereInput): TokenSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Token {
+  id: ID!
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type TokenConnection {
+  pageInfo: PageInfo!
+  edges: [TokenEdge]!
+  aggregate: AggregateToken!
+}
+
+input TokenCreateInput {
+  id: ID
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+}
+
+type TokenEdge {
+  node: Token!
+  cursor: String!
+}
+
+enum TokenOrderByInput {
+  id_ASC
+  id_DESC
+  userId_ASC
+  userId_DESC
+  accessedAt_ASC
+  accessedAt_DESC
+  deleted_ASC
+  deleted_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type TokenPreviousValues {
+  id: ID!
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type TokenSubscriptionPayload {
+  mutation: MutationType!
+  node: Token
+  updatedFields: [String!]
+  previousValues: TokenPreviousValues
+}
+
+input TokenSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TokenWhereInput
+  AND: [TokenSubscriptionWhereInput!]
+  OR: [TokenSubscriptionWhereInput!]
+  NOT: [TokenSubscriptionWhereInput!]
+}
+
+input TokenUpdateInput {
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+}
+
+input TokenUpdateManyMutationInput {
+  userId: String
+  accessedAt: String
+  deleted: Boolean
+}
+
+input TokenWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  userId: String
+  userId_not: String
+  userId_in: [String!]
+  userId_not_in: [String!]
+  userId_lt: String
+  userId_lte: String
+  userId_gt: String
+  userId_gte: String
+  userId_contains: String
+  userId_not_contains: String
+  userId_starts_with: String
+  userId_not_starts_with: String
+  userId_ends_with: String
+  userId_not_ends_with: String
+  accessedAt: String
+  accessedAt_not: String
+  accessedAt_in: [String!]
+  accessedAt_not_in: [String!]
+  accessedAt_lt: String
+  accessedAt_lte: String
+  accessedAt_gt: String
+  accessedAt_gte: String
+  accessedAt_contains: String
+  accessedAt_not_contains: String
+  accessedAt_starts_with: String
+  accessedAt_not_starts_with: String
+  accessedAt_ends_with: String
+  accessedAt_not_ends_with: String
+  deleted: Boolean
+  deleted_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [TokenWhereInput!]
+  OR: [TokenWhereInput!]
+  NOT: [TokenWhereInput!]
+}
+
+input TokenWhereUniqueInput {
+  id: ID
 }
 
 type User {
