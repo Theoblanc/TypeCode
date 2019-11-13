@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import fs from "fs";
-import Token from "src/entities/Postgres/Token/Token.postgres";
-import User from "src/entities/Postgres/User/User.postgres";
+import { prisma } from "src/generated/prisma-client";
 import { TokenModel } from "src/types/graph";
 
 const JWT_ISSUER = process.env.JWT_ISSUER || "";
@@ -54,17 +53,20 @@ export const createAccessToken = async function(
 
   const { id, aud: audience, jti } = await jwt.verify(refreshToken, PUBLIC_KEY);
 
-  const userToken = await Token.findOne({ id: jti });
+  const userToken = await prisma.token({ id: jti });
   if (!userToken) throw new Error("INVALID_TOKEN");
   if (userToken.deleted) throw new Error("DELETED_TOKEN");
 
   const maxLife =
-    new Date(userToken.accessedAt).getTime() + 1000 * 60 * 24 * 60; // 60d
+    new Date(`${userToken.accessedAt}`).getTime() + 1000 * 60 * 24 * 60; // 60d
   if (maxLife < new Date().getTime()) throw new Error("EXPIRED_TOKEN");
 
-  await Token.update({ id: jti }, { accessedAt: new Date() });
+  await prisma.updateToken({
+    where: { id },
+    data: { accessedAt: new Date() }
+  });
 
-  const user = await User.findOne({ id });
+  const user = await prisma.user({ id });
   if (!user) throw new Error("INVALID_USER");
 
   const token = await jwt.sign(
@@ -72,10 +74,8 @@ export const createAccessToken = async function(
       id,
       name: user.name,
       email: user.email,
-      emailVerified: user.emailVerified,
       phoneNumber: user.phoneNumber,
-      phoneNumberVerified: user.phoneNumberVerified,
-      role: user.role
+      phoneNumberVerified: user.phoneNumberVerified
     },
     PRIVATE_KEY,
     {
@@ -100,13 +100,13 @@ export const createRefreshToken = async function(
   { aud: audience = JWT_DEFAULT_AUDIENCE },
   { id }
 ): Promise<TokenModel> {
-  const token = await Token.insert({
-    user: id,
+  const token = await prisma.createToken({
+    userId: id,
     accessedAt: new Date()
   });
 
   const jwtToken = await jwt.sign({ id }, PRIVATE_KEY, {
-    jwtid: token.identifiers[0].id,
+    jwtid: token.id,
     algorithm: "ES256",
     subject: "refresh_token",
     audience,

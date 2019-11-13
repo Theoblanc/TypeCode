@@ -35,8 +35,9 @@ type Message {
 type Token {
   id: ID! @id
   userId: String
-  accessedAt: String
+  accessedAt: DateTime
   deleted: Boolean
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
+

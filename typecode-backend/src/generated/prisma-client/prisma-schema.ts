@@ -576,7 +576,7 @@ type Subscription {
 type Token {
   id: ID!
   userId: String
-  accessedAt: String
+  accessedAt: DateTime
   deleted: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -591,7 +591,7 @@ type TokenConnection {
 input TokenCreateInput {
   id: ID
   userId: String
-  accessedAt: String
+  accessedAt: DateTime
   deleted: Boolean
 }
 
@@ -618,7 +618,7 @@ enum TokenOrderByInput {
 type TokenPreviousValues {
   id: ID!
   userId: String
-  accessedAt: String
+  accessedAt: DateTime
   deleted: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -644,13 +644,13 @@ input TokenSubscriptionWhereInput {
 
 input TokenUpdateInput {
   userId: String
-  accessedAt: String
+  accessedAt: DateTime
   deleted: Boolean
 }
 
 input TokenUpdateManyMutationInput {
   userId: String
-  accessedAt: String
+  accessedAt: DateTime
   deleted: Boolean
 }
 
@@ -683,20 +683,14 @@ input TokenWhereInput {
   userId_not_starts_with: String
   userId_ends_with: String
   userId_not_ends_with: String
-  accessedAt: String
-  accessedAt_not: String
-  accessedAt_in: [String!]
-  accessedAt_not_in: [String!]
-  accessedAt_lt: String
-  accessedAt_lte: String
-  accessedAt_gt: String
-  accessedAt_gte: String
-  accessedAt_contains: String
-  accessedAt_not_contains: String
-  accessedAt_starts_with: String
-  accessedAt_not_starts_with: String
-  accessedAt_ends_with: String
-  accessedAt_not_ends_with: String
+  accessedAt: DateTime
+  accessedAt_not: DateTime
+  accessedAt_in: [DateTime!]
+  accessedAt_not_in: [DateTime!]
+  accessedAt_lt: DateTime
+  accessedAt_lte: DateTime
+  accessedAt_gt: DateTime
+  accessedAt_gte: DateTime
   deleted: Boolean
   deleted_not: Boolean
   createdAt: DateTime

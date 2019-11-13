@@ -616,7 +616,7 @@ export interface UserCreateManyWithoutRoomsInput {
 
 export interface TokenUpdateManyMutationInput {
   userId?: Maybe<String>;
-  accessedAt?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
   deleted?: Maybe<Boolean>;
 }
 
@@ -635,7 +635,7 @@ export interface UserCreateWithoutRoomsInput {
 export interface TokenCreateInput {
   id?: Maybe<ID_Input>;
   userId?: Maybe<String>;
-  accessedAt?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
   deleted?: Maybe<Boolean>;
 }
 
@@ -956,7 +956,7 @@ export interface RoomScalarWhereInput {
 
 export interface TokenUpdateInput {
   userId?: Maybe<String>;
-  accessedAt?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
   deleted?: Maybe<Boolean>;
 }
 
@@ -1150,20 +1150,14 @@ export interface TokenWhereInput {
   userId_not_starts_with?: Maybe<String>;
   userId_ends_with?: Maybe<String>;
   userId_not_ends_with?: Maybe<String>;
-  accessedAt?: Maybe<String>;
-  accessedAt_not?: Maybe<String>;
-  accessedAt_in?: Maybe<String[] | String>;
-  accessedAt_not_in?: Maybe<String[] | String>;
-  accessedAt_lt?: Maybe<String>;
-  accessedAt_lte?: Maybe<String>;
-  accessedAt_gt?: Maybe<String>;
-  accessedAt_gte?: Maybe<String>;
-  accessedAt_contains?: Maybe<String>;
-  accessedAt_not_contains?: Maybe<String>;
-  accessedAt_starts_with?: Maybe<String>;
-  accessedAt_not_starts_with?: Maybe<String>;
-  accessedAt_ends_with?: Maybe<String>;
-  accessedAt_not_ends_with?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  accessedAt_not?: Maybe<DateTimeInput>;
+  accessedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  accessedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  accessedAt_lt?: Maybe<DateTimeInput>;
+  accessedAt_lte?: Maybe<DateTimeInput>;
+  accessedAt_gt?: Maybe<DateTimeInput>;
+  accessedAt_gte?: Maybe<DateTimeInput>;
   deleted?: Maybe<Boolean>;
   deleted_not?: Maybe<Boolean>;
   createdAt?: Maybe<DateTimeInput>;
@@ -1676,7 +1670,7 @@ export interface MessageNullablePromise
 export interface TokenPreviousValues {
   id: ID_Output;
   userId?: String;
-  accessedAt?: String;
+  accessedAt?: DateTimeOutput;
   deleted?: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -1687,7 +1681,7 @@ export interface TokenPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   userId: () => Promise<String>;
-  accessedAt: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
   deleted: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1698,7 +1692,7 @@ export interface TokenPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   userId: () => Promise<AsyncIterator<String>>;
-  accessedAt: () => Promise<AsyncIterator<String>>;
+  accessedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   deleted: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -1893,7 +1887,7 @@ export interface UserEdgeSubscription
 export interface Token {
   id: ID_Output;
   userId?: String;
-  accessedAt?: String;
+  accessedAt?: DateTimeOutput;
   deleted?: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -1902,7 +1896,7 @@ export interface Token {
 export interface TokenPromise extends Promise<Token>, Fragmentable {
   id: () => Promise<ID_Output>;
   userId: () => Promise<String>;
-  accessedAt: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
   deleted: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1913,7 +1907,7 @@ export interface TokenSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   userId: () => Promise<AsyncIterator<String>>;
-  accessedAt: () => Promise<AsyncIterator<String>>;
+  accessedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   deleted: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -1924,7 +1918,7 @@ export interface TokenNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   userId: () => Promise<String>;
-  accessedAt: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
   deleted: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;

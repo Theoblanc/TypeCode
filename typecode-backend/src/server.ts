@@ -1,8 +1,15 @@
-import { GraphQLServer } from "graphql-yoga";
+import { ApolloServer } from "apollo-server-express";
+import express from "express";
+
 import schema from "./schema";
 
-const server = new GraphQLServer({
+const server = new ApolloServer({
   schema
 });
 
-server.start(() => console.log("Server is running on http://localhost:4000"));
+const app = express();
+server.applyMiddleware({ app });
+
+app.listen(() => {
+  console.log("Server is running on http://localhost:4000");
+});

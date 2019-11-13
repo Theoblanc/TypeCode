@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { prisma, User } from "src/generated/prisma-client";
 import fs from "fs";
 
-const PUBLIC_KEY = fs.readFileSync("../../certs/publickey.pem");
+const PUBLIC_KEY = fs.readFileSync("../certs/publickey.pem");
 
 const decodeJWT = async (token: string): Promise<User | null> => {
   try {
