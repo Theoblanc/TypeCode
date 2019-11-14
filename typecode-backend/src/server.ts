@@ -1,18 +1,26 @@
-import { GraphQLServer } from "graphql-yoga";
+import { ApolloServer } from "apollo-server-express";
+import express from "express";
 
 import schema from "./schema";
-import { parseAuthHeader } from "./utils/parseAuthHeader";
+import { prisma } from "./generated/prisma-client";
+import { Prisma } from "./generated/prisma-client";
 
-const context = async ({ request }) => {
-  const user = await parseAuthHeader(request.headers.authorization);
-  return { ...request, user /*, fcm*/ };
-};
+export interface Context {
+  prisma: Prisma;
+  request: any;
+}
 
-const server = new GraphQLServer({
+const server = new ApolloServer({
   schema,
-  context
+  context: request => ({
+    ...request,
+    prisma
+  })
 });
 
-server.start(() => {
-  console.log("Server is running on http://localhost:4000");
-});
+const app = express();
+server.applyMiddleware({ app });
+
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+);

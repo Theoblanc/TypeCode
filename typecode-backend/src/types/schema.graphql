@@ -1,11 +1,10 @@
 type Query {
   findUser(id: ID!): User
-  me: User!
+  me(name: String): String!
 }
 
-type mutation {
-  login(email: String!, password: String!): String!
-  signup(name: String!, email: String!): Boolean!
+type Mutation {
+  signup(name: String!, email: String!, password: String!): Boolean!
 }
 
 type Token {

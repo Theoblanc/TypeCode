@@ -7,6 +7,7 @@ export const parseAuthHeader = async (authHeader = "") => {
   try {
     const token = authHeader.replace(/Bearer /i, "");
     const jwtObj = await jwt.verify(token, PUBLIC_KEY);
+    console.log(jwtObj);
     if (jwtObj.sub === "access_token") return jwtObj;
   } catch (e) {}
   return null;
