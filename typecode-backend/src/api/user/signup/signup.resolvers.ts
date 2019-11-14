@@ -18,7 +18,6 @@ const resolvers = {
         password: await bcrypt.hash(password, 10)
       });
       if (!user) throw new Error("아이디를 생성할수 없습니다.");
-      // //토큰 발급
       return true;
     }
   }
