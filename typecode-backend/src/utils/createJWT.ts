@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import { TokenModel } from "src/types/graph";
 import fs from "fs";
-import { prisma } from "src/generated/prisma-client";
+import { prisma } from "../generated/prisma-client";
 
 const PUBLIC_KEY = fs.readFileSync("../certs/publickey.pem");
-const PRIVATE_KEY = fs.readFileSync("./certs/private.pem");
+const PRIVATE_KEY = fs.readFileSync("../certs/privatekey.pem");
 
 const JWT_ISSUER = process.env.JWT_ISSUER || "";
 const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
