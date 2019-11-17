@@ -6,7 +6,7 @@ type User {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: Token
   rooms: [Room!]!
   createdAt: String!
   updatedAt: String!

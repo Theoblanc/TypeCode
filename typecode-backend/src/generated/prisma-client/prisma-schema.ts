@@ -595,6 +595,11 @@ input TokenCreateInput {
   deleted: Boolean
 }
 
+input TokenCreateOneInput {
+  create: TokenCreateInput
+  connect: TokenWhereUniqueInput
+}
+
 type TokenEdge {
   node: Token!
   cursor: String!
@@ -642,6 +647,12 @@ input TokenSubscriptionWhereInput {
   NOT: [TokenSubscriptionWhereInput!]
 }
 
+input TokenUpdateDataInput {
+  userId: String
+  accessedAt: DateTime
+  deleted: Boolean
+}
+
 input TokenUpdateInput {
   userId: String
   accessedAt: DateTime
@@ -652,6 +663,20 @@ input TokenUpdateManyMutationInput {
   userId: String
   accessedAt: DateTime
   deleted: Boolean
+}
+
+input TokenUpdateOneInput {
+  create: TokenCreateInput
+  update: TokenUpdateDataInput
+  upsert: TokenUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: TokenWhereUniqueInput
+}
+
+input TokenUpsertNestedInput {
+  update: TokenUpdateDataInput!
+  create: TokenCreateInput!
 }
 
 input TokenWhereInput {
@@ -726,7 +751,7 @@ type User {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: Token
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room!]
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -747,7 +772,7 @@ input UserCreateInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: TokenCreateOneInput
   rooms: RoomCreateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -770,7 +795,7 @@ input UserCreateWithoutRoomsInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: TokenCreateOneInput
   deletedAt: DateTime
 }
 
@@ -794,8 +819,6 @@ enum UserOrderByInput {
   phoneNumber_DESC
   phoneNumberVerified_ASC
   phoneNumberVerified_DESC
-  fcmToken_ASC
-  fcmToken_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -812,7 +835,6 @@ type UserPreviousValues {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime
@@ -905,20 +927,6 @@ input UserScalarWhereInput {
   phoneNumber_not_ends_with: String
   phoneNumberVerified: Boolean
   phoneNumberVerified_not: Boolean
-  fcmToken: String
-  fcmToken_not: String
-  fcmToken_in: [String!]
-  fcmToken_not_in: [String!]
-  fcmToken_lt: String
-  fcmToken_lte: String
-  fcmToken_gt: String
-  fcmToken_gte: String
-  fcmToken_contains: String
-  fcmToken_not_contains: String
-  fcmToken_starts_with: String
-  fcmToken_not_starts_with: String
-  fcmToken_ends_with: String
-  fcmToken_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -973,7 +981,7 @@ input UserUpdateDataInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: TokenUpdateOneInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -985,7 +993,7 @@ input UserUpdateInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: TokenUpdateOneInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -997,7 +1005,6 @@ input UserUpdateManyDataInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
   deletedAt: DateTime
 }
 
@@ -1008,7 +1015,6 @@ input UserUpdateManyMutationInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
   deletedAt: DateTime
 }
 
@@ -1043,7 +1049,7 @@ input UserUpdateWithoutRoomsDataInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: String
+  fcmToken: TokenUpdateOneInput
   deletedAt: DateTime
 }
 
@@ -1150,20 +1156,7 @@ input UserWhereInput {
   phoneNumber_not_ends_with: String
   phoneNumberVerified: Boolean
   phoneNumberVerified_not: Boolean
-  fcmToken: String
-  fcmToken_not: String
-  fcmToken_in: [String!]
-  fcmToken_not_in: [String!]
-  fcmToken_lt: String
-  fcmToken_lte: String
-  fcmToken_gt: String
-  fcmToken_gte: String
-  fcmToken_contains: String
-  fcmToken_not_contains: String
-  fcmToken_starts_with: String
-  fcmToken_not_starts_with: String
-  fcmToken_ends_with: String
-  fcmToken_not_ends_with: String
+  fcmToken: TokenWhereInput
   rooms_every: RoomWhereInput
   rooms_some: RoomWhereInput
   rooms_none: RoomWhereInput

@@ -243,8 +243,6 @@ export type UserOrderByInput =
   | "phoneNumber_DESC"
   | "phoneNumberVerified_ASC"
   | "phoneNumberVerified_DESC"
-  | "fcmToken_ASC"
-  | "fcmToken_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -278,53 +276,58 @@ export type TokenOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface RoomUpdateManyWithoutParticipantsInput {
-  create?: Maybe<
-    RoomCreateWithoutParticipantsInput[] | RoomCreateWithoutParticipantsInput
-  >;
-  delete?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
-  connect?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
-  set?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
-  disconnect?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
-  update?: Maybe<
-    | RoomUpdateWithWhereUniqueWithoutParticipantsInput[]
-    | RoomUpdateWithWhereUniqueWithoutParticipantsInput
-  >;
-  upsert?: Maybe<
-    | RoomUpsertWithWhereUniqueWithoutParticipantsInput[]
-    | RoomUpsertWithWhereUniqueWithoutParticipantsInput
-  >;
-  deleteMany?: Maybe<RoomScalarWhereInput[] | RoomScalarWhereInput>;
-  updateMany?: Maybe<
-    RoomUpdateManyWithWhereNestedInput[] | RoomUpdateManyWithWhereNestedInput
-  >;
-}
-
 export type MessageWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface MessageUpdateManyWithoutRoomInput {
-  create?: Maybe<
-    MessageCreateWithoutRoomInput[] | MessageCreateWithoutRoomInput
-  >;
-  delete?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
-  connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
-  set?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
-  disconnect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
-  update?: Maybe<
-    | MessageUpdateWithWhereUniqueWithoutRoomInput[]
-    | MessageUpdateWithWhereUniqueWithoutRoomInput
-  >;
-  upsert?: Maybe<
-    | MessageUpsertWithWhereUniqueWithoutRoomInput[]
-    | MessageUpsertWithWhereUniqueWithoutRoomInput
-  >;
-  deleteMany?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
-  updateMany?: Maybe<
-    | MessageUpdateManyWithWhereNestedInput[]
-    | MessageUpdateManyWithWhereNestedInput
-  >;
+export interface RoomWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  participants_every?: Maybe<UserWhereInput>;
+  participants_some?: Maybe<UserWhereInput>;
+  participants_none?: Maybe<UserWhereInput>;
+  messages_every?: Maybe<MessageWhereInput>;
+  messages_some?: Maybe<MessageWhereInput>;
+  messages_none?: Maybe<MessageWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  deletedAt?: Maybe<DateTimeInput>;
+  deletedAt_not?: Maybe<DateTimeInput>;
+  deletedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  deletedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  deletedAt_lt?: Maybe<DateTimeInput>;
+  deletedAt_lte?: Maybe<DateTimeInput>;
+  deletedAt_gt?: Maybe<DateTimeInput>;
+  deletedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<RoomWhereInput[] | RoomWhereInput>;
+  OR?: Maybe<RoomWhereInput[] | RoomWhereInput>;
+  NOT?: Maybe<RoomWhereInput[] | RoomWhereInput>;
 }
 
 export interface UserWhereInput {
@@ -414,20 +417,7 @@ export interface UserWhereInput {
   phoneNumber_not_ends_with?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
   phoneNumberVerified_not?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
-  fcmToken_not?: Maybe<String>;
-  fcmToken_in?: Maybe<String[] | String>;
-  fcmToken_not_in?: Maybe<String[] | String>;
-  fcmToken_lt?: Maybe<String>;
-  fcmToken_lte?: Maybe<String>;
-  fcmToken_gt?: Maybe<String>;
-  fcmToken_gte?: Maybe<String>;
-  fcmToken_contains?: Maybe<String>;
-  fcmToken_not_contains?: Maybe<String>;
-  fcmToken_starts_with?: Maybe<String>;
-  fcmToken_not_starts_with?: Maybe<String>;
-  fcmToken_ends_with?: Maybe<String>;
-  fcmToken_not_ends_with?: Maybe<String>;
+  fcmToken?: Maybe<TokenWhereInput>;
   rooms_every?: Maybe<RoomWhereInput>;
   rooms_some?: Maybe<RoomWhereInput>;
   rooms_none?: Maybe<RoomWhereInput>;
@@ -460,9 +450,64 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface MessageUpdateWithWhereUniqueWithoutRoomInput {
-  where: MessageWhereUniqueInput;
-  data: MessageUpdateWithoutRoomDataInput;
+export interface TokenWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  accessedAt_not?: Maybe<DateTimeInput>;
+  accessedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  accessedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  accessedAt_lt?: Maybe<DateTimeInput>;
+  accessedAt_lte?: Maybe<DateTimeInput>;
+  accessedAt_gt?: Maybe<DateTimeInput>;
+  accessedAt_gte?: Maybe<DateTimeInput>;
+  deleted?: Maybe<Boolean>;
+  deleted_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<TokenWhereInput[] | TokenWhereInput>;
+  OR?: Maybe<TokenWhereInput[] | TokenWhereInput>;
+  NOT?: Maybe<TokenWhereInput[] | TokenWhereInput>;
 }
 
 export interface MessageWhereInput {
@@ -518,30 +563,68 @@ export interface MessageWhereInput {
   NOT?: Maybe<MessageWhereInput[] | MessageWhereInput>;
 }
 
+export type RoomWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type TokenWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface MessageCreateInput {
+  id?: Maybe<ID_Input>;
+  text: String;
+  from: UserCreateOneInput;
+  to: UserCreateOneInput;
+  room: RoomCreateOneWithoutMessagesInput;
+}
+
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  password: String;
+  profile?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumberVerified?: Maybe<Boolean>;
+  fcmToken?: Maybe<TokenCreateOneInput>;
+  rooms?: Maybe<RoomCreateManyWithoutParticipantsInput>;
+  deletedAt?: Maybe<DateTimeInput>;
+}
+
+export interface TokenCreateOneInput {
+  create?: Maybe<TokenCreateInput>;
+  connect?: Maybe<TokenWhereUniqueInput>;
+}
+
+export interface TokenCreateInput {
+  id?: Maybe<ID_Input>;
+  userId?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  deleted?: Maybe<Boolean>;
+}
+
+export interface RoomCreateManyWithoutParticipantsInput {
+  create?: Maybe<
+    RoomCreateWithoutParticipantsInput[] | RoomCreateWithoutParticipantsInput
+  >;
+  connect?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
+}
+
 export interface RoomCreateWithoutParticipantsInput {
   id?: Maybe<ID_Input>;
   messages?: Maybe<MessageCreateManyWithoutRoomInput>;
   deletedAt?: Maybe<DateTimeInput>;
-}
-
-export interface UserUpdateManyWithoutRoomsInput {
-  create?: Maybe<UserCreateWithoutRoomsInput[] | UserCreateWithoutRoomsInput>;
-  delete?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  set?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  disconnect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-  update?: Maybe<
-    | UserUpdateWithWhereUniqueWithoutRoomsInput[]
-    | UserUpdateWithWhereUniqueWithoutRoomsInput
-  >;
-  upsert?: Maybe<
-    | UserUpsertWithWhereUniqueWithoutRoomsInput[]
-    | UserUpsertWithWhereUniqueWithoutRoomsInput
-  >;
-  deleteMany?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
-  updateMany?: Maybe<
-    UserUpdateManyWithWhereNestedInput[] | UserUpdateManyWithWhereNestedInput
-  >;
 }
 
 export interface MessageCreateManyWithoutRoomInput {
@@ -551,12 +634,6 @@ export interface MessageCreateManyWithoutRoomInput {
   connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
 }
 
-export interface MessageUpdateWithoutRoomDataInput {
-  text?: Maybe<String>;
-  from?: Maybe<UserUpdateOneRequiredInput>;
-  to?: Maybe<UserUpdateOneRequiredInput>;
-}
-
 export interface MessageCreateWithoutRoomInput {
   id?: Maybe<ID_Input>;
   text: String;
@@ -564,31 +641,9 @@ export interface MessageCreateWithoutRoomInput {
   to: UserCreateOneInput;
 }
 
-export interface TokenSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TokenWhereInput>;
-  AND?: Maybe<TokenSubscriptionWhereInput[] | TokenSubscriptionWhereInput>;
-  OR?: Maybe<TokenSubscriptionWhereInput[] | TokenSubscriptionWhereInput>;
-  NOT?: Maybe<TokenSubscriptionWhereInput[] | TokenSubscriptionWhereInput>;
-}
-
 export interface RoomCreateOneWithoutMessagesInput {
   create?: Maybe<RoomCreateWithoutMessagesInput>;
   connect?: Maybe<RoomWhereUniqueInput>;
-}
-
-export interface MessageSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<MessageWhereInput>;
-  AND?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
-  OR?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
-  NOT?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
 }
 
 export interface RoomCreateWithoutMessagesInput {
@@ -597,27 +652,9 @@ export interface RoomCreateWithoutMessagesInput {
   deletedAt?: Maybe<DateTimeInput>;
 }
 
-export interface UserUpdateInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  profile?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
-  rooms?: Maybe<RoomUpdateManyWithoutParticipantsInput>;
-  deletedAt?: Maybe<DateTimeInput>;
-}
-
 export interface UserCreateManyWithoutRoomsInput {
   create?: Maybe<UserCreateWithoutRoomsInput[] | UserCreateWithoutRoomsInput>;
   connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-}
-
-export interface TokenUpdateManyMutationInput {
-  userId?: Maybe<String>;
-  accessedAt?: Maybe<DateTimeInput>;
-  deleted?: Maybe<Boolean>;
 }
 
 export interface UserCreateWithoutRoomsInput {
@@ -628,15 +665,8 @@ export interface UserCreateWithoutRoomsInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
+  fcmToken?: Maybe<TokenCreateOneInput>;
   deletedAt?: Maybe<DateTimeInput>;
-}
-
-export interface TokenCreateInput {
-  id?: Maybe<ID_Input>;
-  userId?: Maybe<String>;
-  accessedAt?: Maybe<DateTimeInput>;
-  deleted?: Maybe<Boolean>;
 }
 
 export interface MessageUpdateInput {
@@ -646,21 +676,11 @@ export interface MessageUpdateInput {
   room?: Maybe<RoomUpdateOneRequiredWithoutMessagesInput>;
 }
 
-export interface RoomUpdateManyMutationInput {
-  deletedAt?: Maybe<DateTimeInput>;
-}
-
 export interface UserUpdateOneRequiredInput {
   create?: Maybe<UserCreateInput>;
   update?: Maybe<UserUpdateDataInput>;
   upsert?: Maybe<UserUpsertNestedInput>;
   connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface RoomUpdateInput {
-  participants?: Maybe<UserUpdateManyWithoutRoomsInput>;
-  messages?: Maybe<MessageUpdateManyWithoutRoomInput>;
-  deletedAt?: Maybe<DateTimeInput>;
 }
 
 export interface UserUpdateDataInput {
@@ -670,34 +690,56 @@ export interface UserUpdateDataInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
+  fcmToken?: Maybe<TokenUpdateOneInput>;
   rooms?: Maybe<RoomUpdateManyWithoutParticipantsInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
 
-export interface MessageUpdateManyMutationInput {
-  text?: Maybe<String>;
+export interface TokenUpdateOneInput {
+  create?: Maybe<TokenCreateInput>;
+  update?: Maybe<TokenUpdateDataInput>;
+  upsert?: Maybe<TokenUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<TokenWhereUniqueInput>;
 }
 
-export interface UserUpsertWithWhereUniqueWithoutRoomsInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutRoomsDataInput;
-  create: UserCreateWithoutRoomsInput;
+export interface TokenUpdateDataInput {
+  userId?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  deleted?: Maybe<Boolean>;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
+export interface TokenUpsertNestedInput {
+  update: TokenUpdateDataInput;
+  create: TokenCreateInput;
+}
+
+export interface RoomUpdateManyWithoutParticipantsInput {
+  create?: Maybe<
+    RoomCreateWithoutParticipantsInput[] | RoomCreateWithoutParticipantsInput
+  >;
+  delete?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
+  connect?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
+  set?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
+  disconnect?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
+  update?: Maybe<
+    | RoomUpdateWithWhereUniqueWithoutParticipantsInput[]
+    | RoomUpdateWithWhereUniqueWithoutParticipantsInput
+  >;
+  upsert?: Maybe<
+    | RoomUpsertWithWhereUniqueWithoutParticipantsInput[]
+    | RoomUpsertWithWhereUniqueWithoutParticipantsInput
+  >;
+  deleteMany?: Maybe<RoomScalarWhereInput[] | RoomScalarWhereInput>;
+  updateMany?: Maybe<
+    RoomUpdateManyWithWhereNestedInput[] | RoomUpdateManyWithWhereNestedInput
+  >;
+}
 
 export interface RoomUpdateWithWhereUniqueWithoutParticipantsInput {
   where: RoomWhereUniqueInput;
   data: RoomUpdateWithoutParticipantsDataInput;
-}
-
-export interface UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput;
-  data: UserUpdateManyDataInput;
 }
 
 export interface RoomUpdateWithoutParticipantsDataInput {
@@ -705,108 +747,45 @@ export interface RoomUpdateWithoutParticipantsDataInput {
   deletedAt?: Maybe<DateTimeInput>;
 }
 
-export interface UserCreateOneInput {
-  create?: Maybe<UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserUpdateWithoutRoomsDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  profile?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
-  deletedAt?: Maybe<DateTimeInput>;
-}
-
-export interface RoomCreateManyWithoutParticipantsInput {
+export interface MessageUpdateManyWithoutRoomInput {
   create?: Maybe<
-    RoomCreateWithoutParticipantsInput[] | RoomCreateWithoutParticipantsInput
+    MessageCreateWithoutRoomInput[] | MessageCreateWithoutRoomInput
   >;
-  connect?: Maybe<RoomWhereUniqueInput[] | RoomWhereUniqueInput>;
+  delete?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  set?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  disconnect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  update?: Maybe<
+    | MessageUpdateWithWhereUniqueWithoutRoomInput[]
+    | MessageUpdateWithWhereUniqueWithoutRoomInput
+  >;
+  upsert?: Maybe<
+    | MessageUpsertWithWhereUniqueWithoutRoomInput[]
+    | MessageUpsertWithWhereUniqueWithoutRoomInput
+  >;
+  deleteMany?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
+  updateMany?: Maybe<
+    | MessageUpdateManyWithWhereNestedInput[]
+    | MessageUpdateManyWithWhereNestedInput
+  >;
 }
 
-export interface RoomWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  participants_every?: Maybe<UserWhereInput>;
-  participants_some?: Maybe<UserWhereInput>;
-  participants_none?: Maybe<UserWhereInput>;
-  messages_every?: Maybe<MessageWhereInput>;
-  messages_some?: Maybe<MessageWhereInput>;
-  messages_none?: Maybe<MessageWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  deletedAt?: Maybe<DateTimeInput>;
-  deletedAt_not?: Maybe<DateTimeInput>;
-  deletedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  deletedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  deletedAt_lt?: Maybe<DateTimeInput>;
-  deletedAt_lte?: Maybe<DateTimeInput>;
-  deletedAt_gt?: Maybe<DateTimeInput>;
-  deletedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<RoomWhereInput[] | RoomWhereInput>;
-  OR?: Maybe<RoomWhereInput[] | RoomWhereInput>;
-  NOT?: Maybe<RoomWhereInput[] | RoomWhereInput>;
+export interface MessageUpdateWithWhereUniqueWithoutRoomInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutRoomDataInput;
 }
 
-export interface RoomSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<RoomWhereInput>;
-  AND?: Maybe<RoomSubscriptionWhereInput[] | RoomSubscriptionWhereInput>;
-  OR?: Maybe<RoomSubscriptionWhereInput[] | RoomSubscriptionWhereInput>;
-  NOT?: Maybe<RoomSubscriptionWhereInput[] | RoomSubscriptionWhereInput>;
+export interface MessageUpdateWithoutRoomDataInput {
+  text?: Maybe<String>;
+  from?: Maybe<UserUpdateOneRequiredInput>;
+  to?: Maybe<UserUpdateOneRequiredInput>;
 }
-
-export interface UserUpdateWithWhereUniqueWithoutRoomsInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutRoomsDataInput;
-}
-
-export type RoomWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface MessageUpsertWithWhereUniqueWithoutRoomInput {
   where: MessageWhereUniqueInput;
   update: MessageUpdateWithoutRoomDataInput;
   create: MessageCreateWithoutRoomInput;
 }
-
-export type TokenWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface MessageScalarWhereInput {
   id?: Maybe<ID_Input>;
@@ -858,56 +837,19 @@ export interface MessageScalarWhereInput {
   NOT?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
 }
 
-export interface RoomCreateInput {
-  id?: Maybe<ID_Input>;
-  participants?: Maybe<UserCreateManyWithoutRoomsInput>;
-  messages?: Maybe<MessageCreateManyWithoutRoomInput>;
-  deletedAt?: Maybe<DateTimeInput>;
-}
-
 export interface MessageUpdateManyWithWhereNestedInput {
   where: MessageScalarWhereInput;
   data: MessageUpdateManyDataInput;
-}
-
-export interface UserUpdateManyDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  profile?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
-  deletedAt?: Maybe<DateTimeInput>;
 }
 
 export interface MessageUpdateManyDataInput {
   text?: Maybe<String>;
 }
 
-export interface MessageCreateInput {
-  id?: Maybe<ID_Input>;
-  text: String;
-  from: UserCreateOneInput;
-  to: UserCreateOneInput;
-  room: RoomCreateOneWithoutMessagesInput;
-}
-
 export interface RoomUpsertWithWhereUniqueWithoutParticipantsInput {
   where: RoomWhereUniqueInput;
   update: RoomUpdateWithoutParticipantsDataInput;
   create: RoomCreateWithoutParticipantsInput;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface RoomScalarWhereInput {
@@ -954,25 +896,18 @@ export interface RoomScalarWhereInput {
   NOT?: Maybe<RoomScalarWhereInput[] | RoomScalarWhereInput>;
 }
 
-export interface TokenUpdateInput {
-  userId?: Maybe<String>;
-  accessedAt?: Maybe<DateTimeInput>;
-  deleted?: Maybe<Boolean>;
-}
-
 export interface RoomUpdateManyWithWhereNestedInput {
   where: RoomScalarWhereInput;
   data: RoomUpdateManyDataInput;
 }
 
-export interface RoomUpsertWithoutMessagesInput {
-  update: RoomUpdateWithoutMessagesDataInput;
-  create: RoomCreateWithoutMessagesInput;
+export interface RoomUpdateManyDataInput {
+  deletedAt?: Maybe<DateTimeInput>;
 }
 
-export interface RoomUpdateWithoutMessagesDataInput {
-  participants?: Maybe<UserUpdateManyWithoutRoomsInput>;
-  deletedAt?: Maybe<DateTimeInput>;
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface RoomUpdateOneRequiredWithoutMessagesInput {
@@ -982,13 +917,51 @@ export interface RoomUpdateOneRequiredWithoutMessagesInput {
   connect?: Maybe<RoomWhereUniqueInput>;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
+export interface RoomUpdateWithoutMessagesDataInput {
+  participants?: Maybe<UserUpdateManyWithoutRoomsInput>;
+  deletedAt?: Maybe<DateTimeInput>;
 }
 
-export interface RoomUpdateManyDataInput {
+export interface UserUpdateManyWithoutRoomsInput {
+  create?: Maybe<UserCreateWithoutRoomsInput[] | UserCreateWithoutRoomsInput>;
+  delete?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  set?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  disconnect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  update?: Maybe<
+    | UserUpdateWithWhereUniqueWithoutRoomsInput[]
+    | UserUpdateWithWhereUniqueWithoutRoomsInput
+  >;
+  upsert?: Maybe<
+    | UserUpsertWithWhereUniqueWithoutRoomsInput[]
+    | UserUpsertWithWhereUniqueWithoutRoomsInput
+  >;
+  deleteMany?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
+  updateMany?: Maybe<
+    UserUpdateManyWithWhereNestedInput[] | UserUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutRoomsInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutRoomsDataInput;
+}
+
+export interface UserUpdateWithoutRoomsDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  profile?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumberVerified?: Maybe<Boolean>;
+  fcmToken?: Maybe<TokenUpdateOneInput>;
   deletedAt?: Maybe<DateTimeInput>;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutRoomsInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutRoomsDataInput;
+  create: UserCreateWithoutRoomsInput;
 }
 
 export interface UserScalarWhereInput {
@@ -1078,20 +1051,6 @@ export interface UserScalarWhereInput {
   phoneNumber_not_ends_with?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
   phoneNumberVerified_not?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
-  fcmToken_not?: Maybe<String>;
-  fcmToken_in?: Maybe<String[] | String>;
-  fcmToken_not_in?: Maybe<String[] | String>;
-  fcmToken_lt?: Maybe<String>;
-  fcmToken_lte?: Maybe<String>;
-  fcmToken_gt?: Maybe<String>;
-  fcmToken_gte?: Maybe<String>;
-  fcmToken_contains?: Maybe<String>;
-  fcmToken_not_contains?: Maybe<String>;
-  fcmToken_starts_with?: Maybe<String>;
-  fcmToken_not_starts_with?: Maybe<String>;
-  fcmToken_ends_with?: Maybe<String>;
-  fcmToken_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1121,64 +1080,69 @@ export interface UserScalarWhereInput {
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
 }
 
-export interface TokenWhereInput {
+export interface UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput;
+  data: UserUpdateManyDataInput;
+}
+
+export interface UserUpdateManyDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  profile?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumberVerified?: Maybe<Boolean>;
+  deletedAt?: Maybe<DateTimeInput>;
+}
+
+export interface RoomUpsertWithoutMessagesInput {
+  update: RoomUpdateWithoutMessagesDataInput;
+  create: RoomCreateWithoutMessagesInput;
+}
+
+export interface MessageUpdateManyMutationInput {
+  text?: Maybe<String>;
+}
+
+export interface RoomCreateInput {
   id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
+  participants?: Maybe<UserCreateManyWithoutRoomsInput>;
+  messages?: Maybe<MessageCreateManyWithoutRoomInput>;
+  deletedAt?: Maybe<DateTimeInput>;
+}
+
+export interface RoomUpdateInput {
+  participants?: Maybe<UserUpdateManyWithoutRoomsInput>;
+  messages?: Maybe<MessageUpdateManyWithoutRoomInput>;
+  deletedAt?: Maybe<DateTimeInput>;
+}
+
+export interface RoomUpdateManyMutationInput {
+  deletedAt?: Maybe<DateTimeInput>;
+}
+
+export interface TokenUpdateInput {
   userId?: Maybe<String>;
-  userId_not?: Maybe<String>;
-  userId_in?: Maybe<String[] | String>;
-  userId_not_in?: Maybe<String[] | String>;
-  userId_lt?: Maybe<String>;
-  userId_lte?: Maybe<String>;
-  userId_gt?: Maybe<String>;
-  userId_gte?: Maybe<String>;
-  userId_contains?: Maybe<String>;
-  userId_not_contains?: Maybe<String>;
-  userId_starts_with?: Maybe<String>;
-  userId_not_starts_with?: Maybe<String>;
-  userId_ends_with?: Maybe<String>;
-  userId_not_ends_with?: Maybe<String>;
   accessedAt?: Maybe<DateTimeInput>;
-  accessedAt_not?: Maybe<DateTimeInput>;
-  accessedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  accessedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  accessedAt_lt?: Maybe<DateTimeInput>;
-  accessedAt_lte?: Maybe<DateTimeInput>;
-  accessedAt_gt?: Maybe<DateTimeInput>;
-  accessedAt_gte?: Maybe<DateTimeInput>;
   deleted?: Maybe<Boolean>;
-  deleted_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<TokenWhereInput[] | TokenWhereInput>;
-  OR?: Maybe<TokenWhereInput[] | TokenWhereInput>;
-  NOT?: Maybe<TokenWhereInput[] | TokenWhereInput>;
+}
+
+export interface TokenUpdateManyMutationInput {
+  userId?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  deleted?: Maybe<Boolean>;
+}
+
+export interface UserUpdateInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  profile?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumberVerified?: Maybe<Boolean>;
+  fcmToken?: Maybe<TokenUpdateOneInput>;
+  rooms?: Maybe<RoomUpdateManyWithoutParticipantsInput>;
+  deletedAt?: Maybe<DateTimeInput>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -1188,28 +1152,99 @@ export interface UserUpdateManyMutationInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
   deletedAt?: Maybe<DateTimeInput>;
 }
 
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  password: String;
-  profile?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<String>;
-  rooms?: Maybe<RoomCreateManyWithoutParticipantsInput>;
-  deletedAt?: Maybe<DateTimeInput>;
+export interface MessageSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<MessageWhereInput>;
+  AND?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
+  OR?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
+  NOT?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
+}
+
+export interface RoomSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<RoomWhereInput>;
+  AND?: Maybe<RoomSubscriptionWhereInput[] | RoomSubscriptionWhereInput>;
+  OR?: Maybe<RoomSubscriptionWhereInput[] | RoomSubscriptionWhereInput>;
+  NOT?: Maybe<RoomSubscriptionWhereInput[] | RoomSubscriptionWhereInput>;
+}
+
+export interface TokenSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TokenWhereInput>;
+  AND?: Maybe<TokenSubscriptionWhereInput[] | TokenSubscriptionWhereInput>;
+  OR?: Maybe<TokenSubscriptionWhereInput[] | TokenSubscriptionWhereInput>;
+  NOT?: Maybe<TokenSubscriptionWhereInput[] | TokenSubscriptionWhereInput>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface UserPreviousValues {
+export interface Message {
+  id: ID_Output;
+  text: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface MessagePromise extends Promise<Message>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  text: () => Promise<String>;
+  from: <T = UserPromise>() => T;
+  to: <T = UserPromise>() => T;
+  room: <T = RoomPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface MessageSubscription
+  extends Promise<AsyncIterator<Message>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  text: () => Promise<AsyncIterator<String>>;
+  from: <T = UserSubscription>() => T;
+  to: <T = UserSubscription>() => T;
+  room: <T = RoomSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface MessageNullablePromise
+  extends Promise<Message | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  text: () => Promise<String>;
+  from: <T = UserPromise>() => T;
+  to: <T = UserPromise>() => T;
+  room: <T = RoomPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface User {
   id: ID_Output;
   name: String;
   email: String;
@@ -1217,15 +1252,12 @@ export interface UserPreviousValues {
   profile?: String;
   phoneNumber?: String;
   phoneNumberVerified?: Boolean;
-  fcmToken?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   deletedAt?: DateTimeOutput;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
+export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -1233,14 +1265,23 @@ export interface UserPreviousValuesPromise
   profile: () => Promise<String>;
   phoneNumber: () => Promise<String>;
   phoneNumberVerified: () => Promise<Boolean>;
-  fcmToken: () => Promise<String>;
+  fcmToken: <T = TokenPromise>() => T;
+  rooms: <T = FragmentableArray<Room>>(args?: {
+    where?: RoomWhereInput;
+    orderBy?: RoomOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   deletedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
@@ -1249,31 +1290,84 @@ export interface UserPreviousValuesSubscription
   profile: () => Promise<AsyncIterator<String>>;
   phoneNumber: () => Promise<AsyncIterator<String>>;
   phoneNumberVerified: () => Promise<AsyncIterator<Boolean>>;
-  fcmToken: () => Promise<AsyncIterator<String>>;
+  fcmToken: <T = TokenSubscription>() => T;
+  rooms: <T = Promise<AsyncIterator<RoomSubscription>>>(args?: {
+    where?: RoomWhereInput;
+    orderBy?: RoomOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface RoomConnection {
-  pageInfo: PageInfo;
-  edges: RoomEdge[];
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  profile: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  phoneNumberVerified: () => Promise<Boolean>;
+  fcmToken: <T = TokenPromise>() => T;
+  rooms: <T = FragmentableArray<Room>>(args?: {
+    where?: RoomWhereInput;
+    orderBy?: RoomOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface RoomConnectionPromise
-  extends Promise<RoomConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<RoomEdge>>() => T;
-  aggregate: <T = AggregateRoomPromise>() => T;
+export interface Token {
+  id: ID_Output;
+  userId?: String;
+  accessedAt?: DateTimeOutput;
+  deleted?: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
-export interface RoomConnectionSubscription
-  extends Promise<AsyncIterator<RoomConnection>>,
+export interface TokenPromise extends Promise<Token>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
+  deleted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface TokenSubscription
+  extends Promise<AsyncIterator<Token>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<RoomEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateRoomSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  userId: () => Promise<AsyncIterator<String>>;
+  accessedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deleted: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TokenNullablePromise
+  extends Promise<Token | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
+  deleted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface Room {
@@ -1362,220 +1456,25 @@ export interface RoomNullablePromise
   deletedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface RoomEdge {
-  node: Room;
-  cursor: String;
-}
-
-export interface RoomEdgePromise extends Promise<RoomEdge>, Fragmentable {
-  node: <T = RoomPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface RoomEdgeSubscription
-  extends Promise<AsyncIterator<RoomEdge>>,
-    Fragmentable {
-  node: <T = RoomSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface User {
-  id: ID_Output;
-  name: String;
-  email: String;
-  password: String;
-  profile?: String;
-  phoneNumber?: String;
-  phoneNumberVerified?: Boolean;
-  fcmToken?: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  deletedAt?: DateTimeOutput;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  profile: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  phoneNumberVerified: () => Promise<Boolean>;
-  fcmToken: () => Promise<String>;
-  rooms: <T = FragmentableArray<Room>>(args?: {
-    where?: RoomWhereInput;
-    orderBy?: RoomOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  deletedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  profile: () => Promise<AsyncIterator<String>>;
-  phoneNumber: () => Promise<AsyncIterator<String>>;
-  phoneNumberVerified: () => Promise<AsyncIterator<Boolean>>;
-  fcmToken: () => Promise<AsyncIterator<String>>;
-  rooms: <T = Promise<AsyncIterator<RoomSubscription>>>(args?: {
-    where?: RoomWhereInput;
-    orderBy?: RoomOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  profile: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  phoneNumberVerified: () => Promise<Boolean>;
-  fcmToken: () => Promise<String>;
-  rooms: <T = FragmentableArray<Room>>(args?: {
-    where?: RoomWhereInput;
-    orderBy?: RoomOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  deletedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface TokenSubscriptionPayload {
-  mutation: MutationType;
-  node: Token;
-  updatedFields: String[];
-  previousValues: TokenPreviousValues;
-}
-
-export interface TokenSubscriptionPayloadPromise
-  extends Promise<TokenSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = TokenPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = TokenPreviousValuesPromise>() => T;
-}
-
-export interface TokenSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<TokenSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = TokenSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = TokenPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateMessage {
-  count: Int;
-}
-
-export interface AggregateMessagePromise
-  extends Promise<AggregateMessage>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateMessageSubscription
-  extends Promise<AsyncIterator<AggregateMessage>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserConnection {
+export interface MessageConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: MessageEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface MessageConnectionPromise
+  extends Promise<MessageConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<MessageEdge>>() => T;
+  aggregate: <T = AggregateMessagePromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface MessageConnectionSubscription
+  extends Promise<AsyncIterator<MessageConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface MessageEdge {
-  node: Message;
-  cursor: String;
-}
-
-export interface MessageEdgePromise extends Promise<MessageEdge>, Fragmentable {
-  node: <T = MessagePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface MessageEdgeSubscription
-  extends Promise<AsyncIterator<MessageEdge>>,
-    Fragmentable {
-  node: <T = MessageSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface TokenEdge {
-  node: Token;
-  cursor: String;
-}
-
-export interface TokenEdgePromise extends Promise<TokenEdge>, Fragmentable {
-  node: <T = TokenPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface TokenEdgeSubscription
-  extends Promise<AsyncIterator<TokenEdge>>,
-    Fragmentable {
-  node: <T = TokenSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  edges: <T = Promise<AsyncIterator<MessageEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateMessageSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -1601,70 +1500,340 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface MessageEdge {
+  node: Message;
+  cursor: String;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface MessageEdgePromise extends Promise<MessageEdge>, Fragmentable {
+  node: <T = MessagePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface MessageEdgeSubscription
+  extends Promise<AsyncIterator<MessageEdge>>,
+    Fragmentable {
+  node: <T = MessageSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateMessage {
+  count: Int;
+}
+
+export interface AggregateMessagePromise
+  extends Promise<AggregateMessage>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateMessageSubscription
+  extends Promise<AsyncIterator<AggregateMessage>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface RoomConnection {
+  pageInfo: PageInfo;
+  edges: RoomEdge[];
+}
+
+export interface RoomConnectionPromise
+  extends Promise<RoomConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<RoomEdge>>() => T;
+  aggregate: <T = AggregateRoomPromise>() => T;
+}
+
+export interface RoomConnectionSubscription
+  extends Promise<AsyncIterator<RoomConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<RoomEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateRoomSubscription>() => T;
+}
+
+export interface RoomEdge {
+  node: Room;
+  cursor: String;
+}
+
+export interface RoomEdgePromise extends Promise<RoomEdge>, Fragmentable {
+  node: <T = RoomPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface RoomEdgeSubscription
+  extends Promise<AsyncIterator<RoomEdge>>,
+    Fragmentable {
+  node: <T = RoomSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateRoom {
+  count: Int;
+}
+
+export interface AggregateRoomPromise
+  extends Promise<AggregateRoom>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateRoomSubscription
+  extends Promise<AsyncIterator<AggregateRoom>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface TokenConnection {
+  pageInfo: PageInfo;
+  edges: TokenEdge[];
+}
+
+export interface TokenConnectionPromise
+  extends Promise<TokenConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TokenEdge>>() => T;
+  aggregate: <T = AggregateTokenPromise>() => T;
+}
+
+export interface TokenConnectionSubscription
+  extends Promise<AsyncIterator<TokenConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TokenEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTokenSubscription>() => T;
+}
+
+export interface TokenEdge {
+  node: Token;
+  cursor: String;
+}
+
+export interface TokenEdgePromise extends Promise<TokenEdge>, Fragmentable {
+  node: <T = TokenPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TokenEdgeSubscription
+  extends Promise<AsyncIterator<TokenEdge>>,
+    Fragmentable {
+  node: <T = TokenSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateToken {
+  count: Int;
+}
+
+export interface AggregateTokenPromise
+  extends Promise<AggregateToken>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTokenSubscription
+  extends Promise<AsyncIterator<AggregateToken>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface MessageSubscriptionPayload {
+  mutation: MutationType;
+  node: Message;
+  updatedFields: String[];
+  previousValues: MessagePreviousValues;
+}
+
+export interface MessageSubscriptionPayloadPromise
+  extends Promise<MessageSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
+  node: <T = MessagePromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  previousValues: <T = MessagePreviousValuesPromise>() => T;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface MessageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<MessageSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
+  node: <T = MessageSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  previousValues: <T = MessagePreviousValuesSubscription>() => T;
 }
 
-export interface Message {
+export interface MessagePreviousValues {
   id: ID_Output;
   text: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface MessagePromise extends Promise<Message>, Fragmentable {
+export interface MessagePreviousValuesPromise
+  extends Promise<MessagePreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   text: () => Promise<String>;
-  from: <T = UserPromise>() => T;
-  to: <T = UserPromise>() => T;
-  room: <T = RoomPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface MessageSubscription
-  extends Promise<AsyncIterator<Message>>,
+export interface MessagePreviousValuesSubscription
+  extends Promise<AsyncIterator<MessagePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   text: () => Promise<AsyncIterator<String>>;
-  from: <T = UserSubscription>() => T;
-  to: <T = UserSubscription>() => T;
-  room: <T = RoomSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface MessageNullablePromise
-  extends Promise<Message | null>,
+export interface RoomSubscriptionPayload {
+  mutation: MutationType;
+  node: Room;
+  updatedFields: String[];
+  previousValues: RoomPreviousValues;
+}
+
+export interface RoomSubscriptionPayloadPromise
+  extends Promise<RoomSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = RoomPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = RoomPreviousValuesPromise>() => T;
+}
+
+export interface RoomSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<RoomSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = RoomSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = RoomPreviousValuesSubscription>() => T;
+}
+
+export interface RoomPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface RoomPreviousValuesPromise
+  extends Promise<RoomPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  text: () => Promise<String>;
-  from: <T = UserPromise>() => T;
-  to: <T = UserPromise>() => T;
-  room: <T = RoomPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface RoomPreviousValuesSubscription
+  extends Promise<AsyncIterator<RoomPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TokenSubscriptionPayload {
+  mutation: MutationType;
+  node: Token;
+  updatedFields: String[];
+  previousValues: TokenPreviousValues;
+}
+
+export interface TokenSubscriptionPayloadPromise
+  extends Promise<TokenSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TokenPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TokenPreviousValuesPromise>() => T;
+}
+
+export interface TokenSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TokenSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TokenSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TokenPreviousValuesSubscription>() => T;
 }
 
 export interface TokenPreviousValues {
@@ -1698,257 +1867,73 @@ export interface TokenPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface MessageSubscriptionPayload {
+export interface UserSubscriptionPayload {
   mutation: MutationType;
-  node: Message;
+  node: User;
   updatedFields: String[];
-  previousValues: MessagePreviousValues;
+  previousValues: UserPreviousValues;
 }
 
-export interface MessageSubscriptionPayloadPromise
-  extends Promise<MessageSubscriptionPayload>,
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = MessagePromise>() => T;
+  node: <T = UserPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = MessagePreviousValuesPromise>() => T;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface MessageSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<MessageSubscriptionPayload>>,
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = MessageSubscription>() => T;
+  node: <T = UserSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = MessagePreviousValuesSubscription>() => T;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateRoom {
-  count: Int;
-}
-
-export interface AggregateRoomPromise
-  extends Promise<AggregateRoom>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateRoomSubscription
-  extends Promise<AsyncIterator<AggregateRoom>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateToken {
-  count: Int;
-}
-
-export interface AggregateTokenPromise
-  extends Promise<AggregateToken>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateTokenSubscription
-  extends Promise<AsyncIterator<AggregateToken>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface RoomPreviousValues {
+export interface UserPreviousValues {
   id: ID_Output;
+  name: String;
+  email: String;
+  password: String;
+  profile?: String;
+  phoneNumber?: String;
+  phoneNumberVerified?: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   deletedAt?: DateTimeOutput;
 }
 
-export interface RoomPreviousValuesPromise
-  extends Promise<RoomPreviousValues>,
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  profile: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  phoneNumberVerified: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   deletedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface RoomPreviousValuesSubscription
-  extends Promise<AsyncIterator<RoomPreviousValues>>,
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  profile: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  phoneNumberVerified: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
-
-export interface RoomSubscriptionPayload {
-  mutation: MutationType;
-  node: Room;
-  updatedFields: String[];
-  previousValues: RoomPreviousValues;
-}
-
-export interface RoomSubscriptionPayloadPromise
-  extends Promise<RoomSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = RoomPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = RoomPreviousValuesPromise>() => T;
-}
-
-export interface RoomSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<RoomSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = RoomSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = RoomPreviousValuesSubscription>() => T;
-}
-
-export interface MessageConnection {
-  pageInfo: PageInfo;
-  edges: MessageEdge[];
-}
-
-export interface MessageConnectionPromise
-  extends Promise<MessageConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<MessageEdge>>() => T;
-  aggregate: <T = AggregateMessagePromise>() => T;
-}
-
-export interface MessageConnectionSubscription
-  extends Promise<AsyncIterator<MessageConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<MessageEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateMessageSubscription>() => T;
-}
-
-export interface MessagePreviousValues {
-  id: ID_Output;
-  text: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface MessagePreviousValuesPromise
-  extends Promise<MessagePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  text: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface MessagePreviousValuesSubscription
-  extends Promise<AsyncIterator<MessagePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  text: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Token {
-  id: ID_Output;
-  userId?: String;
-  accessedAt?: DateTimeOutput;
-  deleted?: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface TokenPromise extends Promise<Token>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  userId: () => Promise<String>;
-  accessedAt: () => Promise<DateTimeOutput>;
-  deleted: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface TokenSubscription
-  extends Promise<AsyncIterator<Token>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  userId: () => Promise<AsyncIterator<String>>;
-  accessedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  deleted: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface TokenNullablePromise
-  extends Promise<Token | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  userId: () => Promise<String>;
-  accessedAt: () => Promise<DateTimeOutput>;
-  deleted: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface TokenConnection {
-  pageInfo: PageInfo;
-  edges: TokenEdge[];
-}
-
-export interface TokenConnectionPromise
-  extends Promise<TokenConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<TokenEdge>>() => T;
-  aggregate: <T = AggregateTokenPromise>() => T;
-}
-
-export interface TokenConnectionSubscription
-  extends Promise<AsyncIterator<TokenConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<TokenEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateTokenSubscription>() => T;
-}
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -1956,17 +1941,15 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 export type ID_Input = string | number;
 export type ID_Output = string;
 
-export type Long = string;
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
 
 /*
 DateTime scalar input type, allowing Date
@@ -1977,6 +1960,13 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
+
+export type Long = string;
 
 /**
  * Model Metadata

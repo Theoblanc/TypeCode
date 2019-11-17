@@ -1,5 +1,8 @@
 import bcrypt from "bcrypt";
-import { refreshJWT, assessJWT } from "../../../utils/createJWT";
+import {
+  createAccessToken,
+  createRefreshToken
+} from "../../../utils/createJWT";
 
 const resolvers = {
   Mutation: {
@@ -13,11 +16,14 @@ const resolvers = {
 
       const isCorrectPassword = await bcrypt.compare(password, user.password);
       if (isCorrectPassword) {
-        const { refresh_token } = await refreshJWT({ id: user.id, aud: "" });
+        const { refresh_token } = await createRefreshToken(
+          { aud: "" },
+          { id: user.id }
+        );
         if (!refresh_token) throw new Error("FAILURE_CREATING_TOKEN");
-        const token = await assessJWT(refresh_token);
 
-        console.log(token);
+        const token = await createAccessToken(refresh_token);
+
         return { ...token, refresh_token };
       } else {
         throw new Error("PASSWORD_INCORRECT");
