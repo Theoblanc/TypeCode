@@ -3,11 +3,14 @@ import {
   createAccessToken,
   createRefreshToken
 } from "../../../utils/createJWT";
+import { Resolvers } from "src/types/resolvers";
+import { TokenModel } from "src/types/graph";
 
-const resolvers = {
+const resolvers: Resolvers = {
   Mutation: {
-    login: async (_, args, ctx) => {
+    login: async (_, args, ctx): Promise<TokenModel> => {
       const { email, password } = args;
+
       const user = await ctx.prisma.user({ email });
 
       if (!user) throw new Error("아이디가 없습니다.");
