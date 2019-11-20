@@ -9,6 +9,8 @@ const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
 const PRIVATE_KEY = fs.readFileSync("../certs/private.pem");
 const PUBLIC_KEY = fs.readFileSync("../certs/public.pem");
 
+//토큰 종류
+
 const protectedSubject = [
   "access_token",
   "refresh_token",
@@ -17,14 +19,14 @@ const protectedSubject = [
   "client_credentials"
 ];
 
-export const createToken = async function(
+export const createToken = async (
   {
     sub: subject = "",
     aud: audience = JWT_DEFAULT_AUDIENCE,
     exp: expiresIn = 60 * 3 // 3m or 2h
   },
   data = {}
-): Promise<TokenModel> {
+): Promise<TokenModel> => {
   if (subject in protectedSubject) {
     throw new Error("INVALID_SUBJECT");
   }
@@ -46,9 +48,9 @@ export const createToken = async function(
   };
 };
 
-export const createAccessToken = async function(
+export const createAccessToken = async (
   refreshToken: String
-): Promise<TokenModel> {
+): Promise<TokenModel> => {
   const expiresIn = 60 * 60 * 2; // 2h
 
   const { id, aud: audience, jti } = await jwt.verify(refreshToken, PUBLIC_KEY);
@@ -96,10 +98,10 @@ export const createAccessToken = async function(
   };
 };
 
-export const createRefreshToken = async function(
+export const createRefreshToken = async (
   { aud: audience = JWT_DEFAULT_AUDIENCE },
   { id }
-): Promise<TokenModel> {
+): Promise<TokenModel> => {
   const token = await prisma.createToken({
     userId: id,
     accessedAt: new Date()

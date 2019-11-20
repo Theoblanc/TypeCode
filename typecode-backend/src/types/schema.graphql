@@ -1,4 +1,5 @@
 type Query {
+  findMyrooms: Room
   findUser(id: ID!): User
   me(name: String): String!
 }
