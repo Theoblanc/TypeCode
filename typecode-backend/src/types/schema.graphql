@@ -1,5 +1,6 @@
 type Query {
   findMyrooms: Room
+  findMyrooms(id: ID!): Room
   findUser(id: ID!): User
   me(name: String): String!
 }
@@ -35,6 +36,7 @@ type User {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: Token
+  friends: [User!]
   rooms: [Room!]!
   createdAt: String!
   updatedAt: String!

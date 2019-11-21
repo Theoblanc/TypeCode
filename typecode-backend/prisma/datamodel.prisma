@@ -7,6 +7,7 @@ type User {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: Token
+  friends: [User!]
   rooms: [Room!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

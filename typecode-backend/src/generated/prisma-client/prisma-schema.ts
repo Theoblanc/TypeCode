@@ -752,6 +752,7 @@ type User {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: Token
+  friends(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room!]
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -773,8 +774,14 @@ input UserCreateInput {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: TokenCreateOneInput
+  friends: UserCreateManyInput
   rooms: RoomCreateManyWithoutParticipantsInput
   deletedAt: DateTime
+}
+
+input UserCreateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 input UserCreateManyWithoutRoomsInput {
@@ -796,6 +803,7 @@ input UserCreateWithoutRoomsInput {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: TokenCreateOneInput
+  friends: UserCreateManyInput
   deletedAt: DateTime
 }
 
@@ -982,6 +990,7 @@ input UserUpdateDataInput {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: TokenUpdateOneInput
+  friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -994,6 +1003,7 @@ input UserUpdateInput {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: TokenUpdateOneInput
+  friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -1006,6 +1016,18 @@ input UserUpdateManyDataInput {
   phoneNumber: String
   phoneNumberVerified: Boolean
   deletedAt: DateTime
+}
+
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
 }
 
 input UserUpdateManyMutationInput {
@@ -1050,7 +1072,13 @@ input UserUpdateWithoutRoomsDataInput {
   phoneNumber: String
   phoneNumberVerified: Boolean
   fcmToken: TokenUpdateOneInput
+  friends: UserUpdateManyInput
   deletedAt: DateTime
+}
+
+input UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateDataInput!
 }
 
 input UserUpdateWithWhereUniqueWithoutRoomsInput {
@@ -1059,6 +1087,12 @@ input UserUpdateWithWhereUniqueWithoutRoomsInput {
 }
 
 input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
   update: UserUpdateDataInput!
   create: UserCreateInput!
 }
@@ -1157,6 +1191,9 @@ input UserWhereInput {
   phoneNumberVerified: Boolean
   phoneNumberVerified_not: Boolean
   fcmToken: TokenWhereInput
+  friends_every: UserWhereInput
+  friends_some: UserWhereInput
+  friends_none: UserWhereInput
   rooms_every: RoomWhereInput
   rooms_some: RoomWhereInput
   rooms_none: RoomWhereInput

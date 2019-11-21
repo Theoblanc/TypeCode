@@ -26,6 +26,7 @@ const resolvers: Resolvers = {
         if (!refresh_token) throw new Error("FAILURE_CREATING_TOKEN");
 
         const token = await createAccessToken(refresh_token);
+        console.log("token", token);
 
         return { ...token, refresh_token };
       } else {
