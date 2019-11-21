@@ -1,8 +1,10 @@
 const resolvers = {
   Query: {
-    me: async (_, args) => {
-      console.log("getMe", args);
-      return "1234";
+    me: async (_, __, ctx) => {
+      const { userId } = ctx.prisma.user.id;
+      const user = await ctx.prisma.user({ userId });
+
+      return user;
     }
   }
 };
