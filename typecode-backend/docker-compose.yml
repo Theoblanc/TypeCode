@@ -13,15 +13,17 @@ services:
     image: prismagraphql/prisma: prismagraphql/prisma:1.13
     ports:
       - '4466:4466'
+    depends_on:
+      - mysql
     environment:
       PRISMA_CONFIG: |
         managementApiSecret: my-server-secret-123
-        port: 4000
+        port: 4466
         databases:
           default:
             connector: mysql  
             migrations: true
-            host: db
+            host: mysql
             port: 3306        
             user: root
             password: prisma
