@@ -16,6 +16,7 @@ type User {
 
 type Room {
   id: ID! @id
+  userId: String!
   participants: [User!]!
   messages: [Message!]
   createdAt: DateTime! @createdAt

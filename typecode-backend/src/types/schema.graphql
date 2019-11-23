@@ -1,13 +1,13 @@
 type Mutation {
-  createChat: Message!
+  createMessage: Message!
   sendMessage(roomId: String, message: String!, toId: String): Message
+  createMyRoom(userId: String!): Boolean!
   login(email: String!, password: String!): TokenModel
   signup(name: String!, email: String!, password: String!): Boolean!
 }
 
 type Query {
   findMyrooms: Room
-  findMyrooms(id: ID!): Room
   findUser(email: String!): User
   me: User!
 }
@@ -48,6 +48,7 @@ type User {
 type Room {
   id: ID!
   participants: [User!]!
+  userId: String!
   messages: [Message!]
   createdAt: String!
   updatedAt: String!

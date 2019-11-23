@@ -243,6 +243,8 @@ export type UserOrderByInput =
 export type RoomOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "userId_ASC"
+  | "userId_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -478,6 +480,20 @@ export interface RoomWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
   participants_every?: Maybe<UserWhereInput>;
   participants_some?: Maybe<UserWhereInput>;
   participants_none?: Maybe<UserWhereInput>;
@@ -632,6 +648,7 @@ export interface RoomCreateManyWithoutParticipantsInput {
 
 export interface RoomCreateWithoutParticipantsInput {
   id?: Maybe<ID_Input>;
+  userId: String;
   messages?: Maybe<MessageCreateManyWithoutRoomInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
@@ -657,6 +674,7 @@ export interface RoomCreateOneWithoutMessagesInput {
 
 export interface RoomCreateWithoutMessagesInput {
   id?: Maybe<ID_Input>;
+  userId: String;
   participants?: Maybe<UserCreateManyWithoutRoomsInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
@@ -916,6 +934,7 @@ export interface RoomUpdateWithWhereUniqueWithoutParticipantsInput {
 }
 
 export interface RoomUpdateWithoutParticipantsDataInput {
+  userId?: Maybe<String>;
   messages?: Maybe<MessageUpdateManyWithoutRoomInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
@@ -1040,6 +1059,20 @@ export interface RoomScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1075,6 +1108,7 @@ export interface RoomUpdateManyWithWhereNestedInput {
 }
 
 export interface RoomUpdateManyDataInput {
+  userId?: Maybe<String>;
   deletedAt?: Maybe<DateTimeInput>;
 }
 
@@ -1091,6 +1125,7 @@ export interface RoomUpdateOneRequiredWithoutMessagesInput {
 }
 
 export interface RoomUpdateWithoutMessagesDataInput {
+  userId?: Maybe<String>;
   participants?: Maybe<UserUpdateManyWithoutRoomsInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
@@ -1149,18 +1184,21 @@ export interface MessageUpdateManyMutationInput {
 
 export interface RoomCreateInput {
   id?: Maybe<ID_Input>;
+  userId: String;
   participants?: Maybe<UserCreateManyWithoutRoomsInput>;
   messages?: Maybe<MessageCreateManyWithoutRoomInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
 
 export interface RoomUpdateInput {
+  userId?: Maybe<String>;
   participants?: Maybe<UserUpdateManyWithoutRoomsInput>;
   messages?: Maybe<MessageUpdateManyWithoutRoomInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
 
 export interface RoomUpdateManyMutationInput {
+  userId?: Maybe<String>;
   deletedAt?: Maybe<DateTimeInput>;
 }
 
@@ -1443,6 +1481,7 @@ export interface TokenNullablePromise
 
 export interface Room {
   id: ID_Output;
+  userId: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   deletedAt?: DateTimeOutput;
@@ -1450,6 +1489,7 @@ export interface Room {
 
 export interface RoomPromise extends Promise<Room>, Fragmentable {
   id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
   participants: <T = FragmentableArray<User>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1477,6 +1517,7 @@ export interface RoomSubscription
   extends Promise<AsyncIterator<Room>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  userId: () => Promise<AsyncIterator<String>>;
   participants: <T = Promise<AsyncIterator<UserSubscription>>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1504,6 +1545,7 @@ export interface RoomNullablePromise
   extends Promise<Room | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
   participants: <T = FragmentableArray<User>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1859,6 +1901,7 @@ export interface RoomSubscriptionPayloadSubscription
 
 export interface RoomPreviousValues {
   id: ID_Output;
+  userId: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   deletedAt?: DateTimeOutput;
@@ -1868,6 +1911,7 @@ export interface RoomPreviousValuesPromise
   extends Promise<RoomPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   deletedAt: () => Promise<DateTimeOutput>;
@@ -1877,6 +1921,7 @@ export interface RoomPreviousValuesSubscription
   extends Promise<AsyncIterator<RoomPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  userId: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;

@@ -1,6 +1,3 @@
 type Query {
   findMyrooms: Room
 }
-type Query {
-  findMyrooms(id: ID!): Room
-}

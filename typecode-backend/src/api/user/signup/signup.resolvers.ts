@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import { Context } from "src/utils";
+import { Resolvers } from "src/types/resolvers";
 
-const resolvers = {
+const resolvers: Resolvers = {
   Mutation: {
     signup: async (_, args, ctx: Context): Promise<Boolean> => {
       // console.log(args);
