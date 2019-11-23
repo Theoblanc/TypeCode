@@ -559,7 +559,6 @@ export interface MessageWhereInput {
   text_ends_with?: Maybe<String>;
   text_not_ends_with?: Maybe<String>;
   from?: Maybe<UserWhereInput>;
-  to?: Maybe<UserWhereInput>;
   room?: Maybe<RoomWhereInput>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
@@ -599,7 +598,6 @@ export interface MessageCreateInput {
   id?: Maybe<ID_Input>;
   text: String;
   from: UserCreateOneInput;
-  to: UserCreateOneInput;
   room: RoomCreateOneWithoutMessagesInput;
 }
 
@@ -664,7 +662,6 @@ export interface MessageCreateWithoutRoomInput {
   id?: Maybe<ID_Input>;
   text: String;
   from: UserCreateOneInput;
-  to: UserCreateOneInput;
 }
 
 export interface RoomCreateOneWithoutMessagesInput {
@@ -700,7 +697,6 @@ export interface UserCreateWithoutRoomsInput {
 export interface MessageUpdateInput {
   text?: Maybe<String>;
   from?: Maybe<UserUpdateOneRequiredInput>;
-  to?: Maybe<UserUpdateOneRequiredInput>;
   room?: Maybe<RoomUpdateOneRequiredWithoutMessagesInput>;
 }
 
@@ -970,7 +966,6 @@ export interface MessageUpdateWithWhereUniqueWithoutRoomInput {
 export interface MessageUpdateWithoutRoomDataInput {
   text?: Maybe<String>;
   from?: Maybe<UserUpdateOneRequiredInput>;
-  to?: Maybe<UserUpdateOneRequiredInput>;
 }
 
 export interface MessageUpsertWithWhereUniqueWithoutRoomInput {
@@ -1296,7 +1291,6 @@ export interface MessagePromise extends Promise<Message>, Fragmentable {
   id: () => Promise<ID_Output>;
   text: () => Promise<String>;
   from: <T = UserPromise>() => T;
-  to: <T = UserPromise>() => T;
   room: <T = RoomPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -1308,7 +1302,6 @@ export interface MessageSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   text: () => Promise<AsyncIterator<String>>;
   from: <T = UserSubscription>() => T;
-  to: <T = UserSubscription>() => T;
   room: <T = RoomSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -1320,7 +1313,6 @@ export interface MessageNullablePromise
   id: () => Promise<ID_Output>;
   text: () => Promise<String>;
   from: <T = UserPromise>() => T;
-  to: <T = UserPromise>() => T;
   room: <T = RoomPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;

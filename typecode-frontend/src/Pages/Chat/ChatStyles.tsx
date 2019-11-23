@@ -8,5 +8,5 @@ export const MainWrapper = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 80vh;
-  height: 88vh;
+  height: 80vh;
 `;

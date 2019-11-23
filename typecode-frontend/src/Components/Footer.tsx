@@ -11,8 +11,8 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Room = () => {
+const Footer = () => {
   return <Container></Container>;
 };
 
-export default Room;
+export default Footer;

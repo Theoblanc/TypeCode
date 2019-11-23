@@ -13,6 +13,10 @@ export const ScrollView = styled.div`
   flex: 1;
   width: 100%;
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 10px; /* 세로축 스크롤바 길이 */
+    height: 20px; /* 가로축 스크롤바 길이 */
+  }
 `;
 
 export const ChatHeader = styled.div`

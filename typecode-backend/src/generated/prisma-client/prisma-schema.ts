@@ -30,7 +30,6 @@ type Message {
   id: ID!
   text: String!
   from: User!
-  to: User!
   room: Room!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -46,7 +45,6 @@ input MessageCreateInput {
   id: ID
   text: String!
   from: UserCreateOneInput!
-  to: UserCreateOneInput!
   room: RoomCreateOneWithoutMessagesInput!
 }
 
@@ -59,7 +57,6 @@ input MessageCreateWithoutRoomInput {
   id: ID
   text: String!
   from: UserCreateOneInput!
-  to: UserCreateOneInput!
 }
 
 type MessageEdge {
@@ -156,7 +153,6 @@ input MessageSubscriptionWhereInput {
 input MessageUpdateInput {
   text: String
   from: UserUpdateOneRequiredInput
-  to: UserUpdateOneRequiredInput
   room: RoomUpdateOneRequiredWithoutMessagesInput
 }
 
@@ -188,7 +184,6 @@ input MessageUpdateManyWithWhereNestedInput {
 input MessageUpdateWithoutRoomDataInput {
   text: String
   from: UserUpdateOneRequiredInput
-  to: UserUpdateOneRequiredInput
 }
 
 input MessageUpdateWithWhereUniqueWithoutRoomInput {
@@ -232,7 +227,6 @@ input MessageWhereInput {
   text_ends_with: String
   text_not_ends_with: String
   from: UserWhereInput
-  to: UserWhereInput
   room: RoomWhereInput
   createdAt: DateTime
   createdAt_not: DateTime

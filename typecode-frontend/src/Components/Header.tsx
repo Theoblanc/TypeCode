@@ -21,9 +21,10 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Logo = styled.div`
+const Logo = styled.a`
   color: #ffffff;
   font-size: 32px;
+  text-decoration: none;
 `;
 
 const Login = styled.div`
@@ -34,7 +35,7 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <Logo>TYPE CODE</Logo>
+        <Logo href="/">TYPE CODE</Logo>
         <Login>로그아웃</Login>
       </Wrapper>
     </Container>
