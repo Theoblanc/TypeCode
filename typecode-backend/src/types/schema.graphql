@@ -1,13 +1,15 @@
+type Mutation {
+  createChat: Message!
+  sendMessage(roomId: String, message: String!, toId: String): Message
+  login(email: String!, password: String!): TokenModel
+  signup(name: String!, email: String!, password: String!): Boolean!
+}
+
 type Query {
   findMyrooms: Room
   findMyrooms(id: ID!): Room
-  findUser(id: ID!): User
-  me(name: String): String!
-}
-
-type Mutation {
-  login(email: String!, password: String!): TokenModel
-  signup(name: String!, email: String!, password: String!): Boolean!
+  findUser(email: String!): User
+  me: User!
 }
 
 type Token {
@@ -37,7 +39,7 @@ type User {
   phoneNumberVerified: Boolean
   fcmToken: Token
   friends: [User!]
-  rooms: [Room!]!
+  rooms: [Room!]
   createdAt: String!
   updatedAt: String!
   deletedAt: String
@@ -46,7 +48,7 @@ type User {
 type Room {
   id: ID!
   participants: [User!]!
-  messages: [Message!]!
+  messages: [Message!]
   createdAt: String!
   updatedAt: String!
   deletedAt: String

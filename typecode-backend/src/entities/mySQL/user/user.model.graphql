@@ -8,7 +8,7 @@ type User {
   phoneNumberVerified: Boolean
   fcmToken: Token
   friends: [User!]
-  rooms: [Room!]!
+  rooms: [Room!]
   createdAt: String!
   updatedAt: String!
   deletedAt: String
@@ -17,7 +17,7 @@ type User {
 type Room {
   id: ID!
   participants: [User!]!
-  messages: [Message!]!
+  messages: [Message!]
   createdAt: String!
   updatedAt: String!
   deletedAt: String

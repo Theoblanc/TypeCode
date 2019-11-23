@@ -34,7 +34,7 @@
     "jest",
     "src/setupTests.ts"
   ],
-  "include": ["src", "__test__/App.test.tsx"],
+  "include": ["src"],
   "rules": {
     "semicolon": true,
     "no-unused-expression": [true, "allow-tagged-template"]
