@@ -3,14 +3,18 @@ import { ThemeProvider } from "./typed-components";
 import theme from "./Styles/Theme";
 import Routes from "./Components/Routes";
 import { GlobalStyle } from "./Styles/global-styles";
+import { ApolloProvider } from "react-apollo";
+import client from "./Apollo/Clinet";
 
 const App: React.FC = () => {
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Routes />
-      </ThemeProvider>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Routes />
+        </ThemeProvider>
+      </ApolloProvider>
     </React.Fragment>
   );
 };
