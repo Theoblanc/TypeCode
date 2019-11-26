@@ -1,12 +1,12 @@
 FROM node:10.15.0
 
-WORKDIR /usr/src/app
-RUN mkdir -p /usr/src/app
+WORKDIR /app
 
-COPY package.json /usr/src/app
+COPY . .
+
 RUN npm install && npm cache clean --force
 
-COPY . /usr/src/app
+COPY . .
 # RUN npm run build
 
-CMD npm run dev
+CMD [ "npm", "run", "dev" ]
