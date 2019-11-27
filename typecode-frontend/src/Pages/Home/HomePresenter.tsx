@@ -4,7 +4,7 @@ import Header from "src/Components/Header";
 import Footer from "src/Components/Footer";
 import Room from "src/Components/Room";
 import ChatUser from "src/Components/User/ChatUser";
-import ChatView from "src/Components/ChatView/ChatView";
+import ChatView from "src/Components/ChatLists";
 
 const HomePresenter: React.FC = () => {
   return (

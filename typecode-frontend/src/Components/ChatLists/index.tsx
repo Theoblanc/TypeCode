@@ -9,8 +9,8 @@ import {
   Profile,
   UserName,
   GreedMent
-} from "./ChatVIewStyles";
-import ChatList from "../ChatList/Chatlist";
+} from "./ChatListStyles";
+import ChatList from "../ChatList";
 
 const ChatView = () => {
   return (
@@ -28,7 +28,8 @@ const ChatView = () => {
         </ChatFristWrap>
         <ChatList></ChatList>
         <ChatList></ChatList>
-        <ChatList></ChatList> <ChatList></ChatList>
+        <ChatList></ChatList>
+        <ChatList></ChatList>
         <ChatList></ChatList>
         <ChatList></ChatList>
         <ChatList></ChatList>
