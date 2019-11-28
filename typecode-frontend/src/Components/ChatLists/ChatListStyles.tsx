@@ -60,3 +60,15 @@ export const UserName = styled.div`
 `;
 
 export const GreedMent = styled.div``;
+
+export const ChatInputWrap = styled.div`
+  display: flex;
+  input {
+    width: 100%;
+    height: 2rem;
+  }
+`;
+
+export const Button = styled.button`
+  width: 5rem;
+`;

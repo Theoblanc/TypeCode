@@ -8,7 +8,9 @@ import {
   ProfileWrap,
   Profile,
   UserName,
-  GreedMent
+  GreedMent,
+  ChatInputWrap,
+  Button
 } from "./ChatListStyles";
 import ChatList from "../ChatList";
 
@@ -33,6 +35,10 @@ const ChatView = () => {
         <ChatList></ChatList>
         <ChatList></ChatList>
         <ChatList></ChatList>
+        <ChatInputWrap>
+          <input type="text"></input>
+          <Button>보내기</Button>
+        </ChatInputWrap>
       </ScrollView>
     </Container>
   );
