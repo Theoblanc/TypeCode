@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Home from "../Routes/Home";
-import Room from "../Routes/Room";
-import Chat from "../Routes/Chat";
+import Home from "../routes/Home";
+import Room from "../routes/Room";
+import Chat from "../routes/Chat";
 
 const AppPresenter: React.SFC = () => (
   <BrowserRouter>

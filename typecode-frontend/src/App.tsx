@@ -1,10 +1,10 @@
 import React from "react";
 import { ThemeProvider } from "./typed-components";
-import theme from "./Styles/Theme";
-import Routes from "./Components/Routes";
-import { GlobalStyle } from "./Styles/global-styles";
+import theme from "./styles/Theme";
+import Routes from "./components/Routes";
+import { GlobalStyle } from "./styles/global-styles";
 import { ApolloProvider } from "react-apollo";
-import client from "./Apollo/Clinet";
+import client from "./apollo/Clinet";
 
 const App: React.FC = () => {
   return (
