@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt-nodejs";
 import { Context } from "src/utils";
 import { Resolvers } from "src/types/resolvers";
 

@@ -1,5 +1,3 @@
 type Query {
   findMyrooms: Room
-tpye Query {
-  findMyrooms(userId: String): Room
 }

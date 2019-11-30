@@ -1,5 +1,5 @@
 type Mutation {
-  createMessage(roomId: String): Message!
+  createMessage(roomId: String, text: String!): Message!
   sendMessage(roomId: String, message: String!, toId: String): Message
   createMyRoom(userId: String!): Boolean!
   login(email: String!, password: String!): TokenModel

@@ -1,4 +1,4 @@
-export const typeDefs = ["type Mutation {\n  createMessage(roomId: String): Message!\n  sendMessage(roomId: String, message: String!, toId: String): Message\n  createMyRoom(userId: String!): Boolean!\n  login(email: String!, password: String!): TokenModel\n  signup(name: String!, email: String!, password: String!): Boolean!\n}\n\ntype Query {\n  findMyrooms: Room\n  findUser(email: String!): User\n  me: User!\n}\n\ntype Token {\n  id: String\n  userId: String\n  accessedAt: String\n  deleted: Boolean\n  createdAt: String\n  updatedAt: String\n}\n\ntype TokenModel {\n  token: String!\n  access_token: String\n  refresh_token: String\n  token_type: String\n  expires_in: Int\n}\n\ntype User {\n  id: ID!\n  name: String!\n  email: String!\n  password: String!\n  profile: String\n  phoneNumber: String\n  phoneNumberVerified: Boolean\n  fcmToken: Token\n  friends: [User!]\n  rooms: [Room!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\ntype Room {\n  id: ID!\n  participants: [User!]!\n  userId: String!\n  messages: [Message!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  from: User!\n  room: Room!\n  createdAt: String!\n  updatedAt: String!\n}\n\n"];
+export const typeDefs = ["type Mutation {\n  createMessage(roomId: String, text: String!): Message!\n  sendMessage(roomId: String, message: String!, toId: String): Message\n  createMyRoom(userId: String!): Boolean!\n  login(email: String!, password: String!): TokenModel\n  signup(name: String!, email: String!, password: String!): Boolean!\n}\n\ntype Query {\n  findMyrooms: Room\n  findUser(email: String!): User\n  me: User!\n}\n\ntype Token {\n  id: String\n  userId: String\n  accessedAt: String\n  deleted: Boolean\n  createdAt: String\n  updatedAt: String\n}\n\ntype TokenModel {\n  token: String!\n  access_token: String\n  refresh_token: String\n  token_type: String\n  expires_in: Int\n}\n\ntype User {\n  id: ID!\n  name: String!\n  email: String!\n  password: String!\n  profile: String\n  phoneNumber: String\n  phoneNumberVerified: Boolean\n  fcmToken: Token\n  friends: [User!]\n  rooms: [Room!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\ntype Room {\n  id: ID!\n  participants: [User!]!\n  userId: String!\n  messages: [Message!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  from: User!\n  room: Room!\n  createdAt: String!\n  updatedAt: String!\n}\n\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -65,6 +65,7 @@ export interface Mutation {
 
 export interface CreateMessageMutationArgs {
   roomId: string | null;
+  text: string;
 }
 
 export interface SendMessageMutationArgs {
