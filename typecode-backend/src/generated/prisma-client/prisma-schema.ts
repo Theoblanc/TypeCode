@@ -316,6 +316,7 @@ type Query {
 type Room {
   id: ID!
   userId: String!
+  roomName: String!
   participants(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
   createdAt: DateTime!
@@ -332,6 +333,7 @@ type RoomConnection {
 input RoomCreateInput {
   id: ID
   userId: String!
+  roomName: String!
   participants: UserCreateManyWithoutRoomsInput
   messages: MessageCreateManyWithoutRoomInput
   deletedAt: DateTime
@@ -350,6 +352,7 @@ input RoomCreateOneWithoutMessagesInput {
 input RoomCreateWithoutMessagesInput {
   id: ID
   userId: String!
+  roomName: String!
   participants: UserCreateManyWithoutRoomsInput
   deletedAt: DateTime
 }
@@ -357,6 +360,7 @@ input RoomCreateWithoutMessagesInput {
 input RoomCreateWithoutParticipantsInput {
   id: ID
   userId: String!
+  roomName: String!
   messages: MessageCreateManyWithoutRoomInput
   deletedAt: DateTime
 }
@@ -371,6 +375,8 @@ enum RoomOrderByInput {
   id_DESC
   userId_ASC
   userId_DESC
+  roomName_ASC
+  roomName_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -382,6 +388,7 @@ enum RoomOrderByInput {
 type RoomPreviousValues {
   id: ID!
   userId: String!
+  roomName: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime
@@ -416,6 +423,20 @@ input RoomScalarWhereInput {
   userId_not_starts_with: String
   userId_ends_with: String
   userId_not_ends_with: String
+  roomName: String
+  roomName_not: String
+  roomName_in: [String!]
+  roomName_not_in: [String!]
+  roomName_lt: String
+  roomName_lte: String
+  roomName_gt: String
+  roomName_gte: String
+  roomName_contains: String
+  roomName_not_contains: String
+  roomName_starts_with: String
+  roomName_not_starts_with: String
+  roomName_ends_with: String
+  roomName_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -465,6 +486,7 @@ input RoomSubscriptionWhereInput {
 
 input RoomUpdateInput {
   userId: String
+  roomName: String
   participants: UserUpdateManyWithoutRoomsInput
   messages: MessageUpdateManyWithoutRoomInput
   deletedAt: DateTime
@@ -472,11 +494,13 @@ input RoomUpdateInput {
 
 input RoomUpdateManyDataInput {
   userId: String
+  roomName: String
   deletedAt: DateTime
 }
 
 input RoomUpdateManyMutationInput {
   userId: String
+  roomName: String
   deletedAt: DateTime
 }
 
@@ -506,12 +530,14 @@ input RoomUpdateOneRequiredWithoutMessagesInput {
 
 input RoomUpdateWithoutMessagesDataInput {
   userId: String
+  roomName: String
   participants: UserUpdateManyWithoutRoomsInput
   deletedAt: DateTime
 }
 
 input RoomUpdateWithoutParticipantsDataInput {
   userId: String
+  roomName: String
   messages: MessageUpdateManyWithoutRoomInput
   deletedAt: DateTime
 }
@@ -561,6 +587,20 @@ input RoomWhereInput {
   userId_not_starts_with: String
   userId_ends_with: String
   userId_not_ends_with: String
+  roomName: String
+  roomName_not: String
+  roomName_in: [String!]
+  roomName_not_in: [String!]
+  roomName_lt: String
+  roomName_lte: String
+  roomName_gt: String
+  roomName_gte: String
+  roomName_contains: String
+  roomName_not_contains: String
+  roomName_starts_with: String
+  roomName_not_starts_with: String
+  roomName_ends_with: String
+  roomName_not_ends_with: String
   participants_every: UserWhereInput
   participants_some: UserWhereInput
   participants_none: UserWhereInput

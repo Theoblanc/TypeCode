@@ -4,7 +4,7 @@ const resolvers: Resolvers = {
   Query: {
     getUser: async (_, args, ctx): Promise<any> => {
       if (!ctx.user) {
-        throw Error("You need to log in to perform this action");
+        throw Error("로그인이 안되어 있습니다.");
       }
 
       const user = ctx.user.id

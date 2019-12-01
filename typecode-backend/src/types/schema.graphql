@@ -8,8 +8,28 @@ type Mutation {
 
 type Query {
   findMyrooms: Room
-  findUser(email: String!): User
+  getUser: User
   me: User!
+}
+
+type Message {
+  id: ID!
+  text: String!
+  from: User!
+  room: Room!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Room {
+  id: ID!
+  userId: String!
+  roomName: String!
+  participants: [User!]!
+  messages: [Message!]
+  createdAt: String!
+  updatedAt: String!
+  deletedAt: String
 }
 
 type Token {
@@ -43,24 +63,5 @@ type User {
   createdAt: String!
   updatedAt: String!
   deletedAt: String
-}
-
-type Room {
-  id: ID!
-  participants: [User!]!
-  userId: String!
-  messages: [Message!]
-  createdAt: String!
-  updatedAt: String!
-  deletedAt: String
-}
-
-type Message {
-  id: ID!
-  text: String!
-  from: User!
-  room: Room!
-  createdAt: String!
-  updatedAt: String!
 }
 

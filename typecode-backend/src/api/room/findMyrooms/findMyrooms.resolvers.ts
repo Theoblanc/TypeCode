@@ -3,17 +3,17 @@ import { Resolvers } from "src/types/resolvers";
 const resolvers: Resolvers = {
   Query: {
     findMyrooms: async (_, __, ctx): Promise<any> => {
-      const { userId } = ctx.prisma.user.id;
-      console.log(userId);
+      const userId = ctx.user.id
 
       const rooms = ctx.prisma.rooms({
         where: {
           participants_some: {
-            id: userId
+            id: userId.id
           }
         }
       });
       if (!rooms) return null;
+      console.log(rooms)
 
       return rooms;
     }

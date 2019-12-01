@@ -23,7 +23,9 @@ const getUserFromAccessToken: IGetUserFromAccessToken = async (
 ) => {
   try {
     const JWT: any = await jwt.verify(accessToken, PUBLIC_KEY);
-    if (JWT.sub === "accessToken") return JWT;
+    if (JWT.sub === "access_token") {
+      return JWT
+    };
   } catch (e) { } // 비회원의 경우, try-catch 없이 jwt.verify에서 실패하면 시스템 중단
   return null;
 };
@@ -32,15 +34,5 @@ const getUserFromAccessToken: IGetUserFromAccessToken = async (
 export const context = async ({ req }: any) => {
   const accessToken = getAccessTokenFromHeader(req.headers);
   const user = await getUserFromAccessToken(accessToken);
-
   return { ...req, user, prisma };
 };
-
-// export const parseAuthHeader = async (authHeader = "") => {
-//   try {
-//     const token = authHeader.replace(/Bearer /i, "");
-//     const jwtObj = await jwt.verify(token, PUBLIC_KEY);
-//     if (jwtObj.sub === "access_token") return jwtObj;
-//   } catch (e) { }
-//   return null;
-// };

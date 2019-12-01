@@ -1,7 +1,8 @@
 type Room {
   id: ID!
-  participants: [User!]!
   userId: String!
+  roomName: String!
+  participants: [User!]!
   messages: [Message!]
   createdAt: String!
   updatedAt: String!
