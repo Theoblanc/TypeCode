@@ -13,22 +13,3 @@ type User {
   updatedAt: String!
   deletedAt: String
 }
-
-type Room {
-  id: ID!
-  participants: [User!]!
-  userId: String!
-  messages: [Message!]
-  createdAt: String!
-  updatedAt: String!
-  deletedAt: String
-}
-
-type Message {
-  id: ID!
-  text: String!
-  from: User!
-  room: Room!
-  createdAt: String!
-  updatedAt: String!
-}

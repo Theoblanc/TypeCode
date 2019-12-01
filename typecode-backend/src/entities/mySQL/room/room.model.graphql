@@ -1,0 +1,9 @@
+type Room {
+  id: ID!
+  participants: [User!]!
+  userId: String!
+  messages: [Message!]
+  createdAt: String!
+  updatedAt: String!
+  deletedAt: String
+}

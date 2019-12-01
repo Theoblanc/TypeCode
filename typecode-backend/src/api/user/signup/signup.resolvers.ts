@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt-nodejs";
+import bcrypt from "bcryptjs";
 import { Context } from "src/utils";
 import { Resolvers } from "src/types/resolvers";
 
@@ -16,7 +16,7 @@ const resolvers: Resolvers = {
       const user = await ctx.prisma.createUser({
         name,
         email,
-        password: await bcrypt.hash(password, 10)
+        password: await bcrypt.hashSync(password, 10)
       });
       if (!user) throw new Error("아이디를 생성할수 없습니다.");
       return true;
