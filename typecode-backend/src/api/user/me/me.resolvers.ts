@@ -1,8 +1,13 @@
-const resolvers = {
+import { Resolvers } from "src/types/resolvers";
+
+const resolvers: Resolvers = {
   Query: {
-    me: async (_, __, ctx) => {
-      const { userId } = ctx.prisma.user.id;
-      const user = await ctx.prisma.user({ userId });
+    getUser: async (_, args, ctx): Promise<any> => {
+      if (!ctx.user) {
+        throw Error("로그인이 안되어 있습니다.");
+      }
+
+      const user = ctx.user.id;
 
       return user;
     }

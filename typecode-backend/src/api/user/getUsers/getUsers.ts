@@ -7,9 +7,13 @@ const resolvers: Resolvers = {
         throw Error("로그인이 안되어 있습니다.");
       }
 
-      const user = ctx.user.id
+      const userId = ctx.user.id;
 
-      return user;
+      const user = ctx.prisma.user({
+        id: userId
+      });
+
+      return user.friends;
     }
   }
 };
