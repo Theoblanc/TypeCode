@@ -1,20 +1,31 @@
 import { Resolvers } from "src/types/resolvers";
+import {
+  createMyRoomResponse,
+  CreateMyRoomMutationArgs
+} from "src/types/graph";
 
 const resolvers: Resolvers = {
   Mutation: {
-    createMyRoom: async (_, args, ctx): Promise<Boolean> => {
-      console.log(ctx.prisma);
-      const { userId } = args;
+    createMyRoom: async (
+      _,
+      args: CreateMyRoomMutationArgs,
+      ctx
+    ): Promise<createMyRoomResponse> => {
+      const userId = ctx.user.id;
+      const { roomName } = args;
 
-      const room = await ctx.prisma.createRoom({
-        userId
-      });
-      if (!room) false;
-      return true;
+      try {
+        await ctx.prisma.createRoom({
+          userId,
+          roomName
+        });
+      } catch (error) {
+        return { ok: false, error: error.message };
+      }
+
+      return { ok: true, error: null };
     }
   }
 };
 
 export default resolvers;
-
-//검증 완료

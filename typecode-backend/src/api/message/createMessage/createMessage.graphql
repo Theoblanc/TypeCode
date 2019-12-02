@@ -1,3 +1,8 @@
 type Mutation {
-  createMessage(roomId: String, text: String!): Message!
+  createMessage(roomId: String, text: String!): createMessageResponse!
+}
+
+type createMessageResponse {
+  ok: Boolean!
+  error: String
 }

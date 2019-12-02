@@ -1,8 +1,13 @@
 import { Resolvers } from "src/types/resolvers";
+import { CreateMessageMutationArgs } from "src/types/graph";
 
 const resolvers: Resolvers = {
   Mutation: {
-    createMessage: async (_, args, ctx): Promise<any> => {
+    createMessage: async (
+      _,
+      args: CreateMessageMutationArgs,
+      ctx
+    ): Promise<any> => {
       const { roomId, text } = args;
       const { userId } = ctx.userId;
 

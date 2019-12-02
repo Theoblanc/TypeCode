@@ -1,9 +1,10 @@
 import { Resolvers } from "src/types/resolvers";
+import { SendMessageMutationArgs } from "src/types/graph";
 
 const resolvers: Resolvers = {
   Mutation: {
-    sendMessage: async (_, args, ctx) => {
-      const { user } = ctx.prisma.user.id;
+    sendMessage: async (_, args: SendMessageMutationArgs, ctx) => {
+      const { user } = ctx.user.id;
       const { roomId, message, toId } = args;
       let room;
       if (roomId === undefined) {
