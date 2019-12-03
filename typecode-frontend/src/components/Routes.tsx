@@ -3,12 +3,15 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "../routes/Home";
 import Room from "../routes/Room";
 import Chat from "../routes/Chat";
+import { PAGE_PATHS } from "../constants";
+import { useQuery } from "react-apollo";
+import { gql } from "apollo-boost";
 
-const AppPresenter: React.SFC = () => (
-  <BrowserRouter>
-    <LoggedInRoutes></LoggedInRoutes>
-  </BrowserRouter>
-);
+const QUERY = gql`
+  {
+    isLoggedIn @client
+  }
+`;
 
 const LoggedInRoutes: React.SFC = () => (
   <Switch>
@@ -20,5 +23,22 @@ const LoggedInRoutes: React.SFC = () => (
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
+
+const LogOutRoutes: React.SFC = () => (
+  <Switch>
+    {/* <Route path={PAGE_PATHS.LOGIN} exact={true} component={Login} /> */}
+    {/* <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Signup} /> */}
+  </Switch>
+);
+
+const AppPresenter: React.FC = () => {
+  const { data } = useQuery(QUERY);
+
+  return (
+    <BrowserRouter>
+      {data.isLoggedIn ? <LogOutRoutes /> : <LoggedInRoutes />}
+    </BrowserRouter>
+  );
+};
 
 export default AppPresenter;
