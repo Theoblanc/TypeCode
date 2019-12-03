@@ -2,7 +2,7 @@ import { Resolvers } from "src/types/resolvers";
 
 const resolvers: Resolvers = {
   Query: {
-    getUser: async (_, args, ctx): Promise<any> => {
+    getUsers: async (_, args, ctx): Promise<any> => {
       if (!ctx.user) {
         throw Error("로그인이 안되어 있습니다.");
       }

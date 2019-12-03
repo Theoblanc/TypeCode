@@ -27,7 +27,7 @@ const LoggedInRoutes: React.SFC = () => (
 const LogOutRoutes: React.SFC = () => (
   <Switch>
     {/* <Route path={PAGE_PATHS.LOGIN} exact={true} component={Login} /> */}
-    {/* <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Signup} /> */}
+    <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Home} />
   </Switch>
 );
 
@@ -36,7 +36,7 @@ const AppPresenter: React.FC = () => {
 
   return (
     <BrowserRouter>
-      {data.isLoggedIn ? <LogOutRoutes /> : <LoggedInRoutes />}
+      {data && data.isLoggedIn ? <LogOutRoutes /> : <LoggedInRoutes />}
     </BrowserRouter>
   );
 };

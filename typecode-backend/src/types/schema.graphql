@@ -17,7 +17,7 @@ type createMyRoomResponse {
 }
 
 type Query {
-  findMyrooms: Room
+  findMyrooms: [Room!]
   getUsers: User
   me: User
 }

@@ -5,14 +5,18 @@ const resolvers: Resolvers = {
     findMyrooms: async (_, __, ctx): Promise<any> => {
       const userId = ctx.user.id
 
-      const rooms = ctx.prisma.rooms({
+      const rooms = await ctx.prisma.rooms({
         where: {
           participants_some: {
             id: userId.id
           }
         }
-      });
-      if (!rooms) return null;
+      })
+
+      if (!rooms) {
+        console.log("123")
+      }
+
       console.log(rooms)
 
       return rooms;
