@@ -9,19 +9,22 @@ import { HomeButton } from "../Button/HomeButton";
 import { ListButton } from "../Button/ListButton";
 interface IProps {
   moverRoom: any;
+  data: any;
 }
-const RoomPresenter: React.FC<IProps> = ({ moverRoom }) => {
+const RoomPresenter: React.FC<IProps> = ({ moverRoom, data }) => {
   console.log(moverRoom);
   return (
     <Container>
       <HomeButton />
       <ListContainer>
-        <ListButton roomName={"방학"} moverRoom={moverRoom} />
-        <ListButton roomName={"방학"} moverRoom={moverRoom} />
-        <ListButton roomName={"방학"} moverRoom={moverRoom} />
-        <ListButton roomName={"방학"} moverRoom={moverRoom} />
-        <ListButton roomName={"방학"} moverRoom={moverRoom} />
-        <ListButton roomName={"방학"} moverRoom={moverRoom} />
+        {data &&
+          data.map(v => (
+            <ListButton
+              key={v.id}
+              roomName={v.roomName}
+              moverRoom={moverRoom}
+            />
+          ))}
       </ListContainer>
 
       <BtnContainer>
