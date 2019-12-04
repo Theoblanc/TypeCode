@@ -57,9 +57,12 @@ export const Profile = styled.img`
 export const UserName = styled.div`
   font-size: 36px;
   padding-bottom: 24px;
+  min-width: 400px;
 `;
 
-export const GreedMent = styled.div``;
+export const GreedMent = styled.div` 
+  min-width: 400px;
+`;
 
 export const ChatInputWrap = styled.div`
   display: flex;

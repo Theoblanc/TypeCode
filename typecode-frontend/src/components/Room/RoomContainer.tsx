@@ -11,7 +11,7 @@ const RoomContainer: React.FC = () => {
   const { data } = useQuery(FIND_MY_ROOMS);
   console.log(data);
 
-  return <RoomPresenter moverRoom={moverRoom} data={data.findMyrooms} />;
+  return <RoomPresenter moverRoom={moverRoom}/>;
 };
 
 export default RoomContainer;

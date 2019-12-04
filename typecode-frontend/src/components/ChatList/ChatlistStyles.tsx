@@ -3,6 +3,7 @@ import styled from "src/typed-components";
 export const Container = styled.div`
   background-color: ${props => props.theme.grayColor};
   width: 100%;
+  min-width: 400px;
   display: flex;
   flex-direction: row;
   padding: 24px;
@@ -26,12 +27,18 @@ export const MeInfoWrap = styled.div`
   display: flex;
   flex-direction: row;
   padding-bottom: 12px;
+  min-width: 100px;
 `;
 
 export const User = styled.div`
   padding-right: 12px;
+  min-width: 50px;
+
 `;
 
 export const SendDate = styled.div``;
 
-export const Chatting = styled.div``;
+export const Chatting = styled.div`
+  min-width: 200px;
+
+`;

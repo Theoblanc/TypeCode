@@ -4,7 +4,11 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom", "esnext.asynciterable"],
+    "lib": [
+      "es6",
+      "dom",
+      "esnext.asynciterable"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -34,9 +38,14 @@
     "jest",
     "src/setupTests.ts"
   ],
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "rules": {
     "semicolon": true,
-    "no-unused-expression": [true, "allow-tagged-template"]
+    "no-unused-expression": [
+      true,
+      "allow-tagged-template"
+    ]
   }
 }

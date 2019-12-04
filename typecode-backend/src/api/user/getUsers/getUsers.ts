@@ -13,7 +13,7 @@ const resolvers: Resolvers = {
         id: userId
       });
 
-      return user.friends;
+      return user;
     }
   }
 };
