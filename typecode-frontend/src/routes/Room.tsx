@@ -1,5 +1,5 @@
 import React from "react";
-import RoomComponent from "../pages/Room";
+import RoomPage from "../pages/Room";
 
-const Room: React.FC = () => <RoomComponent />;
+const Room: React.FC = () => <RoomPage />;
 export default Room;

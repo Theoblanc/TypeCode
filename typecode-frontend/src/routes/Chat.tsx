@@ -1,5 +1,5 @@
 import React from "react";
-import ChatComponent from "../pages/Chat";
+import ChatPage from "../pages/Chat";
 
-const Chat: React.FC = () => <ChatComponent />;
+const Chat: React.FC = () => <ChatPage />;
 export default Chat;

@@ -1,11 +1,30 @@
 import styled from "styled-components";
+import img from "../../assets/Image/background/sunrise.jpg";
 
 export const Container = styled.div`
-  display: flex;
-  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  height: 100vh;
+  min-width: 360dp;
+  background-image: url(${img});
+  background-size: cover;
 `;
 
-export const Header = styled.div``;
+export const Transparency = styled.div`
+  grid-column: 1 / 13;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+`;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 20vh;
+  padding: 64px;
+`;
 
 export const Logo = styled.a`
   color: #ffffff;

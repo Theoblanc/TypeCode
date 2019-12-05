@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Container,
+  Transparency,
   Header,
   Logo,
   LoginWrap,
@@ -19,28 +20,30 @@ import {
 
 const LoginPresenter: React.FC = () => (
   <Container>
-    <Header>
-      <Logo>TypeCode</Logo>
-    </Header>
-    <LoginWrap>
-      <LoginLabel>Login</LoginLabel>
-      <SocialLogin>
-        <FacebookLogin>페이스북 로그인</FacebookLogin>
-        <GoogleLogin>구글 로그인</GoogleLogin>
-        <NaverLogin>네이버 로그인</NaverLogin>
-      </SocialLogin>
+    <Transparency>
+      <Header>
+        <Logo>TypeCode</Logo>
+      </Header>
+      <LoginWrap>
+        <LoginLabel>Login</LoginLabel>
+        <SocialLogin>
+          <FacebookLogin>페이스북 로그인</FacebookLogin>
+          <GoogleLogin>구글 로그인</GoogleLogin>
+          <NaverLogin>네이버 로그인</NaverLogin>
+        </SocialLogin>
 
-      <EmailLoginWrap>
-        <EmailLoginLabel>e-mail login</EmailLoginLabel>
-        <UserNameForm />
-        <PasswordForm />
-        <LoginBtn>Log in</LoginBtn>
-      </EmailLoginWrap>
+        <EmailLoginWrap>
+          <EmailLoginLabel>e-mail login</EmailLoginLabel>
+          <UserNameForm />
+          <PasswordForm />
+          <LoginBtn>Log in</LoginBtn>
+        </EmailLoginWrap>
 
-      <ForgotEmailOrPassword>
-        Forgot email <span>[Forgot Password]</span>
-      </ForgotEmailOrPassword>
-    </LoginWrap>
+        <ForgotEmailOrPassword>
+          Forgot email <span>[Forgot Password]</span>
+        </ForgotEmailOrPassword>
+      </LoginWrap>
+    </Transparency>
   </Container>
 );
 

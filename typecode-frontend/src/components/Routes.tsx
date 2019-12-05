@@ -3,6 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "../routes/Home";
 import Room from "../routes/Room";
 import Chat from "../routes/Chat";
+import Login from "../routes/Login";
 import { PAGE_PATHS } from "../constants";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
@@ -26,8 +27,8 @@ const LoggedInRoutes: React.SFC = () => (
 
 const LogOutRoutes: React.SFC = () => (
   <Switch>
-    {/* <Route path={PAGE_PATHS.LOGIN} exact={true} component={Login} /> */}
-    <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Home} />
+    <Route path={PAGE_PATHS.LOGIN} exact={true} component={Login} />
+    {/* <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Home} /> */}
   </Switch>
 );
 
@@ -36,7 +37,7 @@ const AppPresenter: React.FC = () => {
 
   return (
     <BrowserRouter>
-      {data && data.isLoggedIn ? <LogOutRoutes /> : <LoggedInRoutes />}
+      {data && data.isLoggedIn ? <LoggedInRoutes /> : <LogOutRoutes />}
     </BrowserRouter>
   );
 };
