@@ -7,16 +7,21 @@ import {
   LoginWrap,
   LoginLabel,
   SocialLogin,
-  FacebookLogin,
-  GoogleLogin,
-  NaverLogin,
   EmailLoginWrap,
   EmailLoginLabel,
   UserNameForm,
   PasswordForm,
   LoginBtn,
-  ForgotEmailOrPassword
+  ForgotEmailOrPassword,
+  NaverLogin,
+  GoogleLogin,
+  FacebookLogin,
+  Icon,
+  Form
 } from "./LoginStyles";
+import google from "../../assets/Image/googleIcon.png";
+import facebook from "../../assets/Image/facebookIcon.png";
+import naver from "../../assets/Image/naverIcon.png";
 
 const LoginPresenter: React.FC = () => (
   <Container>
@@ -25,18 +30,29 @@ const LoginPresenter: React.FC = () => (
         <Logo>TypeCode</Logo>
       </Header>
       <LoginWrap>
-        <LoginLabel>Login</LoginLabel>
+        <LoginLabel>Log in</LoginLabel>
         <SocialLogin>
-          <FacebookLogin>페이스북 로그인</FacebookLogin>
-          <GoogleLogin>구글 로그인</GoogleLogin>
-          <NaverLogin>네이버 로그인</NaverLogin>
+          <FacebookLogin>
+            <Icon src={facebook} />
+            <span>Facebook login</span>
+          </FacebookLogin>
+          <GoogleLogin>
+            <Icon src={google} />
+            <span>Google login</span>
+          </GoogleLogin>
+          <NaverLogin>
+            <Icon src={naver} />
+            <span>Naver login</span>
+          </NaverLogin>
         </SocialLogin>
 
         <EmailLoginWrap>
           <EmailLoginLabel>e-mail login</EmailLoginLabel>
-          <UserNameForm />
-          <PasswordForm />
-          <LoginBtn>Log in</LoginBtn>
+          <Form>
+            <UserNameForm placeholder="User Id" />
+            <PasswordForm placeholder="Password" />
+            <LoginBtn>Log in</LoginBtn>
+          </Form>
         </EmailLoginWrap>
 
         <ForgotEmailOrPassword>

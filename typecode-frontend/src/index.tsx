@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { ApolloProvider } from "react-apollo";
-import client from "./apollo/Clinet";
+import client from "./apollo/Client";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
