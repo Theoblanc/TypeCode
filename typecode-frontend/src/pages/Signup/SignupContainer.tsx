@@ -1,7 +1,14 @@
 import React from "react";
 import SignupPresenter from "./SignupPresenter";
 
-const SignupContainer: React.FC = () => {
+interface IProps {
+  open: boolean;
+  setOpen: any;
+  onOpenModal: VoidFunction;
+  onCloseModal: VoidFunction;
+}
+
+const SignupContainer: React.FC<IProps> = () => {
   return <SignupPresenter />;
 };
 

@@ -17,13 +17,27 @@ import {
   GoogleLogin,
   FacebookLogin,
   Icon,
-  Form
+  Form,
+  Singup
 } from "./LoginStyles";
 import google from "../../assets/Image/googleIcon.png";
 import facebook from "../../assets/Image/facebookIcon.png";
 import naver from "../../assets/Image/naverIcon.png";
+import SingupModal from "../Signup";
 
-const LoginPresenter: React.FC = () => (
+interface IProps {
+  open: boolean;
+  setOpen: any;
+  onOpenModal: VoidFunction;
+  onCloseModal: VoidFunction;
+}
+
+const LoginPresenter: React.FC<IProps> = ({
+  open,
+  setOpen,
+  onOpenModal,
+  onCloseModal
+}) => (
   <Container>
     <Transparency>
       <Header>
@@ -55,10 +69,19 @@ const LoginPresenter: React.FC = () => (
           </Form>
         </EmailLoginWrap>
 
+        <Singup>회원가입</Singup>
+
         <ForgotEmailOrPassword>
-          Forgot email <span>[Forgot Password]</span>
+          [Forgot email] <span>[Forgot Password]</span>
         </ForgotEmailOrPassword>
       </LoginWrap>
+
+      <SingupModal
+        open={open}
+        setOpen={setOpen}
+        onOpenModal={onOpenModal}
+        onCloseModal={onCloseModal}
+      />
     </Transparency>
   </Container>
 );

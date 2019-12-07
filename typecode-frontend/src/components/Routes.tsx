@@ -4,8 +4,11 @@ import Home from "../routes/Home";
 import Room from "../routes/Room";
 import Chat from "../routes/Chat";
 import Login from "../routes/Login";
+import Signup from "../routes/Signup";
+
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
+import { PAGE_PATHS } from "src/constants";
 
 const QUERY = gql`
   {
@@ -27,7 +30,7 @@ const LoggedInRoutes: React.SFC = () => (
 const LogOutRoutes: React.SFC = () => (
   <Switch>
     <Route path={"/"} exact={true} component={Login} />
-    {/* <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Home} /> */}
+    <Route path={PAGE_PATHS.SIGNUP} exact={true} component={Signup} />
   </Switch>
 );
 

@@ -153,6 +153,11 @@ export const LoginBtn = styled.button`
   }
 `;
 
+export const Singup = styled.div`
+  font-size: 12px;
+  margin-bottom: 10px;
+`;
+
 export const ForgotEmailOrPassword = styled.div`
   font-size: 12px;
 `;
