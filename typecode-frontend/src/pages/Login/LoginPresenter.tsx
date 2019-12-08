@@ -26,15 +26,15 @@ import naver from "../../assets/Image/naverIcon.png";
 import SingupModal from "../Signup";
 
 interface IProps {
-  open: boolean;
-  setOpen: any;
+  isOpen: boolean;
+  setIsOpen: any;
   onOpenModal: VoidFunction;
   onCloseModal: VoidFunction;
 }
 
 const LoginPresenter: React.FC<IProps> = ({
-  open,
-  setOpen,
+  isOpen,
+  setIsOpen,
   onOpenModal,
   onCloseModal
 }) => (
@@ -69,7 +69,7 @@ const LoginPresenter: React.FC<IProps> = ({
           </Form>
         </EmailLoginWrap>
 
-        <Singup>회원가입</Singup>
+        <Singup onClick={() => setIsOpen(true)}>회원가입</Singup>
 
         <ForgotEmailOrPassword>
           [Forgot email] <span>[Forgot Password]</span>
@@ -77,8 +77,8 @@ const LoginPresenter: React.FC<IProps> = ({
       </LoginWrap>
 
       <SingupModal
-        open={open}
-        setOpen={setOpen}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
         onOpenModal={onOpenModal}
         onCloseModal={onCloseModal}
       />

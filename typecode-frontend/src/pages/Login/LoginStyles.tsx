@@ -14,7 +14,7 @@ export const Transparency = styled.div`
   grid-column: 1 / 13;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   padding: 0px 100px;
 `;

@@ -8,8 +8,30 @@ import {
   Input,
   SignupBtn
 } from "./SignupStyles";
-const SignupPresenter: React.FC = () => (
-  <Modal>
+
+interface IProps {
+  isOpen: boolean;
+  setIsOpen: any;
+  onOpenModal: VoidFunction;
+  onCloseModal: VoidFunction;
+}
+
+const SignupPresenter: React.FC<IProps> = ({
+  isOpen,
+  setIsOpen,
+  onOpenModal,
+  onCloseModal
+}) => (
+  <Modal
+    className="modal"
+    isOpen={isOpen}
+    onClick={event => {
+      const name = event.target.className.indexOf("modal");
+      if (name !== -1) {
+        onCloseModal();
+      }
+    }}
+  >
     <Container>
       <ModalHeader>SIGN UP</ModalHeader>
       <Center>
@@ -22,7 +44,7 @@ const SignupPresenter: React.FC = () => (
         <Label>CONFIRM PASSWORD</Label>
         <Input />
 
-        <SignupBtn>확인</SignupBtn>
+        <SignupBtn onClick={() => onCloseModal()}>확인</SignupBtn>
       </Center>
     </Container>
   </Modal>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Modal = styled.div`
-  display: flex;
+  display: ${props => (props.isOpen ? "flex" : "none")};
   flex: 1 1 auto;
   width: 100%;
   height: 100%;

@@ -2,21 +2,21 @@ import React from "react";
 import SignupPage from "../pages/Signup";
 
 interface IProps {
-  open: boolean;
-  setOpen: any;
+  isOpen: boolean;
+  setIsOpen: any;
   onOpenModal: VoidFunction;
   onCloseModal: VoidFunction;
 }
 
 const Signup: React.FC<IProps> = ({
-  open,
-  setOpen,
+  isOpen,
+  setIsOpen,
   onOpenModal,
   onCloseModal
 }) => (
   <SignupPage
-    open={open}
-    setOpen={setOpen}
+    isOpen={isOpen}
+    setIsOpen={setIsOpen}
     onOpenModal={onOpenModal}
     onCloseModal={onCloseModal}
   />

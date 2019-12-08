@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import LoginPresenter from "./LoginPresenter";
 
 const LoginContainer: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onOpenModal = () => {
-    setOpen(true);
+    setIsOpen(true);
   };
 
   const onCloseModal = () => {
-    setOpen(false);
+    setIsOpen(false);
   };
 
   return (
     <>
       <LoginPresenter
-        open={open}
-        setOpen={setOpen}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
         onOpenModal={onOpenModal}
         onCloseModal={onCloseModal}
       />
