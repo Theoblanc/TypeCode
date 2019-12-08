@@ -47,6 +47,7 @@ export const Label = styled.div`
 `;
 
 export const Input = styled.input`
+  color: rgba(35, 43, 85, 0.75);
   width: 100%;
   height: 35px;
   padding-left: 15px;
@@ -61,18 +62,22 @@ export const Input = styled.input`
     transition: background-color 0.5s ease;
     outline: none;
   }
+  ::placeholder {
+    color: rgba(35, 43, 85, 0.75);
+  }
 `;
 
 export const SignupBtn = styled.button`
   margin-top: 12px;
   padding-top: 4px;
   width: 100%;
-  height: 35px;
+  height: 40px;
   border: none;
-  border-radius: 20px;
+  border-radius: 8px;
   background-color: rgba(16, 89, 255, 1);
   color: rgba(255, 255, 255, 1);
   outline: none;
+  font-weight: bold;
 
   :hover {
     cursor: pointer;

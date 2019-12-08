@@ -36,13 +36,13 @@ const SignupPresenter: React.FC<IProps> = ({
       <ModalHeader>SIGN UP</ModalHeader>
       <Center>
         <Label>Full Name</Label>
-        <Input />
+        <Input placeholder="Full Name" />
         <Label>Email</Label>
-        <Input />
+        <Input placeholder="Email" />
         <Label>Password</Label>
-        <Input />
+        <Input placeholder="Password" type="password" />
         <Label>CONFIRM PASSWORD</Label>
-        <Input />
+        <Input placeholder="Confirm Password" type="password" />
 
         <SignupBtn onClick={() => onCloseModal()}>확인</SignupBtn>
       </Center>

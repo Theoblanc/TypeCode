@@ -64,6 +64,9 @@ export const FacebookLogin = styled.div`
     font-size: 16px;
     padding-bottom: 5px;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const GoogleLogin = styled.div`
@@ -81,6 +84,9 @@ export const GoogleLogin = styled.div`
     font-size: 16px;
     padding-bottom: 5px;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const NaverLogin = styled.div`
@@ -97,6 +103,9 @@ export const NaverLogin = styled.div`
     margin-left: 12px;
     font-size: 16px;
     padding-bottom: 5px;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -151,13 +160,38 @@ export const LoginBtn = styled.button`
     outline: none;
     box-shadow: none;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Singup = styled.div`
   font-size: 12px;
   margin-bottom: 10px;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 export const ForgotEmailOrPassword = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ForgotEmail = styled.div`
   font-size: 12px;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
+export const ForgotPassword = styled.div`
+  font-size: 12px;
+  margin-left: 12px;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;

@@ -18,7 +18,9 @@ import {
   FacebookLogin,
   Icon,
   Form,
-  Singup
+  Singup,
+  ForgotEmail,
+  ForgotPassword
 } from "./LoginStyles";
 import google from "../../assets/Image/googleIcon.png";
 import facebook from "../../assets/Image/facebookIcon.png";
@@ -64,15 +66,19 @@ const LoginPresenter: React.FC<IProps> = ({
           <EmailLoginLabel>e-mail login</EmailLoginLabel>
           <Form>
             <UserNameForm placeholder="User Id" />
-            <PasswordForm placeholder="Password" />
+            <PasswordForm
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
             <LoginBtn>Log in</LoginBtn>
           </Form>
         </EmailLoginWrap>
 
         <Singup onClick={() => setIsOpen(true)}>회원가입</Singup>
-
         <ForgotEmailOrPassword>
-          [Forgot email] <span>[Forgot Password]</span>
+          <ForgotEmail>[Forgot email]</ForgotEmail>
+          <ForgotPassword>[Forgot Password]</ForgotPassword>
         </ForgotEmailOrPassword>
       </LoginWrap>
 
