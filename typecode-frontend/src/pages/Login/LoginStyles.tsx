@@ -118,7 +118,7 @@ export const EmailLoginLabel = styled.div`
   padding: 16px 0px;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;

@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import LoginPresenter from "./LoginPresenter";
-import { useMutation } from "@apollo/react-hooks";
-import { MUTATION_LOGIN } from "./LoginQueries";
+// import { useMutation } from "@apollo/react-hooks";
+// import { MUTATION_LOGIN } from "./LoginQueries";
+import useForm from "react-hook-form";
+
+interface IForm {
+  email: string;
+  password: string;
+}
 
 const LoginContainer: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mutateLogin] = useMutation(MUTATION_LOGIN);
+  // const [mutateLogin] = useMutation(MUTATION_LOGIN);
+  const { register, errors, handleSubmit } = useForm<IForm>();
 
   const onOpenModal = () => {
     setIsOpen(true);
@@ -13,6 +20,10 @@ const LoginContainer: React.FC = () => {
 
   const onCloseModal = () => {
     setIsOpen(false);
+  };
+
+  const onSubmit = data => {
+    alert(JSON.stringify(data));
   };
 
   // const onSubmit = async () => {
@@ -40,6 +51,10 @@ const LoginContainer: React.FC = () => {
         setIsOpen={setIsOpen}
         onOpenModal={onOpenModal}
         onCloseModal={onCloseModal}
+        register={register}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
       />
     </>
   );

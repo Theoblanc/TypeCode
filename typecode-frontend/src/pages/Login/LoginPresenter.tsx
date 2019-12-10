@@ -32,13 +32,21 @@ interface IProps {
   setIsOpen: any;
   onOpenModal: VoidFunction;
   onCloseModal: VoidFunction;
+  register?: any;
+  errors?: any;
+  handleSubmit?: any;
+  onSubmit: any;
 }
 
 const LoginPresenter: React.FC<IProps> = ({
   isOpen,
   setIsOpen,
   onOpenModal,
-  onCloseModal
+  onCloseModal,
+  register,
+  errors,
+  handleSubmit,
+  onSubmit
 }) => (
   <Container>
     <Transparency>
@@ -64,14 +72,29 @@ const LoginPresenter: React.FC<IProps> = ({
 
         <EmailLoginWrap>
           <EmailLoginLabel>e-mail login</EmailLoginLabel>
-          <Form>
-            <UserNameForm placeholder="User Id" />
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <UserNameForm
+              placeholder="User Id"
+              type="text"
+              ref={register({
+                required: "this is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                  message: "Invalid email address"
+                }
+              })}
+            />
+            <br />
+            <p> {errors.email && errors.email.message}</p>
             <PasswordForm
               type="password"
               placeholder="Password"
               name="password"
+              ref={register({
+                required: "this is required"
+              })}
             />
-            <LoginBtn>Log in</LoginBtn>
+            <LoginBtn type="submit">Log in</LoginBtn>
           </Form>
         </EmailLoginWrap>
 
