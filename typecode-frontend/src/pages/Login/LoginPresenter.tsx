@@ -74,13 +74,14 @@ const LoginPresenter: React.FC<IProps> = ({
           <EmailLoginLabel>e-mail login</EmailLoginLabel>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <UserNameForm
-              placeholder="User Id"
+              placeholder="Email"
+              name="email"
               type="text"
               ref={register({
-                required: "this is required",
+                required: "아이디를 입력해주세요",
                 pattern: {
                   value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                  message: "Invalid email address"
+                  message: "불가능한 이메일 형식입니다."
                 }
               })}
             />
@@ -91,7 +92,7 @@ const LoginPresenter: React.FC<IProps> = ({
               placeholder="Password"
               name="password"
               ref={register({
-                required: "this is required"
+                required: "비밀번호를 입력해주세요"
               })}
             />
             <LoginBtn type="submit">Log in</LoginBtn>

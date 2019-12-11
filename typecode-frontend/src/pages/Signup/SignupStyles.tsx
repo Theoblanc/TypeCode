@@ -30,6 +30,8 @@ export const Container = styled.div`
   background: linear-gradient(rgba(35, 43, 85, 0.75), rgba(35, 43, 85, 0.95));
 `;
 
+export const Form = styled.form``;
+
 export const ModalHeader = styled.div`
   width: 100%;
   font-size: 24px;
