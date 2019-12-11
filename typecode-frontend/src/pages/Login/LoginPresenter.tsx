@@ -85,7 +85,6 @@ const LoginPresenter: React.FC<IProps> = ({
                 }
               })}
             />
-            <br />
             <p> {errors.email && errors.email.message}</p>
             <PasswordForm
               type="password"
@@ -95,6 +94,7 @@ const LoginPresenter: React.FC<IProps> = ({
                 required: "비밀번호를 입력해주세요"
               })}
             />
+            <p> {errors.password && errors.password.message}</p>
             <LoginBtn type="submit">Log in</LoginBtn>
           </Form>
         </EmailLoginWrap>

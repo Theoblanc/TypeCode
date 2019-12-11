@@ -121,13 +121,19 @@ export const EmailLoginLabel = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  p {
+    color: red;
+    font-size: 11px;
+    height: 16px;
+    padding-left: 12px;
+    margin-top: 8px;
+  }
 `;
 
 export const UserNameForm = styled.input`
   height: 40px;
   width: 280px;
   border-radius: 8px;
-  margin-bottom: 16px;
   border-width: 0px;
   padding: 12px;
   &:focus {
@@ -139,13 +145,11 @@ export const PasswordForm = styled.input`
   height: 40px;
   width: 280px;
   border-radius: 8px;
-  margin-bottom: 16px;
   border-width: 0px;
   padding: 12px;
 
   &:focus {
     outline: none;
-    box-shadow: none;
   }
 `;
 
