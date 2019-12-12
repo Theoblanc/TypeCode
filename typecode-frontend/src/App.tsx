@@ -5,8 +5,11 @@ import Routes from "./components/Routes";
 import { GlobalStyle } from "./styles/global-styles";
 import { ApolloProvider } from "react-apollo";
 import Client from "./apollo/Client";
+// import Loading from "./pages/Loading";
 
 const App: React.FC = () => {
+  // const [loading, setLoading] = useState(false);
+
   return (
     <React.Fragment>
       <ApolloProvider client={Client}>

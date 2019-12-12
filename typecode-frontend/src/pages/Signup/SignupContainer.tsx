@@ -1,7 +1,8 @@
 import React from "react";
 import SignupPresenter from "./SignupPresenter";
 import useForm from "react-hook-form";
-import { async } from "q";
+// import { MUTATION_SIGNUP } from "./SingupQueries";
+// import { useMutation } from "react-apollo";
 
 interface IProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ const SignupContainer: React.FC<IProps & IForm> = ({
   onCloseModal
 }) => {
   const { register, errors, handleSubmit } = useForm<IForm>();
+  // const [mutateSignup] = useMutation(MUTATION_SIGNUP);
 
   const SignupSubmit = data => {
     alert(JSON.stringify(data));
