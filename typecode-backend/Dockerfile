@@ -1,12 +1,10 @@
-FROM node:10.15.0
+FROM node:10.17.0
 
-WORKDIR /app
+RUN mkdir backend
+WORKDIR /backend
 
-COPY . .
+COPY . /backend/
 
 RUN npm install && npm cache clean --force
-
-COPY . .
-# RUN npm run build
 
 CMD [ "npm", "run", "dev" ]
