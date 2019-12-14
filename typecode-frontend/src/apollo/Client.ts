@@ -1,32 +1,30 @@
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { createHttpLink } from "apollo-link-http";
-import { setContext } from "apollo-link-context";
+import ApolloClient from "apollo-boost";
 
-const LOCAL_HOST = "https://localhost:4000/graphql";
+const resolvers = {
+  Mutation: {
+    logUserIn: (_, { token }, { cache }) => {
+      localStorage.setItem("token", token);
+      cache.writeData({
+        data: {
+          isLoggedIn: true
+        }
+      });
 
-const link = createHttpLink({
-  fetch,
-  uri: LOCAL_HOST
-});
+      return null;
+    },
 
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : ""
+    logUserOut: (_, __, { cache }) => {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+      return null;
     }
-  };
-});
+  }
+};
 
 const client = new ApolloClient({
-  link: authLink.concat(link),
-  cache: new InMemoryCache(),
-  defaultOptions: {
-    watchQuery: {
-      fetchPolicy: "cache-and-network"
-    }
+  uri: "http://localhost:4000/graphql ",
+  clientState: {
+    resolvers
   }
 });
 export default client;

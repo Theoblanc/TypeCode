@@ -23,14 +23,21 @@ export const Container = styled.div`
   padding-top: 60px;
   padding-left: 40px;
   padding-right: 40px;
-
   padding-bottom: 100px;
   height: 575px;
   width: 430px;
   background: linear-gradient(rgba(35, 43, 85, 0.75), rgba(35, 43, 85, 0.95));
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  p {
+    color: red;
+    font-size: 11px;
+    height: 16px;
+    padding-left: 12px;
+    margin-top: 8px;
+  }
+`;
 
 export const ModalHeader = styled.div`
   width: 100%;
@@ -55,7 +62,6 @@ export const Input = styled.input`
   padding-left: 15px;
   border: none;
   border-radius: 20px;
-  margin-bottom: 20px;
   background: rgba(255, 255, 255, 0.2);
   &:focus {
     background-color: rgba(255, 255, 255, 0.3);

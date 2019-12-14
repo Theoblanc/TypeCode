@@ -26,7 +26,7 @@ const SignupContainer: React.FC<IProps & IForm> = ({
   // const [mutateSignup] = useMutation(MUTATION_SIGNUP);
 
   const SignupSubmit = data => {
-    alert(JSON.stringify(data));
+    setIsOpen(false);
   };
 
   return (

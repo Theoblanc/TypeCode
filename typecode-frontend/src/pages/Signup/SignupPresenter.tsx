@@ -92,7 +92,7 @@ const SignupPresenter: React.FC<IProps> = ({
           />
           <p> {errors.confirmPassword && errors.confirmPassword.message}</p>
 
-          <SignupBtn onClick={() => onCloseModal()}>확인</SignupBtn>
+          <SignupBtn>확인</SignupBtn>
         </Center>
       </Form>
     </Container>

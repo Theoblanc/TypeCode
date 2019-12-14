@@ -5,6 +5,7 @@ import Room from "../routes/Room";
 import Chat from "../routes/Chat";
 import Login from "../routes/Login";
 import Signup from "../routes/Signup";
+// import Loading from "../pages/Loading";
 
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
