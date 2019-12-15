@@ -23,8 +23,6 @@ const LoginContainer: React.FC = () => {
   };
 
   const onSubmit = async data => {
-    alert(JSON.stringify(data));
-
     const variables = {
       email: data.email,
       password: data.password

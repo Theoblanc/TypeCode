@@ -67,7 +67,6 @@ type User {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: Token
   friends: [User!]
   rooms: [Room!]
   createdAt: String!

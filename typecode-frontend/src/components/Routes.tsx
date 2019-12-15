@@ -37,6 +37,9 @@ const LogOutRoutes: React.SFC = () => (
 
 const AppPresenter: React.FC = () => {
   const { data } = useQuery(QUERY);
+  console.log(data);
+
+  console.log(data.isLoggedIn);
 
   return (
     <BrowserRouter>

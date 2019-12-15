@@ -371,7 +371,6 @@ export interface UserWhereInput {
   phoneNumber_not_ends_with?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
   phoneNumberVerified_not?: Maybe<Boolean>;
-  fcmToken?: Maybe<TokenWhereInput>;
   friends_every?: Maybe<UserWhereInput>;
   friends_some?: Maybe<UserWhereInput>;
   friends_none?: Maybe<UserWhereInput>;
@@ -405,66 +404,6 @@ export interface UserWhereInput {
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
-export interface TokenWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  userId?: Maybe<String>;
-  userId_not?: Maybe<String>;
-  userId_in?: Maybe<String[] | String>;
-  userId_not_in?: Maybe<String[] | String>;
-  userId_lt?: Maybe<String>;
-  userId_lte?: Maybe<String>;
-  userId_gt?: Maybe<String>;
-  userId_gte?: Maybe<String>;
-  userId_contains?: Maybe<String>;
-  userId_not_contains?: Maybe<String>;
-  userId_starts_with?: Maybe<String>;
-  userId_not_starts_with?: Maybe<String>;
-  userId_ends_with?: Maybe<String>;
-  userId_not_ends_with?: Maybe<String>;
-  accessedAt?: Maybe<DateTimeInput>;
-  accessedAt_not?: Maybe<DateTimeInput>;
-  accessedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  accessedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  accessedAt_lt?: Maybe<DateTimeInput>;
-  accessedAt_lte?: Maybe<DateTimeInput>;
-  accessedAt_gt?: Maybe<DateTimeInput>;
-  accessedAt_gte?: Maybe<DateTimeInput>;
-  deleted?: Maybe<Boolean>;
-  deleted_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<TokenWhereInput[] | TokenWhereInput>;
-  OR?: Maybe<TokenWhereInput[] | TokenWhereInput>;
-  NOT?: Maybe<TokenWhereInput[] | TokenWhereInput>;
 }
 
 export interface RoomWhereInput {
@@ -605,6 +544,66 @@ export type TokenWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
+export interface TokenWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  userId?: Maybe<String>;
+  userId_not?: Maybe<String>;
+  userId_in?: Maybe<String[] | String>;
+  userId_not_in?: Maybe<String[] | String>;
+  userId_lt?: Maybe<String>;
+  userId_lte?: Maybe<String>;
+  userId_gt?: Maybe<String>;
+  userId_gte?: Maybe<String>;
+  userId_contains?: Maybe<String>;
+  userId_not_contains?: Maybe<String>;
+  userId_starts_with?: Maybe<String>;
+  userId_not_starts_with?: Maybe<String>;
+  userId_ends_with?: Maybe<String>;
+  userId_not_ends_with?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  accessedAt_not?: Maybe<DateTimeInput>;
+  accessedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  accessedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  accessedAt_lt?: Maybe<DateTimeInput>;
+  accessedAt_lte?: Maybe<DateTimeInput>;
+  accessedAt_gt?: Maybe<DateTimeInput>;
+  accessedAt_gte?: Maybe<DateTimeInput>;
+  deleted?: Maybe<Boolean>;
+  deleted_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<TokenWhereInput[] | TokenWhereInput>;
+  OR?: Maybe<TokenWhereInput[] | TokenWhereInput>;
+  NOT?: Maybe<TokenWhereInput[] | TokenWhereInput>;
+}
+
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   email?: Maybe<String>;
@@ -630,22 +629,9 @@ export interface UserCreateInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<TokenCreateOneInput>;
   friends?: Maybe<UserCreateManyInput>;
   rooms?: Maybe<RoomCreateManyWithoutParticipantsInput>;
   deletedAt?: Maybe<DateTimeInput>;
-}
-
-export interface TokenCreateOneInput {
-  create?: Maybe<TokenCreateInput>;
-  connect?: Maybe<TokenWhereUniqueInput>;
-}
-
-export interface TokenCreateInput {
-  id?: Maybe<ID_Input>;
-  userId?: Maybe<String>;
-  accessedAt?: Maybe<DateTimeInput>;
-  deleted?: Maybe<Boolean>;
 }
 
 export interface UserCreateManyInput {
@@ -707,7 +693,6 @@ export interface UserCreateWithoutRoomsInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<TokenCreateOneInput>;
   friends?: Maybe<UserCreateManyInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
@@ -732,30 +717,9 @@ export interface UserUpdateDataInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<TokenUpdateOneInput>;
   friends?: Maybe<UserUpdateManyInput>;
   rooms?: Maybe<RoomUpdateManyWithoutParticipantsInput>;
   deletedAt?: Maybe<DateTimeInput>;
-}
-
-export interface TokenUpdateOneInput {
-  create?: Maybe<TokenCreateInput>;
-  update?: Maybe<TokenUpdateDataInput>;
-  upsert?: Maybe<TokenUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<TokenWhereUniqueInput>;
-}
-
-export interface TokenUpdateDataInput {
-  userId?: Maybe<String>;
-  accessedAt?: Maybe<DateTimeInput>;
-  deleted?: Maybe<Boolean>;
-}
-
-export interface TokenUpsertNestedInput {
-  update: TokenUpdateDataInput;
-  create: TokenCreateInput;
 }
 
 export interface UserUpdateManyInput {
@@ -1192,7 +1156,6 @@ export interface UserUpdateWithoutRoomsDataInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<TokenUpdateOneInput>;
   friends?: Maybe<UserUpdateManyInput>;
   deletedAt?: Maybe<DateTimeInput>;
 }
@@ -1235,6 +1198,13 @@ export interface RoomUpdateManyMutationInput {
   deletedAt?: Maybe<DateTimeInput>;
 }
 
+export interface TokenCreateInput {
+  id?: Maybe<ID_Input>;
+  userId?: Maybe<String>;
+  accessedAt?: Maybe<DateTimeInput>;
+  deleted?: Maybe<Boolean>;
+}
+
 export interface TokenUpdateInput {
   userId?: Maybe<String>;
   accessedAt?: Maybe<DateTimeInput>;
@@ -1254,7 +1224,6 @@ export interface UserUpdateInput {
   profile?: Maybe<String>;
   phoneNumber?: Maybe<String>;
   phoneNumberVerified?: Maybe<Boolean>;
-  fcmToken?: Maybe<TokenUpdateOneInput>;
   friends?: Maybe<UserUpdateManyInput>;
   rooms?: Maybe<RoomUpdateManyWithoutParticipantsInput>;
   deletedAt?: Maybe<DateTimeInput>;
@@ -1377,7 +1346,6 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   profile: () => Promise<String>;
   phoneNumber: () => Promise<String>;
   phoneNumberVerified: () => Promise<Boolean>;
-  fcmToken: <T = TokenPromise>() => T;
   friends: <T = FragmentableArray<User>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1411,7 +1379,6 @@ export interface UserSubscription
   profile: () => Promise<AsyncIterator<String>>;
   phoneNumber: () => Promise<AsyncIterator<String>>;
   phoneNumberVerified: () => Promise<AsyncIterator<Boolean>>;
-  fcmToken: <T = TokenSubscription>() => T;
   friends: <T = Promise<AsyncIterator<UserSubscription>>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1445,7 +1412,6 @@ export interface UserNullablePromise
   profile: () => Promise<String>;
   phoneNumber: () => Promise<String>;
   phoneNumberVerified: () => Promise<Boolean>;
-  fcmToken: <T = TokenPromise>() => T;
   friends: <T = FragmentableArray<User>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1467,46 +1433,6 @@ export interface UserNullablePromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   deletedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface Token {
-  id: ID_Output;
-  userId?: String;
-  accessedAt?: DateTimeOutput;
-  deleted?: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface TokenPromise extends Promise<Token>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  userId: () => Promise<String>;
-  accessedAt: () => Promise<DateTimeOutput>;
-  deleted: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface TokenSubscription
-  extends Promise<AsyncIterator<Token>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  userId: () => Promise<AsyncIterator<String>>;
-  accessedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  deleted: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface TokenNullablePromise
-  extends Promise<Token | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  userId: () => Promise<String>;
-  accessedAt: () => Promise<DateTimeOutput>;
-  deleted: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface Room {
@@ -1732,6 +1658,46 @@ export interface AggregateRoomSubscription
   extends Promise<AsyncIterator<AggregateRoom>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Token {
+  id: ID_Output;
+  userId?: String;
+  accessedAt?: DateTimeOutput;
+  deleted?: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface TokenPromise extends Promise<Token>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
+  deleted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface TokenSubscription
+  extends Promise<AsyncIterator<Token>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  userId: () => Promise<AsyncIterator<String>>;
+  accessedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deleted: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TokenNullablePromise
+  extends Promise<Token | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  userId: () => Promise<String>;
+  accessedAt: () => Promise<DateTimeOutput>;
+  deleted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface TokenConnection {

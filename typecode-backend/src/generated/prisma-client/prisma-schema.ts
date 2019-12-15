@@ -669,11 +669,6 @@ input TokenCreateInput {
   deleted: Boolean
 }
 
-input TokenCreateOneInput {
-  create: TokenCreateInput
-  connect: TokenWhereUniqueInput
-}
-
 type TokenEdge {
   node: Token!
   cursor: String!
@@ -721,12 +716,6 @@ input TokenSubscriptionWhereInput {
   NOT: [TokenSubscriptionWhereInput!]
 }
 
-input TokenUpdateDataInput {
-  userId: String
-  accessedAt: DateTime
-  deleted: Boolean
-}
-
 input TokenUpdateInput {
   userId: String
   accessedAt: DateTime
@@ -737,20 +726,6 @@ input TokenUpdateManyMutationInput {
   userId: String
   accessedAt: DateTime
   deleted: Boolean
-}
-
-input TokenUpdateOneInput {
-  create: TokenCreateInput
-  update: TokenUpdateDataInput
-  upsert: TokenUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: TokenWhereUniqueInput
-}
-
-input TokenUpsertNestedInput {
-  update: TokenUpdateDataInput!
-  create: TokenCreateInput!
 }
 
 input TokenWhereInput {
@@ -825,7 +800,6 @@ type User {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: Token
   friends(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room!]
   createdAt: DateTime!
@@ -847,7 +821,6 @@ input UserCreateInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: TokenCreateOneInput
   friends: UserCreateManyInput
   rooms: RoomCreateManyWithoutParticipantsInput
   deletedAt: DateTime
@@ -876,7 +849,6 @@ input UserCreateWithoutRoomsInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: TokenCreateOneInput
   friends: UserCreateManyInput
   deletedAt: DateTime
 }
@@ -1063,7 +1035,6 @@ input UserUpdateDataInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: TokenUpdateOneInput
   friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
@@ -1076,7 +1047,6 @@ input UserUpdateInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: TokenUpdateOneInput
   friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
@@ -1145,7 +1115,6 @@ input UserUpdateWithoutRoomsDataInput {
   profile: String
   phoneNumber: String
   phoneNumberVerified: Boolean
-  fcmToken: TokenUpdateOneInput
   friends: UserUpdateManyInput
   deletedAt: DateTime
 }
@@ -1264,7 +1233,6 @@ input UserWhereInput {
   phoneNumber_not_ends_with: String
   phoneNumberVerified: Boolean
   phoneNumberVerified_not: Boolean
-  fcmToken: TokenWhereInput
   friends_every: UserWhereInput
   friends_some: UserWhereInput
   friends_none: UserWhereInput

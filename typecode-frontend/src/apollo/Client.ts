@@ -1,9 +1,13 @@
 import ApolloClient from "apollo-boost";
 
+const defaults = {
+  isLoggedIn: Boolean(localStorage.getItem("refresh_token")) || false
+};
+
 const resolvers = {
   Mutation: {
-    logUserIn: (_, { token }, { cache }) => {
-      localStorage.setItem("token", token);
+    logUserIn: (_, { refresh_token }, { cache }) => {
+      localStorage.setItem("refresh_token", refresh_token);
       cache.writeData({
         data: {
           isLoggedIn: true
@@ -14,8 +18,8 @@ const resolvers = {
     },
 
     logUserOut: (_, __, { cache }) => {
-      localStorage.removeItem("token");
-      window.location.href = "/login";
+      localStorage.removeItem("refresh_token");
+      window.location.href = "/";
       return null;
     }
   }
@@ -24,7 +28,11 @@ const resolvers = {
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql ",
   clientState: {
-    resolvers
+    resolvers,
+    defaults
+  },
+  headers: {
+    authorization: `Bearer ${localStorage.getItem("refresh_token")}`
   }
 });
 export default client;
