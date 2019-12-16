@@ -37,6 +37,7 @@ const LoginContainer: React.FC = () => {
 
       await localStorage.setItem("access_token", access_token);
       await localStorage.setItem("refresh_token", refresh_token);
+      window.location.href = "/";
     } catch (e) {}
 
     console.log("로그인 완료");
