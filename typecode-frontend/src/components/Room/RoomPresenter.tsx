@@ -6,23 +6,24 @@ import {
   BtnContainer
 } from "./RoomStyles";
 import { HomeButton } from "../Button/HomeButton";
-// import { ListButton } from "../Button/ListButton";
+import { ListButton } from "../Button/ListButton";
 interface IProps {
   moverRoom: any;
+  data: any;
 }
-const RoomPresenter: React.FC<IProps> = ({ moverRoom }) => {
+const RoomPresenter: React.FC<IProps> = ({ moverRoom, data }) => {
   return (
     <Container>
       <HomeButton />
       <ListContainer>
-        {/* {data &&
+        {data &&
           data.map(v => (
             <ListButton
               key={v.id}
               roomName={v.roomName}
               moverRoom={moverRoom}
             />
-          ))} */}
+          ))}
       </ListContainer>
 
       <BtnContainer>
