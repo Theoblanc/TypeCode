@@ -12,12 +12,13 @@ interface IProps {
   data: any;
 }
 const RoomPresenter: React.FC<IProps> = ({ moverRoom, data }) => {
+  console.log("data", data);
   return (
     <Container>
       <HomeButton />
       <ListContainer>
-        {data &&
-          data.map(v => (
+        {data.findMyrooms &&
+          data.findMyrooms.map(v => (
             <ListButton
               key={v.id}
               roomName={v.roomName}

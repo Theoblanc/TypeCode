@@ -30,12 +30,6 @@ const resolvers: Resolvers = {
 
         const token = await createAccessToken(refresh_token);
 
-        //토큰은 객체
-        console.log("access_token", token);
-
-        //객체
-        console.log("access_token", refresh_token);
-
         return { ...token, refresh_token };
       } else {
         throw new Error("PASSWORD_INCORRECT");

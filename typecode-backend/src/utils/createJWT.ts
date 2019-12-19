@@ -89,8 +89,6 @@ export const createAccessToken = async (
     }
   );
 
-  console.log("createtoken", token);
-
   return {
     token,
     access_token: token,

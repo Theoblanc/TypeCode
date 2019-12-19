@@ -32,7 +32,7 @@ const MoveButtonContainer = styled.a`
 const MoveButton = styled.div`
   width: 50px;
   height: 50px;
-  background-color: ${prop => prop.theme.grayColor};
+  background: linear-gradient(45deg, #ee7752, #e73c7e);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -62,10 +62,12 @@ export const HomeButton = () => {
       hoverBarRef &&
       hoverBarRef.current
     ) {
-      hoverBtnRef.current.style.backgroundColor = "#fddf";
+      hoverBtnRef.current.style.background =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBtnRef.current.style.color = "black";
       hoverBtnRef.current.style.borderRadius = "15px";
-      hoverBarRef.current.style.backgroundColor = "#ffffff";
+      hoverBarRef.current.style.background =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBarRef.current.style.height = "20px";
     }
   };
@@ -77,10 +79,12 @@ export const HomeButton = () => {
       hoverBarRef &&
       hoverBarRef.current
     ) {
-      hoverBtnRef.current.style.backgroundColor = "#36393f";
+      hoverBtnRef.current.style.backgroundColor =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBtnRef.current.style.color = "#ffffff";
       hoverBtnRef.current.style.borderRadius = "30px";
-      hoverBarRef.current.style.backgroundColor = "#ffffff";
+      hoverBarRef.current.style.backgroundColor =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBarRef.current.style.height = "0px";
     }
   };

@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${props => props.theme.blackColor};
+  background-color: #ffffff;
 `;
 const HoverBarContainer = styled.div`
   width: 4px;
@@ -32,7 +32,7 @@ const MoveButtonContainer = styled.div`
 const MoveButton = styled.a`
   width: 50px;
   height: 50px;
-  background-color: ${props => props.theme.grayColor};
+  background: linear-gradient(45deg, #ee7752, #e73c7e);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -78,10 +78,12 @@ export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
       hoverBarRef &&
       hoverBarRef.current
     ) {
-      hoverBtnRef.current.style.backgroundColor = "#fddf";
+      hoverBtnRef.current.style.background =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBtnRef.current.style.color = "black";
       hoverBtnRef.current.style.borderRadius = "15px";
-      hoverBarRef.current.style.backgroundColor = "#ffffff";
+      hoverBarRef.current.style.background =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBarRef.current.style.height = "20px";
     }
   };
@@ -93,10 +95,12 @@ export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
       hoverBarRef &&
       hoverBarRef.current
     ) {
-      hoverBtnRef.current.style.backgroundColor = "#36393f";
+      hoverBtnRef.current.style.backgroundColor =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBtnRef.current.style.color = "#ffffff";
       hoverBtnRef.current.style.borderRadius = "30px";
-      hoverBarRef.current.style.backgroundColor = "#ffffff";
+      hoverBarRef.current.style.backgroundColor =
+        "linear-gradient(45deg, #ee7752, #e73c7e)";
       hoverBarRef.current.style.height = "0px";
     }
   };

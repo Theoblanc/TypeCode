@@ -9,20 +9,27 @@ const defaults = {
 
 const resolvers = {
   Mutation: {
-    logUserIn: (_, { refresh_token }, { cache }) => {
-      localStorage.setItem("refresh_token", refresh_token);
+    logUserIn: (_, { access_token }, { cache }) => {
+      localStorage.setItem("access_token", access_token);
       cache.writeData({
         data: {
           isLoggedIn: true
         }
       });
+      console.log("로그인 하였습니다.");
 
       return null;
     },
 
     logUserOut: (_, __, { cache }) => {
-      localStorage.removeItem("refresh_token");
+      localStorage.removeItem("access_token");
       window.location.href = "/";
+      cache.writeData({
+        data: {
+          isLoggedIn: false
+        }
+      });
+      console.log("로그아웃 하셨습니다.");
       return null;
     }
   }
@@ -30,6 +37,7 @@ const resolvers = {
 
 const getToken = async () => {
   const refresh_token = await localStorage.getItem("refresh_token");
+  console.log("123", refresh_token);
 
   if (refresh_token) {
     const access_token = await localStorage.getItem("access_token");
@@ -62,11 +70,15 @@ const client = new ApolloClient({
     let token: String | null;
     try {
       token = await getToken();
-      console.log("request token", token);
+      console.log("access_ token111", token);
+      console.log("operation", operation);
+
+      //만약 기간이 만료되어 refresh token이 넘어온다면 여기서 처리 해야 할듯
+      //createRefreshToken 호출하면 될려나?
     } catch (e) {}
     operation.setContext({
       headers: {
-        authorization: `Bearer ${localStorage.getItem("refresh_token")}`
+        authorization: `Bearer ${localStorage.getItem("access_token")}`
       }
     });
   },

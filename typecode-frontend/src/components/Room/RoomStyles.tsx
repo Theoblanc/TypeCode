@@ -9,6 +9,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  border-right: 1px solid ${props => props.theme.grayColor};
 `;
 
 export const ListContainer = styled.div`

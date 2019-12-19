@@ -33,12 +33,10 @@ export const MeInfoWrap = styled.div`
 export const User = styled.div`
   padding-right: 12px;
   min-width: 50px;
-
 `;
 
 export const SendDate = styled.div``;
 
 export const Chatting = styled.div`
   min-width: 200px;
-
 `;
