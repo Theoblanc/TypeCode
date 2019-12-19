@@ -5,6 +5,8 @@ const defaults = {
   isLoggedIn: Boolean(localStorage.getItem("refresh_token")) || false
 };
 
+///여기가 잘못되었음 왜냐하면 refresh_token으로 판단함
+
 const resolvers = {
   Mutation: {
     logUserIn: (_, { refresh_token }, { cache }) => {
@@ -60,7 +62,7 @@ const client = new ApolloClient({
     let token: String | null;
     try {
       token = await getToken();
-      console.log(token);
+      console.log("request token", token);
     } catch (e) {}
     operation.setContext({
       headers: {

@@ -89,7 +89,7 @@ export const createAccessToken = async (
     }
   );
 
-  console.log(token);
+  console.log("createtoken", token);
 
   return {
     token,
@@ -116,7 +116,6 @@ export const createRefreshToken = async (
     audience,
     issuer: JWT_ISSUER
   });
-
 
   return {
     token: jwtToken,
