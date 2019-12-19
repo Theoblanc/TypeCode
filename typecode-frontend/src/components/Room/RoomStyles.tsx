@@ -4,7 +4,7 @@ export const Container = styled.div`
   @media only screen and (max-width: 768px) {
     display: none;
   }
-  background-color: ${props => props.theme.blackColor};
+  background-color: #ffffff;
   width: 100px;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const ListContainer = styled.div`
   flex: 1;
-  background-color: ${props => props.theme.blackColor};
+  background-color: #ffffff;
   width: 100%;
 `;
 

@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${props => props.theme.blackColor};
+  background-color: #ffffff;
 `;
 const HoverBarContainer = styled.div`
   width: 4px;

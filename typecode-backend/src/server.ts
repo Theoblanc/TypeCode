@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import schema from "./schema";
-import { context } from "./utils/parseAuthHeader"
+import { context } from "./utils/parseAuthHeader";
 
 const server = new ApolloServer({
   schema,

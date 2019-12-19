@@ -28,10 +28,9 @@ const resolvers: Resolvers = {
         );
         if (!refresh_token) throw new Error("FAILURE_CREATING_TOKEN");
 
-        const token = await createAccessToken(refresh_token);
-        console.log(token);
+        const access_token = await createAccessToken(refresh_token);
 
-        return { ...token, refresh_token };
+        return { ...access_token, refresh_token };
       } else {
         throw new Error("PASSWORD_INCORRECT");
       }

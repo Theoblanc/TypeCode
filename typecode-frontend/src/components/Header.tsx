@@ -3,7 +3,7 @@ import styled from "src/typed-components";
 
 const Container = styled.div`
   position: sticky;
-  background-color: ${props => props.theme.blackColor};
+  background: linear-gradient(45deg, #ee7752, #e73c7e);
   width: 100%;
   min-width: 500px;
   height: 10vh;
