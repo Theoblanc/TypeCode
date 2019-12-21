@@ -23,7 +23,7 @@ const HoverBar = styled.div`
 `;
 
 const MoveButtonContainer = styled.div`
-  padding-left: 8px;
+  padding-left: 16px;
   padding-right: 12px;
   padding-top: 16px;
   padding-bottom: 16px;

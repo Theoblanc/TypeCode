@@ -1,7 +1,6 @@
 import styled from "src/typed-components";
 
 export const Container = styled.div`
-  background-color: ${props => props.theme.grayColor};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -38,20 +37,11 @@ export const ChatHeaderWrap = styled.div`
 `;
 
 export const ChatFristWrap = styled.div`
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   padding-left: 24px;
   padding-bottom: 24px;
-`;
-
-export const ProfileWrap = styled.div`
-  margin-top: 70px;
-`;
-
-export const Profile = styled.img`
-  width: 150px;
-  height: 150px;
-  resize-mode: contain;
 `;
 
 export const UserName = styled.div`
@@ -60,7 +50,7 @@ export const UserName = styled.div`
   min-width: 400px;
 `;
 
-export const GreedMent = styled.div` 
+export const GreedMent = styled.div`
   min-width: 400px;
 `;
 

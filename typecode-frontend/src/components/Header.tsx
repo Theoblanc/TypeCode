@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "src/typed-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   position: sticky;
@@ -29,6 +30,10 @@ const Logo = styled.a`
 
 const Login = styled.div`
   color: #ffffff;
+  a {
+    text-decoration: none;
+    color: #ffffff;
+  }
 `;
 
 const Header = () => {
@@ -36,7 +41,9 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Logo href="/">TYPE CODE</Logo>
-        <Login>로그아웃</Login>
+        <Login>
+          <Link to="#">로그아웃</Link>
+        </Login>
       </Wrapper>
     </Container>
   );

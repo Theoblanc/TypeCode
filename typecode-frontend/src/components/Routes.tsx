@@ -5,7 +5,7 @@ import Room from "../routes/Room";
 import Chat from "../routes/Chat";
 import Login from "../routes/Login";
 import Signup from "../routes/Signup";
-// import Loading from "../pages/Loading";
+import Loading from "../pages/Loading";
 
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
@@ -22,6 +22,7 @@ const LoggedInRoutes: React.SFC = () => (
     <Route path={"/"} exact={true} component={Home} />
     <Route path={"/chat/:chatId"} exact={true} component={Chat} />
     <Route path={"/room"} exact={true} component={Room} />
+    <Route path={"/loading"} exact={true} component={Loading} />
 
     {/* <Route path={"/chat/:chatId"} exact={true} component={Chat} /> */}
     <Redirect from={"*"} to={"/"} />
@@ -37,9 +38,6 @@ const LogOutRoutes: React.SFC = () => (
 
 const AppPresenter: React.FC = () => {
   const { data } = useQuery(QUERY);
-  console.log(data);
-
-  console.log(data.isLoggedIn);
 
   return (
     <BrowserRouter>

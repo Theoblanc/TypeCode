@@ -1,13 +1,11 @@
 import styled from "src/typed-components";
 
 export const Container = styled.div`
-  background-color: ${props => props.theme.grayColor};
   width: 100%;
   min-width: 400px;
   display: flex;
   flex-direction: row;
   padding: 24px;
-  border: 1px solid #ffffff;
 `;
 
 export const ProfileWrap = styled.div`

@@ -5,19 +5,17 @@ export const Container = styled.div`
     display: none;
   }
   background-color: #ffffff;
-  width: 100px;
+  width: 120px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  border-right: 1px solid ${props => props.theme.grayColor};
 `;
 
 export const ListContainer = styled.div`
   flex: 1;
-  background-color: #ffffff;
   width: 100%;
 `;
-
+/* 생성 */
 export const BtnContainer = styled.div`
   width: 100%;
   height: 60px;

@@ -6,7 +6,7 @@ const Container = styled.div`
   background-color: ${props => props.theme.blackColor};
   width: 100%;
   min-width: 500px;
-  height: 10vh;
+  height: 5vh;
   display: flex;
   align-items: center;
 `;
