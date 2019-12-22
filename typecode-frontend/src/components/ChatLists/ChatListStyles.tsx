@@ -54,14 +54,23 @@ export const GreedMent = styled.div`
   min-width: 400px;
 `;
 
+export const ChatListWrap = styled.div`
+  flex: 1;
+`;
 export const ChatInputWrap = styled.div`
+  padding-left: 24px;
   display: flex;
+  height: 80px;
+  align-items: center;
+  width: 100%;
+  justify-self: flex-end;
   input {
     width: 100%;
-    height: 2rem;
+    height: 3rem;
   }
 `;
 
 export const Button = styled.button`
   width: 5rem;
+  height: 3rem;
 `;

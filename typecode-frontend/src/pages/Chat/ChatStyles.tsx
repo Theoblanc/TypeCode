@@ -7,6 +7,6 @@ export const Container = styled.div`
 export const MainWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  min-height: 85vh;
-  height: 85vh;
+  min-height: 90vh;
+  height: 90vh;
 `;
