@@ -40,6 +40,7 @@ export const LoginWrap = styled.div`
 export const LoginLabel = styled.div`
   font-size: 24px;
   padding: 24px 0px;
+  color: #ffffff;
 `;
 
 export const SocialLogin = styled.div``;
@@ -116,6 +117,7 @@ export const EmailLoginWrap = styled.div`
 export const EmailLoginLabel = styled.div`
   font-size: 16px;
   padding: 16px 0px;
+  color: #ffffff;
 `;
 
 export const Form = styled.form`

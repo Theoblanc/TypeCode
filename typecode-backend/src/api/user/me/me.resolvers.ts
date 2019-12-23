@@ -2,14 +2,20 @@ import { Resolvers } from "src/types/resolvers";
 
 const resolvers: Resolvers = {
   Query: {
-    me: async (_, args, ctx): Promise<any> => {
+    me: async (_, __, ctx): Promise<any> => {
       if (!ctx.user) {
         throw Error("로그인이 안되어 있습니다.");
       }
 
-      const user = ctx.user.id;
+      const userId = await ctx.user.id;
 
-      return user;
+      try {
+        return await ctx.prisma.user({
+          id: userId
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 };
