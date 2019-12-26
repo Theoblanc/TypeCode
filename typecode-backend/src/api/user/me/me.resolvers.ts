@@ -9,13 +9,17 @@ const resolvers: Resolvers = {
 
       const userId = await ctx.user.id;
 
-      try {
-        return await ctx.prisma.user({
+      const user = await ctx.prisma.user({
+        id: userId
+      });
+
+      const friends = await ctx.prisma
+        .user({
           id: userId
-        });
-      } catch (e) {
-        console.log(e);
-      }
+        })
+        .friends();
+
+      return { user, friends };
     }
   }
 };

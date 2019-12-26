@@ -1,0 +1,3 @@
+type Mutation {
+  createRefreshoken(id: String!, accessToken: String!): TokenModel!
+}

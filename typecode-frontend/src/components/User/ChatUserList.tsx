@@ -7,7 +7,11 @@ import {
   UserName
 } from "./ChatUserStyles";
 
-export const ChatUserList: React.FC = () => {
+interface IProps {
+  data: any;
+}
+
+export const ChatUserList: React.FC<IProps> = ({ data }) => {
   return (
     <ListContainer>
       <ProfileWrap>
@@ -16,7 +20,7 @@ export const ChatUserList: React.FC = () => {
         ></Profile>
       </ProfileWrap>
       <UserNameContainer>
-        <UserName>이름</UserName>
+        <UserName>{data && data.me.name}</UserName>
       </UserNameContainer>
     </ListContainer>
   );

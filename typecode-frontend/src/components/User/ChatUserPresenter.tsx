@@ -13,7 +13,11 @@ import {
   LibraryTextWrap
 } from "./ChatUserStyles";
 import { ChatUserList } from "./ChatUserList";
-const ChatUser = () => {
+
+interface IProps {
+  data: any;
+}
+const ChatUser: React.FC<IProps> = ({ data }) => {
   return (
     <Container>
       <FindChatContainer>
@@ -64,11 +68,10 @@ const ChatUser = () => {
         </LibraryWrap>
       </LibraryContainer>
       <DirectMessageTitle>개인 메세지</DirectMessageTitle>
-      <ChatUserList></ChatUserList>
-      <ChatUserList></ChatUserList>
-      <ChatUserList></ChatUserList>
-      <ChatUserList></ChatUserList>
-      <ChatUserList></ChatUserList>
+      {data && data.map({v => {
+        <ChatUserList data={data} key={data.id}></ChatUserList>
+      }})}
+
     </Container>
   );
 };
