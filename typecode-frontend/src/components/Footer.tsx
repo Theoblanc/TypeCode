@@ -9,10 +9,11 @@ const Container = styled.div`
   height: 5vh;
   display: flex;
   align-items: center;
+  color: #ffffff;
 `;
 
 const Footer = () => {
-  return <Container></Container>;
+  return <Container>Created By TheoBlanc</Container>;
 };
 
 export default Footer;
