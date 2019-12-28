@@ -17,6 +17,7 @@ import { ChatUserList } from "./ChatUserList";
 interface IProps {
   data: any;
 }
+
 const ChatUser: React.FC<IProps> = ({ data }) => {
   return (
     <Container>
@@ -68,10 +69,8 @@ const ChatUser: React.FC<IProps> = ({ data }) => {
         </LibraryWrap>
       </LibraryContainer>
       <DirectMessageTitle>개인 메세지</DirectMessageTitle>
-      {data && data.map({v => {
-        <ChatUserList data={data} key={data.id}></ChatUserList>
-      }})}
-
+      {data.me &&
+        data.me.friends.map(v => <ChatUserList key={v.id} friends={v} />)}
     </Container>
   );
 };

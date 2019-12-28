@@ -1,5 +1,9 @@
 import React from "react";
 import HomePage from "../pages/Home";
-const Home: React.FC = () => <HomePage />;
+
+interface IProps {
+  data: any;
+}
+const Home: React.FC<IProps> = ({ data }) => <HomePage data={data} />;
 
 export default Home;

@@ -7,6 +7,8 @@ import ChatUserPresenter from "./ChatUserPresenter";
 const ChatUserContainer: React.FC = () => {
   const { data, loading } = useQuery(ME);
 
+  console.log("543321", data);
+
   if (loading) {
     return <Loading />;
   }

@@ -1,8 +1,12 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
 
-const HomeContainer: React.FC = () => {
-  return <HomePresenter />;
+interface IProps {
+  data: any;
+}
+
+const HomeContainer: React.FC<IProps> = ({ data }) => {
+  return <HomePresenter data={data} />;
 };
 
 export default HomeContainer;

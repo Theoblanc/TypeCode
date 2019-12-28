@@ -8,10 +8,11 @@ import {
 } from "./ChatUserStyles";
 
 interface IProps {
-  data: any;
+  friends: any;
 }
 
-export const ChatUserList: React.FC<IProps> = ({ data }) => {
+export const ChatUserList: React.FC<IProps> = ({ friends }) => {
+  console.log("friends", friends);
   return (
     <ListContainer>
       <ProfileWrap>
@@ -20,7 +21,7 @@ export const ChatUserList: React.FC<IProps> = ({ data }) => {
         ></Profile>
       </ProfileWrap>
       <UserNameContainer>
-        <UserName>{data && data.me.name}</UserName>
+        <UserName>{friends && friends.name}</UserName>
       </UserNameContainer>
     </ListContainer>
   );

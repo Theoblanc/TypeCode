@@ -71,7 +71,6 @@ const client = new ApolloClient({
     try {
       token = await getToken();
       console.log("access_ token111", token);
-      console.log("operation", operation);
 
       //만약 기간이 만료되어 refresh token이 넘어온다면 여기서 처리 해야 할듯
       //createRefreshToken 호출하면 될려나?

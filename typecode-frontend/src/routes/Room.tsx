@@ -1,5 +1,9 @@
 import React from "react";
 import RoomPage from "../pages/Room";
 
-const Room: React.FC = () => <RoomPage />;
+interface IProps {
+  data: any;
+}
+
+const Room: React.FC<IProps> = ({ data }) => <RoomPage data={data} />;
 export default Room;

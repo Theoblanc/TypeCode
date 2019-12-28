@@ -1,4 +1,4 @@
-export const typeDefs = ["type Mutation {\n  createMessage(roomId: String, text: String!): createMessageResponse!\n  sendMessage(roomId: String, message: String!, toId: String): Message\n  createMyRoom(roomName: String!): createMyRoomResponse!\n  follow(id: String!): Boolean\n  login(email: String!, password: String!): TokenModel\n  signup(name: String!, email: String!, password: String!): Boolean!\n}\n\ntype createMessageResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype createMyRoomResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype Query {\n  findMyrooms: [Room!]\n  getUsers: User\n  me: User\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  from: User!\n  room: Room!\n  createdAt: String!\n  updatedAt: String!\n}\n\ntype Room {\n  id: ID!\n  userId: String!\n  roomName: String!\n  participants: [User!]!\n  messages: [Message!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\ntype Token {\n  id: String\n  userId: String\n  accessedAt: String\n  deleted: Boolean\n  createdAt: String\n  updatedAt: String\n}\n\ntype TokenModel {\n  token: String!\n  access_token: String\n  refresh_token: String\n  token_type: String\n  expires_in: Int\n}\n\ntype User {\n  id: ID!\n  name: String!\n  email: String!\n  password: String!\n  profile: String\n  phoneNumber: String\n  phoneNumberVerified: Boolean\n  friends: [User!]\n  rooms: [Room!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\n"];
+export const typeDefs = ["type Mutation {\n  createMessage(roomId: String, text: String!): createMessageResponse!\n  sendMessage(roomId: String, message: String!, toId: String): Message\n  createMyRoom(roomName: String!): createMyRoomResponse!\n  createRefreshoken(id: String!, accessToken: String!): TokenModel!\n  follow(id: String!): Boolean\n  login(email: String!, password: String!): TokenModel\n  signup(name: String!, email: String!, password: String!): Boolean!\n}\n\ntype createMessageResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype createMyRoomResponse {\n  ok: Boolean!\n  error: String\n}\n\ntype Query {\n  findMyrooms: [Room!]\n  getUsers: User\n  me: User\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  from: User!\n  room: Room!\n  createdAt: String!\n  updatedAt: String!\n}\n\ntype Room {\n  id: ID!\n  userId: String!\n  roomName: String!\n  participants: [User!]!\n  messages: [Message!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\ntype Token {\n  id: String\n  userId: String\n  accessedAt: String\n  deleted: Boolean\n  createdAt: String\n  updatedAt: String\n}\n\ntype TokenModel {\n  token: String!\n  access_token: String\n  refresh_token: String\n  token_type: String\n  expires_in: Int\n}\n\ntype User {\n  id: ID!\n  name: String!\n  email: String!\n  password: String!\n  profile: String\n  phoneNumber: String\n  phoneNumberVerified: Boolean\n  friends: [User!]\n  rooms: [Room!]\n  createdAt: String!\n  updatedAt: String!\n  deletedAt: String\n}\n\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -46,6 +46,7 @@ export interface Mutation {
   createMessage: createMessageResponse;
   sendMessage: Message | null;
   createMyRoom: createMyRoomResponse;
+  createRefreshoken: TokenModel;
   follow: boolean | null;
   login: TokenModel | null;
   signup: boolean;
@@ -64,6 +65,11 @@ export interface SendMessageMutationArgs {
 
 export interface CreateMyRoomMutationArgs {
   roomName: string;
+}
+
+export interface CreateRefreshokenMutationArgs {
+  id: string;
+  accessToken: string;
 }
 
 export interface FollowMutationArgs {

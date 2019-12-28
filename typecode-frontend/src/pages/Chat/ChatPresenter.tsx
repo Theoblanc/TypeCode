@@ -2,10 +2,13 @@ import React from "react";
 import { Container, MainWrapper } from "./ChatStyles";
 import Header from "src/components/Header";
 import Room from "src/components/Room";
-import ChatUser from "src/components/User/ChatUserPresenter";
+import ChatUser from "src/components/User/ChatUserContainer";
 import ChatView from "src/components/ChatLists";
 
-const ChatPresenter: React.FC = () => (
+interface IProps {
+  data: any;
+}
+const ChatPresenter: React.FC<IProps> = ({ data }) => (
   <Container>
     <Header />
     <MainWrapper>

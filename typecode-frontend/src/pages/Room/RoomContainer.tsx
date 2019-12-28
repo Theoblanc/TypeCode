@@ -1,8 +1,12 @@
 import React from "react";
 import RoomPresenter from "./RoomPresenter";
 
-const RoomContainer: React.FC = () => {
-  return <RoomPresenter />;
+interface IProps {
+  data: any;
+}
+
+const RoomContainer: React.FC<IProps> = ({ data }) => {
+  return <RoomPresenter data={data} />;
 };
 
 export default RoomContainer;
