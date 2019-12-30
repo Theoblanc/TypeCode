@@ -52,9 +52,33 @@ const getToken = async () => {
       } catch (e) {}
     }
 
-    //여기 부터 추가해야함 refresh token
+    const res = await fetch("http://localhost:4000/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        operationName: "token",
+        query: `
+          mutation token(
+            $token: String!
+          ) {
+            token(
+              grant_type: "refresh_token",
+              refresh_token: $token
+            ) {
+              access_token
+            }
+          }
+        `,
+        variables: {
+          token: refresh_token
+        }
+      })
+    });
 
-    return refresh_token;
+    const { data } = await res.json();
+    const token = data.token.access_token;
+    await localStorage.setItem("access_token", token);
+    return token;
   }
   return null;
 };

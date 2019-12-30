@@ -2,7 +2,6 @@ type Mutation {
   createMessage(roomId: String, text: String!): createMessageResponse!
   sendMessage(roomId: String, message: String!, toId: String): Message
   createMyRoom(roomName: String!): createMyRoomResponse!
-  createRefreshoken(id: String!, accessToken: String!): TokenModel!
   follow(id: String!): Boolean
   login(email: String!, password: String!): TokenModel
   signup(name: String!, email: String!, password: String!): Boolean!
@@ -20,6 +19,7 @@ type createMyRoomResponse {
 
 type Query {
   findMyrooms: [Room!]
+  tokens: [Token]!
   getUsers: User
   me: User
 }
