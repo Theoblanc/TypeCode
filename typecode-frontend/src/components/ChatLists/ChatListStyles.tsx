@@ -57,7 +57,7 @@ export const GreedMent = styled.div`
 export const ChatListWrap = styled.div`
   flex: 1;
 `;
-export const ChatInputWrap = styled.div`
+export const ChatInputWrap = styled.form`
   padding-left: 24px;
   display: flex;
   height: 80px;

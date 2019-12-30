@@ -7,12 +7,21 @@ import {
 } from "./RoomStyles";
 import { HomeButton } from "../Button/HomeButton";
 import { ListButton } from "../Button/ListButton";
+import RoomModal from "../RoomModal/RoomModal";
 interface IProps {
   moverRoom: any;
   data: any;
+  openMakeRoom: VoidFunction;
+  closeMakeRoom: VoidFunction;
+  openModal: Boolean;
 }
-const RoomPresenter: React.FC<IProps> = ({ moverRoom, data }) => {
-  console.log("data", data);
+const RoomPresenter: React.FC<IProps> = ({
+  moverRoom,
+  data,
+  openMakeRoom,
+  closeMakeRoom,
+  openModal
+}) => {
   return (
     <Container>
       <HomeButton />
@@ -28,8 +37,10 @@ const RoomPresenter: React.FC<IProps> = ({ moverRoom, data }) => {
       </ListContainer>
 
       <BtnContainer>
-        <CreateRoomBtn>생성</CreateRoomBtn>
+        <CreateRoomBtn onClick={openMakeRoom}>생성</CreateRoomBtn>
       </BtnContainer>
+
+      {openModal && <RoomModal closeMakeRoom={closeMakeRoom} />}
     </Container>
   );
 };

@@ -12,8 +12,12 @@ import {
   ChatListWrap
 } from "./ChatListStyles";
 import ChatList from "../ChatList";
+import useForm from "react-hook-form";
 
 const ChatView = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
+
   return (
     <Container>
       <ChatHeader>
@@ -34,8 +38,8 @@ const ChatView = () => {
           <ChatList></ChatList>
         </ChatListWrap>
       </ScrollView>
-      <ChatInputWrap>
-        <input type="text"></input>
+      <ChatInputWrap onSubmit={handleSubmit(onSubmit)}>
+        <input type="text" name="chat" ref={register}></input>
         <Button>보내기</Button>
       </ChatInputWrap>
     </Container>
