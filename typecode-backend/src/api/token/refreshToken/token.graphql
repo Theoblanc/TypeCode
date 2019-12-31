@@ -1,3 +1,7 @@
 type Query {
   tokens: [Token]!
 }
+
+type Query {
+  token: String!
+}

@@ -112,7 +112,7 @@ export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
       </HoverBarContainer>
       <MoveButtonContainer onClick={moverRoom}>
         <MoveButton
-          href="/room"
+          href="/room:id"
           ref={hoverBtnRef}
           onMouseLeave={_onMouseLeave}
           onMouseEnter={_onMouseEnter}

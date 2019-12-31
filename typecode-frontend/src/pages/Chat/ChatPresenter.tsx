@@ -13,7 +13,7 @@ const ChatPresenter: React.FC<IProps> = ({ data }) => (
     <Header />
     <MainWrapper>
       <Room />
-      <ChatView />
+      <ChatView data={data} />
       <ChatUser />
     </MainWrapper>
   </Container>

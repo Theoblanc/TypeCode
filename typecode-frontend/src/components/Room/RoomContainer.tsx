@@ -8,6 +8,8 @@ const RoomContainer: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data, loading } = useQuery(FIND_MY_ROOMS);
 
+  console.log(data);
+
   if (loading) {
     return <Loading />;
   }

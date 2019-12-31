@@ -14,7 +14,7 @@ const RoomPresenter: React.FC<IProps> = () => (
     <Header />
     <MainWrapper>
       <Room />
-      <ChatView />
+      <ChatView data={data} />
       <ChatUser />
     </MainWrapper>
   </Container>

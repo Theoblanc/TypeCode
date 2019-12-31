@@ -20,6 +20,7 @@ type createMyRoomResponse {
 type Query {
   findMyrooms: [Room!]
   tokens: [Token]!
+  token: String!
   getUsers: User
   me: User
 }

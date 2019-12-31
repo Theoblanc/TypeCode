@@ -14,10 +14,24 @@ const resolvers: Resolvers = {
       const userId = ctx.user.id;
       const { roomName } = args;
 
+      // const roomExist = await ctx.prisma.$exists.room({
+      //   userId: { id: userId },
+      //   roomName: { id: roomName }
+      // });
+
+      // if (!roomExist) {
+      //   console.log("방이름이 존재합니다.");
+      // }
+
       try {
         await ctx.prisma.createRoom({
           userId,
-          roomName
+          roomName,
+          participants: {
+            connect: {
+              id: userId
+            }
+          }
         });
       } catch (error) {
         return { ok: false, error: error.message };
