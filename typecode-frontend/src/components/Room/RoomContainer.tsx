@@ -1,31 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import RoomPresenter from "./RoomPresenter";
-import { FIND_MY_ROOMS } from "./RoomQueries";
-import { useQuery } from "react-apollo";
-import Loading from "src/pages/Loading";
+interface IProps {
+  moverRoom?: any;
+  data?: any;
+  openMakeRoom?: VoidFunction;
+  closeMakeRoom?: VoidFunction;
+  openModal?: Boolean;
+}
 
-const RoomContainer: React.FC = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const { data, loading } = useQuery(FIND_MY_ROOMS);
-
-  console.log(data);
-
-  if (loading) {
-    return <Loading />;
-  }
-
-  const moverRoom = () => {
-    console.log("The link was clicked.");
-  };
-
-  const openMakeRoom: VoidFunction = () => {
-    setOpenModal(true);
-  };
-
-  const closeMakeRoom: VoidFunction = () => {
-    setOpenModal(false);
-  };
-
+const RoomContainer: React.FC<IProps> = ({
+  moverRoom,
+  data,
+  openMakeRoom,
+  closeMakeRoom,
+  openModal
+}) => {
+  console.log("123123", data);
   return (
     <RoomPresenter
       moverRoom={moverRoom}

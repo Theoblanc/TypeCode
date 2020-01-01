@@ -3,16 +3,34 @@ import { Container, MainWrapper } from "./HomeStyles";
 import Header from "src/components/Header";
 import Room from "src/components/Room";
 import ChatUser from "src/components/User";
-import ChatView from "src/components/ChatLists";
-interface IProps {}
-const HomePresenter: React.FC<IProps> = () => {
+
+interface IProps {
+  moverRoom: any;
+  data: any;
+  openMakeRoom: VoidFunction;
+  closeMakeRoom: VoidFunction;
+  openModal: Boolean;
+}
+
+const HomePresenter: React.FC<IProps> = ({
+  moverRoom,
+  data,
+  openMakeRoom,
+  closeMakeRoom,
+  openModal
+}) => {
   return (
     <Container>
       <Header />
       <MainWrapper>
-        <Room />
+        <Room
+          moverRoom={moverRoom}
+          data={data}
+          openMakeRoom={openMakeRoom}
+          closeMakeRoom={closeMakeRoom}
+          openModal={openModal}
+        />
         <ChatUser />
-        <ChatView />
       </MainWrapper>
     </Container>
   );

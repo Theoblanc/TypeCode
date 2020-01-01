@@ -2,6 +2,7 @@ import React from "react";
 import styled from "src/typed-components";
 import { MAKE_MY_ROOM } from "../Room/RoomQueries";
 import { useMutation } from "react-apollo";
+import useForm from "react-hook-form";
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ const Title = styled.div`
   }
 `;
 
-const ModalBody = styled.div`
+const ModalBody = styled.form`
   flex: 2;
   padding-left: 12px;
   padding-right: 12px;
@@ -45,34 +46,38 @@ const ButtonContainer = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   padding-top: 12px;
+`;
 
-  button {
-    width: 5rem;
-    height: 3rem;
-    font-weight: bold;
-  }
+const Button = styled.button`
+  width: 5rem;
+  height: 3rem;
+  font-weight: bold;
 `;
 
 const RoomModal = ({ closeMakeRoom }) => {
   const [makeRoomData] = useMutation(MAKE_MY_ROOM);
+  const { register, handleSubmit } = useForm();
 
-  const createRoom = async data => {
+  const onSubmit = async data => {
+    console.log("data", data);
     const variables = {
-      roomName: data.roomName
+      roomName: data.createroom
     };
-
+    //refethch 해야함
     try {
       const {
         data: { createMyRoom }
-      } = await makeRoomData({ variables });
+      } = await makeRoomData({
+        variables,
+        refetchQueries: [{ query: MAKE_MY_ROOM }]
+      });
 
       if (createMyRoom) {
         console.log("방생성 확인");
       }
       closeMakeRoom();
-    } catch (e) {
-      console.log(e);
-    }
+      window.location.href = "/";
+    } catch (e) {}
   };
 
   return (
@@ -80,11 +85,15 @@ const RoomModal = ({ closeMakeRoom }) => {
       <Title>
         <span>채팅방 이름</span>
       </Title>
-      <ModalBody>
-        <Input type="text"></Input>
+      <ModalBody onSubmit={handleSubmit(onSubmit)}>
+        <Input type="text" name="createroom" ref={register}></Input>
         <ButtonContainer>
-          <button onClick={createRoom}>만들기</button>
-          <button onClick={closeMakeRoom}>취소</button>
+          <Button name="makeroom" type="submit">
+            만들기
+          </Button>
+          <Button type="button" onClick={closeMakeRoom}>
+            취소
+          </Button>
         </ButtonContainer>
       </ModalBody>
     </Container>

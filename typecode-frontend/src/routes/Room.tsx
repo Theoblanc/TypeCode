@@ -5,5 +5,5 @@ interface IProps {
   data: any;
 }
 
-const Room: React.FC<IProps> = ({ data }) => <RoomPage data={data} />;
+const Room: React.FC<IProps> = ({ data }) => <RoomPage />;
 export default Room;

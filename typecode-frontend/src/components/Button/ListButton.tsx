@@ -65,9 +65,10 @@ const MoveButtonText = styled.span``;
 interface IProps {
   roomName: string;
   moverRoom: any;
+  id: string;
 }
 
-export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
+export const ListButton: React.FC<IProps> = ({ id, roomName, moverRoom }) => {
   const hoverBarRef = useRef<HTMLInputElement>(null);
   const hoverBtnRef = useRef<HTMLInputElement>(null);
 
@@ -112,7 +113,7 @@ export const ListButton: React.FC<IProps> = ({ roomName, moverRoom }) => {
       </HoverBarContainer>
       <MoveButtonContainer onClick={moverRoom}>
         <MoveButton
-          href="/room:id"
+          href={`/room/${roomName}`}
           ref={hoverBtnRef}
           onMouseLeave={_onMouseLeave}
           onMouseEnter={_onMouseEnter}

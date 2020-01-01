@@ -14,9 +14,11 @@ import {
 import ChatList from "../ChatList";
 import useForm from "react-hook-form";
 
-interface IProps {}
+interface IProps {
+  data?: any;
+}
 
-const ChatView: React.FC<IProps> = () => {
+const ChatView: React.FC<IProps> = ({ data: roomState }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
 

@@ -9,11 +9,11 @@ import { HomeButton } from "../Button/HomeButton";
 import { ListButton } from "../Button/ListButton";
 import RoomModal from "../RoomModal/RoomModal";
 interface IProps {
-  moverRoom: any;
-  data: any;
-  openMakeRoom: VoidFunction;
-  closeMakeRoom: VoidFunction;
-  openModal: Boolean;
+  moverRoom?: any;
+  data?: any;
+  openMakeRoom?: VoidFunction;
+  closeMakeRoom?: VoidFunction;
+  openModal?: Boolean;
 }
 const RoomPresenter: React.FC<IProps> = ({
   moverRoom,
@@ -26,10 +26,12 @@ const RoomPresenter: React.FC<IProps> = ({
     <Container>
       <HomeButton />
       <ListContainer>
-        {data.findMyrooms &&
+        {data &&
+          data.findMyrooms &&
           data.findMyrooms.map(v => (
             <ListButton
               key={v.id}
+              id={v.id}
               roomName={v.roomName}
               moverRoom={moverRoom}
             />
