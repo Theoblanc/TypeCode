@@ -1,9 +1,7 @@
 import React from "react";
 import ChatPage from "../pages/Chat";
 
-interface IProps {
-  data: any;
-}
+interface IProps {}
 
-const Chat: React.FC<IProps> = ({ data }) => <ChatPage data={data} />;
+const Chat: React.FC<IProps> = () => <ChatPage />;
 export default Chat;

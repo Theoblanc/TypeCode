@@ -1,12 +1,10 @@
 import React from "react";
 import ChatPresenter from "./ChatPresenter";
 
-interface IProps {
-  data: any;
-}
+interface IProps {}
 
-const ChatContainer: React.FC<IProps> = ({ data }) => {
-  return <ChatPresenter data={data} />;
+const ChatContainer: React.FC<IProps> = () => {
+  return <ChatPresenter />;
 };
 
 export default ChatContainer;
