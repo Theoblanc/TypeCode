@@ -9,23 +9,29 @@ const resolvers: Resolvers = {
       ctx
     ): Promise<any> => {
       const { roomId, text } = args;
-      const { userId } = ctx.userId;
+      const { userId } = ctx.user;
 
-      const room = await ctx.prisma
-        .rooms({
-          where: {
-            id: roomId
+      console.log(roomId);
+      console.log(text);
+      console.log(userId);
+
+      try {
+        return await ctx.prisma.createMessage({
+          text: text,
+          from: {
+            connect: {
+              id: userId
+            }
+          },
+          room: {
+            connect: {
+              id: roomId
+            }
           }
-        })
-        .user({
-          userId
         });
-
-      if (!room) return new Error("방이 없어용");
-
-      const message = await ctx.prisma.createMessage({ text, from: userId });
-
-      return message;
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 };
