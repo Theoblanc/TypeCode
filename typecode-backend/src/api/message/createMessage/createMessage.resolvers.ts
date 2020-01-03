@@ -9,15 +9,11 @@ const resolvers: Resolvers = {
       ctx
     ): Promise<any> => {
       const { roomId, text } = args;
-      const { userId } = ctx.user;
-
-      console.log(roomId);
-      console.log(text);
-      console.log(userId);
+      const { userId } = await ctx.user.id;
 
       try {
         return await ctx.prisma.createMessage({
-          text: text,
+          text,
           from: {
             connect: {
               id: userId
@@ -30,7 +26,7 @@ const resolvers: Resolvers = {
           }
         });
       } catch (e) {
-        console.log(e);
+        return { ok: false, error: e.message };
       }
     }
   }
