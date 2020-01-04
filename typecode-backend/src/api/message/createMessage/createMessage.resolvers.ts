@@ -9,11 +9,16 @@ const resolvers: Resolvers = {
       ctx
     ): Promise<any> => {
       const { roomId, text } = args;
-      const { userId } = await ctx.user.id;
+      const userId = await ctx.user.id;
+
+      if (!userId) {
+        console.log(ctx.user.id);
+        console.log("로그인이 안되어있습니다.");
+      }
 
       try {
-        return await ctx.prisma.createMessage({
-          text,
+        await ctx.prisma.createMessage({
+          text: text,
           from: {
             connect: {
               id: userId
@@ -25,6 +30,7 @@ const resolvers: Resolvers = {
             }
           }
         });
+        return { ok: true };
       } catch (e) {
         return { ok: false, error: e.message };
       }
