@@ -10,6 +10,7 @@ interface IProps {
   openMakeRoom: VoidFunction;
   closeMakeRoom: VoidFunction;
   openModal: Boolean;
+  Me: any;
 }
 
 const HomePresenter: React.FC<IProps> = ({
@@ -17,7 +18,8 @@ const HomePresenter: React.FC<IProps> = ({
   data,
   openMakeRoom,
   closeMakeRoom,
-  openModal
+  openModal,
+  Me
 }) => {
   return (
     <Container>
@@ -30,7 +32,7 @@ const HomePresenter: React.FC<IProps> = ({
           closeMakeRoom={closeMakeRoom}
           openModal={openModal}
         />
-        <ChatUser />
+        <ChatUser Me={Me} />
       </MainWrapper>
     </Container>
   );

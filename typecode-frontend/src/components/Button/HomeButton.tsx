@@ -8,16 +8,36 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #ee7752;
+  background: linear-gradient(90deg, #ee7752, #e73c7e);
+  color: #ffffff;
   width: 100%;
-  color: #ee7752;
   font-weight: bold;
   :hover {
-    background: linear-gradient(90deg, #ee7752, #e73c7e);
-    color: #ffffff;
+    border-bottom: 2px solid #ee7752;
+    border-right: 2px solid #ee7753;
+
+    background: #ffffff;
+  }
+`;
+
+const Link = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  :hover {
+    color: #ee7752;
   }
 `;
 
 export const HomeButton = () => {
-  return <Container>홈</Container>;
+  return (
+    <Container>
+      <Link href="/">홈</Link>
+    </Container>
+  );
 };

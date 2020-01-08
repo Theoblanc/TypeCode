@@ -20,7 +20,7 @@ export const FindChatContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 10px;
-  border-bottom: 1px solid #202225;
+  height: 54px;
 `;
 
 export const FindChatInput = styled.div`
@@ -31,12 +31,13 @@ export const FindChatInput = styled.div`
   border-radius: 4px;
   width: 100%;
   height: 30px;
-  background-color: ${props => props.theme.chatUesrNameColor};
+  background: linear-gradient(90deg, #ee7752, #e73c7e);
 `;
 
 export const FindChatInputText = styled.span`
   font-size: 14px;
   color: #ffffff;
+  font-weight: bold;
 `;
 
 //선택 사항
@@ -51,6 +52,7 @@ export const LibraryWrap = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px;
+  border-bottom: 2px solid #ee7752;
 `;
 
 export const ImageWrap = styled.div`
@@ -65,6 +67,7 @@ export const Icon = styled.img`
 
 export const LibraryTextWrap = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   align-items: center;
   padding-left: 15px;
@@ -75,10 +78,25 @@ export const LibraryText = styled.span``;
 // 개인 메시지
 
 export const DirectMessageTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 100%;
-  font-size: 14px;
-  font-weight: bold;
   padding: 10px;
+  height: 54px;
+  span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+    border-radius: 4px;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(90deg, #ee7752, #e73c7e);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+  }
 `;
 
 //List
@@ -89,13 +107,14 @@ export const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  color: gray;
+  :hover {
+    background: linear-gradient(90deg, #ee7752, #e73c7e);
+    color: #ffffff;
+  }
 `;
 
-export const ProfileContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-`;
+export const ProfileContainer = styled.div``;
 
 export const ProfileWrap = styled.div`
   width: 32px;
@@ -117,3 +136,16 @@ export const UserNameContainer = styled.div`
 `;
 
 export const UserName = styled.span``;
+
+export const Link = styled.a`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  padding: 10px;
+  text-decoration: none;
+  :hover {
+    color: #ffffff;
+  }
+`;

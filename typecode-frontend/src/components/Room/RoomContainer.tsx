@@ -15,7 +15,6 @@ const RoomContainer: React.FC<IProps> = ({
   closeMakeRoom,
   openModal
 }) => {
-  console.log("123123", data);
   return (
     <RoomPresenter
       moverRoom={moverRoom}

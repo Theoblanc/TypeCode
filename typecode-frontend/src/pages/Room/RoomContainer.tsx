@@ -3,18 +3,20 @@ import { useQuery } from "react-apollo";
 import Loading from "src/pages/Loading";
 import RoomPresenter from "./RoomPresenter";
 import { FIND_MY_ROOMS } from "src/components/Room/RoomQueries";
+import { ME } from "src/components/User/ChatUserQueries";
 
 interface IProps {}
 
 const RoomContainer: React.FC<IProps> = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data, loading } = useQuery(FIND_MY_ROOMS);
+  const { data: Me, loading: meLoading } = useQuery(ME);
 
-  if (loading) {
+  console.log("Me", Me);
+
+  if (loading && meLoading) {
     return <Loading />;
   }
-
-  console.log("5445454", data);
 
   const moverRoom = () => {
     console.log("The link was clicked.");
@@ -35,6 +37,7 @@ const RoomContainer: React.FC<IProps> = () => {
       openMakeRoom={openMakeRoom}
       closeMakeRoom={closeMakeRoom}
       openModal={openModal}
+      Me={Me}
     />
   );
 };

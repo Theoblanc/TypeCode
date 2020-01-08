@@ -68,7 +68,9 @@ const ChatUser: React.FC<IProps> = ({ data }) => {
           </LibraryTextWrap>
         </LibraryWrap>
       </LibraryContainer>
-      <DirectMessageTitle>개인 메세지</DirectMessageTitle>
+      <DirectMessageTitle>
+        <span>개인 메세지</span>
+      </DirectMessageTitle>
       {data &&
         data.me &&
         data.me.friends.map(v => <ChatUserList key={v.id} friends={v} />)}

@@ -4,6 +4,7 @@ export enum STORES {
 }
 
 export enum PAGE_PATHS {
+  LOCAL = "http://localhost:3000",
   SIGNUP = "/signup",
   LOGIN = "/login",
   HOME = "/home",

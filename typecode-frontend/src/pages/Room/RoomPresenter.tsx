@@ -11,6 +11,7 @@ interface IProps {
   openMakeRoom: VoidFunction;
   closeMakeRoom: VoidFunction;
   openModal: Boolean;
+  Me: any;
 }
 
 const RoomPresenter: React.FC<IProps> = ({
@@ -18,7 +19,8 @@ const RoomPresenter: React.FC<IProps> = ({
   data,
   openMakeRoom,
   closeMakeRoom,
-  openModal
+  openModal,
+  Me
 }) => (
   <Container>
     <Header />
@@ -31,7 +33,7 @@ const RoomPresenter: React.FC<IProps> = ({
         openModal={openModal}
       />
       <ChatView />
-      <ChatUser />
+      <ChatUser Me={Me} />
     </MainWrapper>
   </Container>
 );

@@ -5,14 +5,17 @@ import Room from "src/components/Room";
 import ChatUser from "src/components/User/ChatUserContainer";
 import ChatView from "src/components/ChatLists";
 
-interface IProps {}
-const ChatPresenter: React.FC<IProps> = () => (
+interface IProps {
+  data: any;
+  Me: any;
+}
+const ChatPresenter: React.FC<IProps> = ({ data, Me }) => (
   <Container>
     <Header />
     <MainWrapper>
-      <Room />
+      <Room data={data} />
       <ChatView />
-      <ChatUser />
+      <ChatUser Me={Me} />
     </MainWrapper>
   </Container>
 );

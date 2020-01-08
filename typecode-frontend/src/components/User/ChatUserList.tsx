@@ -4,9 +4,9 @@ import {
   ListContainer,
   UserNameContainer,
   ProfileWrap,
-  UserName
+  UserName,
+  Link
 } from "./ChatUserStyles";
-import { Link } from "react-router-dom";
 
 interface IProps {
   friends: any;
@@ -17,7 +17,7 @@ export const ChatUserList: React.FC<IProps> = ({ friends }) => {
 
   return (
     <ListContainer>
-      <Link to="/$userId/:id">
+      <Link href="/userId/:id">
         <ProfileWrap>
           <Profile
             source={require("../../assets/Image/icons8-game-controller-64.png")}

@@ -15,6 +15,10 @@ export const GlobalStyle = createGlobalStyle`
       font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       margin: 0;
       padding: 0;
+      box-sizing:border-box;
+  }
+  div{
+    box-sizing:border-box;
   }
   li {
     list-style-type: none

@@ -5,15 +5,15 @@ export const Container = styled.div`
     display: none;
   }
   background-color: #ffffff;
-  width: 120px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: linear-gradient(90deg, #ee7752, #e73c7e);
 `;
 
 export const ListContainer = styled.div`
   flex: 1;
-  width: 100%;
+  width: 120px;
 `;
 /* 생성 */
 export const BtnContainer = styled.div`
