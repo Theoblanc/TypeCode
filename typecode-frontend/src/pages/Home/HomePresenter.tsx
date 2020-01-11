@@ -6,20 +6,20 @@ import ChatUser from "src/components/User";
 
 interface IProps {
   moverRoom: any;
-  data: any;
+  fetchRoom: any;
   openMakeRoom: VoidFunction;
   closeMakeRoom: VoidFunction;
   openModal: Boolean;
-  Me: any;
+  me: any;
 }
 
 const HomePresenter: React.FC<IProps> = ({
   moverRoom,
-  data,
+  fetchRoom,
   openMakeRoom,
   closeMakeRoom,
   openModal,
-  Me
+  me
 }) => {
   return (
     <Container>
@@ -27,12 +27,12 @@ const HomePresenter: React.FC<IProps> = ({
       <MainWrapper>
         <Room
           moverRoom={moverRoom}
-          data={data}
+          fetchRoom={fetchRoom}
           openMakeRoom={openMakeRoom}
           closeMakeRoom={closeMakeRoom}
           openModal={openModal}
         />
-        <ChatUser Me={Me} />
+        <ChatUser me={me} />
       </MainWrapper>
     </Container>
   );

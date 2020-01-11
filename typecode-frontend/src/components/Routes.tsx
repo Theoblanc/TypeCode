@@ -19,12 +19,10 @@ const QUERY = gql`
 
 const LoggedInRoutes: React.SFC = () => (
   <Switch>
-    <Route path={PAGE_PATHS.LOCAL} exact={true} component={Home} />
+    <Route path={"/"} exact={true} component={Home} />
     <Route path={PAGE_PATHS.CHAT} exact={true} component={Chat} />
     <Route path={PAGE_PATHS.ROOM} exact={true} component={Room} />
     <Route path={"/loading"} exact={true} component={Loading} />
-
-    {/* <Route path={"/chat/:chatId"} exact={true} component={Chat} /> */}
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );

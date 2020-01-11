@@ -6,16 +6,16 @@ import ChatUser from "src/components/User/ChatUserContainer";
 import ChatView from "src/components/ChatLists";
 
 interface IProps {
-  data: any;
-  Me: any;
+  fetchRoom: any;
+  me: any;
 }
-const ChatPresenter: React.FC<IProps> = ({ data, Me }) => (
+const ChatPresenter: React.FC<IProps> = ({ fetchRoom, me }) => (
   <Container>
     <Header />
     <MainWrapper>
-      <Room data={data} />
-      <ChatView />
-      <ChatUser Me={Me} />
+      <Room fetchRoom={fetchRoom} />
+      <ChatView fetchRoom={fetchRoom} />
+      <ChatUser me={me} fetchRoom={fetchRoom} />
     </MainWrapper>
   </Container>
 );

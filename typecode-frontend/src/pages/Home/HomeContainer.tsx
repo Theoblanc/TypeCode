@@ -9,11 +9,8 @@ interface IProps {}
 
 const HomeContainer: React.FC<IProps> = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { data, loading } = useQuery(FIND_MY_ROOMS);
-
-  const { data: Me, loading: meLoading } = useQuery(ME);
-
-  console.log("Me", Me);
+  const { data: fetchRoom, loading } = useQuery(FIND_MY_ROOMS);
+  const { data: me, loading: meLoading } = useQuery(ME);
 
   if (loading && meLoading) {
     return <Loading />;
@@ -33,11 +30,11 @@ const HomeContainer: React.FC<IProps> = () => {
   return (
     <HomePresenter
       moverRoom={moverRoom}
-      data={data}
+      fetchRoom={fetchRoom}
       openMakeRoom={openMakeRoom}
       closeMakeRoom={closeMakeRoom}
       openModal={openModal}
-      Me={Me}
+      me={me}
     />
   );
 };

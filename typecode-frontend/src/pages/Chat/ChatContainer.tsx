@@ -8,16 +8,15 @@ import { ME } from "src/components/User/ChatUserQueries";
 interface IProps {}
 
 const ChatContainer: React.FC<IProps> = () => {
-  const { data, loading } = useQuery(FIND_MY_ROOMS);
-  const { data: Me, loading: meLoading } = useQuery(ME);
-
-  console.log("Me", Me);
+  const { data: fetchRoom, loading } = useQuery(FIND_MY_ROOMS);
+  const { data: me, loading: meLoading } = useQuery(ME);
+  // const { data: fetchChat, chatLoading } = useQuert()
 
   if (loading && meLoading) {
     return <Loading />;
   }
 
-  return <ChatPresenter data={data} Me={Me} />;
+  return <ChatPresenter fetchRoom={fetchRoom} me={me} />;
 };
 
 export default ChatContainer;

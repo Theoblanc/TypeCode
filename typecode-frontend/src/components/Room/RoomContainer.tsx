@@ -2,7 +2,7 @@ import React from "react";
 import RoomPresenter from "./RoomPresenter";
 interface IProps {
   moverRoom?: any;
-  data?: any;
+  fetchRoom?: any;
   openMakeRoom?: VoidFunction;
   closeMakeRoom?: VoidFunction;
   openModal?: Boolean;
@@ -10,7 +10,7 @@ interface IProps {
 
 const RoomContainer: React.FC<IProps> = ({
   moverRoom,
-  data,
+  fetchRoom,
   openMakeRoom,
   closeMakeRoom,
   openModal
@@ -18,7 +18,7 @@ const RoomContainer: React.FC<IProps> = ({
   return (
     <RoomPresenter
       moverRoom={moverRoom}
-      data={data}
+      fetchRoom={fetchRoom}
       openMakeRoom={openMakeRoom}
       closeMakeRoom={closeMakeRoom}
       openModal={openModal}

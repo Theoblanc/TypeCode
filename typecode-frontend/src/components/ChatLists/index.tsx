@@ -12,16 +12,15 @@ import {
   ChatListWrap
 } from "./ChatListStyles";
 import ChatList from "../ChatList";
-import useForm from "react-hook-form";
+// import useForm from "react-hook-form";
 
 interface IProps {
-  data?: any;
+  fetchRoom?: any;
 }
 
-const ChatView: React.FC<IProps> = ({ data: roomState }) => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
-
+const ChatView: React.FC<IProps> = ({ fetchRoom }) => {
+  // const { register, handleSubmit } = useForm();
+  console.log(fetchRoom);
   return (
     <Container>
       <ChatHeader>
@@ -29,8 +28,8 @@ const ChatView: React.FC<IProps> = ({ data: roomState }) => {
       </ChatHeader>
       <ScrollView>
         <ChatFristWrap>
-          <UserName>김동희</UserName>
-          <GreedMent>@히동희님과 나눈 대화 첫번째 부분이에요</GreedMent>
+          <UserName></UserName>
+          <GreedMent>@방에 참여하신걸 환영합니다.</GreedMent>
         </ChatFristWrap>
         <ChatListWrap>
           <ChatList></ChatList>
@@ -42,8 +41,8 @@ const ChatView: React.FC<IProps> = ({ data: roomState }) => {
           <ChatList></ChatList>
         </ChatListWrap>
       </ScrollView>
-      <ChatInputWrap onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" name="chat" ref={register}></input>
+      <ChatInputWrap>
+        <input type="text" name="chat"></input>
         <Button>보내기</Button>
       </ChatInputWrap>
     </Container>

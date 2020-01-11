@@ -42,7 +42,7 @@ interface IProps {
 export const ListButton: React.FC<IProps> = ({ roomName }) => {
   return (
     <Container>
-      <Link href={`http://localhost:3000/room/${roomName}`}>{roomName}</Link>
+      <Link href={`/room/${roomName}`}>{roomName}</Link>
     </Container>
   );
 };
