@@ -7,33 +7,33 @@ import ChatView from "src/components/ChatLists";
 
 interface IProps {
   moverRoom: any;
-  data: any;
+  fetchRoom: any;
   openMakeRoom: VoidFunction;
   closeMakeRoom: VoidFunction;
   openModal: Boolean;
-  Me: any;
+  me: any;
 }
 
 const RoomPresenter: React.FC<IProps> = ({
   moverRoom,
-  data,
+  fetchRoom,
   openMakeRoom,
   closeMakeRoom,
   openModal,
-  Me
+  me
 }) => (
   <Container>
     <Header />
     <MainWrapper>
       <Room
         moverRoom={moverRoom}
-        data={data}
+        fetchRoom={fetchRoom}
         openMakeRoom={openMakeRoom}
         closeMakeRoom={closeMakeRoom}
         openModal={openModal}
       />
-      <ChatView />
-      <ChatUser Me={Me} />
+      <ChatView fetchRoom={fetchRoom} />
+      <ChatUser me={me} />
     </MainWrapper>
   </Container>
 );

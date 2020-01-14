@@ -15,10 +15,11 @@ import {
 import { ChatUserList } from "./ChatUserList";
 
 interface IProps {
-  data: any;
+  me: any;
+  fetchRoom: any;
 }
 
-const ChatUser: React.FC<IProps> = ({ data }) => {
+const ChatUser: React.FC<IProps> = ({ me }) => {
   return (
     <Container>
       <FindChatContainer>
@@ -71,9 +72,9 @@ const ChatUser: React.FC<IProps> = ({ data }) => {
       <DirectMessageTitle>
         <span>개인 메세지</span>
       </DirectMessageTitle>
-      {data &&
-        data.me &&
-        data.me.friends.map(v => <ChatUserList key={v.id} friends={v} />)}
+      {me &&
+        me.me &&
+        me.me.friends.map(v => <ChatUserList key={v.id} friends={v} />)}
     </Container>
   );
 };
