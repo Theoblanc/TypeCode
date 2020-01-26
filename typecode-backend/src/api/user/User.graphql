@@ -6,5 +6,5 @@ type Mutation {
 
 type Query {
   me: User!
-  getUsers: User
+  fetchUsers: User
 }

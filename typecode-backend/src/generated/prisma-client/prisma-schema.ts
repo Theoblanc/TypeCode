@@ -35,7 +35,6 @@ type Message {
   text: String!
   from: User!
   to: User!
-  room: Room!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -51,7 +50,6 @@ input MessageCreateInput {
   text: String!
   from: UserCreateOneInput!
   to: UserCreateOneInput!
-  room: RoomCreateOneInput!
 }
 
 type MessageEdge {
@@ -99,7 +97,6 @@ input MessageUpdateInput {
   text: String
   from: UserUpdateOneRequiredInput
   to: UserUpdateOneRequiredInput
-  room: RoomUpdateOneRequiredInput
 }
 
 input MessageUpdateManyMutationInput {
@@ -137,7 +134,6 @@ input MessageWhereInput {
   text_not_ends_with: String
   from: UserWhereInput
   to: UserWhereInput
-  room: RoomWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -261,11 +257,6 @@ input RoomCreateInput {
 input RoomCreateManyWithoutParticipantsInput {
   create: [RoomCreateWithoutParticipantsInput!]
   connect: [RoomWhereUniqueInput!]
-}
-
-input RoomCreateOneInput {
-  create: RoomCreateInput
-  connect: RoomWhereUniqueInput
 }
 
 input RoomCreateWithoutParticipantsInput {
@@ -617,14 +608,6 @@ input RoomSubscriptionWhereInput {
   NOT: [RoomSubscriptionWhereInput!]
 }
 
-input RoomUpdateDataInput {
-  userId: String
-  roomName: String
-  participants: UserUpdateManyWithoutRoomsInput
-  messages: RoomMessageUpdateManyInput
-  deletedAt: DateTime
-}
-
 input RoomUpdateInput {
   userId: String
   roomName: String
@@ -662,13 +645,6 @@ input RoomUpdateManyWithWhereNestedInput {
   data: RoomUpdateManyDataInput!
 }
 
-input RoomUpdateOneRequiredInput {
-  create: RoomCreateInput
-  update: RoomUpdateDataInput
-  upsert: RoomUpsertNestedInput
-  connect: RoomWhereUniqueInput
-}
-
 input RoomUpdateWithoutParticipantsDataInput {
   userId: String
   roomName: String
@@ -679,11 +655,6 @@ input RoomUpdateWithoutParticipantsDataInput {
 input RoomUpdateWithWhereUniqueWithoutParticipantsInput {
   where: RoomWhereUniqueInput!
   data: RoomUpdateWithoutParticipantsDataInput!
-}
-
-input RoomUpsertNestedInput {
-  update: RoomUpdateDataInput!
-  create: RoomCreateInput!
 }
 
 input RoomUpsertWithWhereUniqueWithoutParticipantsInput {

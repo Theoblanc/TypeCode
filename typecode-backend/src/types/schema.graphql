@@ -1,23 +1,23 @@
 type Mutation {
   createMessage(roomId: String, text: String!): createMessageResponse!
   createMyRoom(roomName: String!): createMyRoomResponse!
-  follow(id: String!): Boolean
   login(email: String!, password: String!): TokenModel
   signup(name: String!, email: String!, password: String!): Boolean!
+  follow(id: String!): Boolean
+}
+
+type Query {
+  sendMessage(roomId: String!): Message
+  fetchMyrooms: [Room!]
+  tokens: [Token]!
+  token: String!
+  me: User!
+  fetchUsers: User
 }
 
 type createMessageResponse {
   ok: Boolean!
   error: String
-}
-
-type Query {
-  sendMessage(roomId: String!): Message
-  findMyrooms: [Room!]
-  tokens: [Token]!
-  token: String!
-  getUsers: User
-  me: User!
 }
 
 type createMyRoomResponse {
@@ -29,7 +29,7 @@ type Message {
   id: ID!
   text: String!
   from: User!
-  room: Room!
+  to: User!
   createdAt: String!
   updatedAt: String!
 }
@@ -39,10 +39,25 @@ type Room {
   userId: String!
   roomName: String!
   participants: [User!]!
-  messages: [Message!]
+  messages: [RoomMessage!]
   createdAt: String!
   updatedAt: String!
   deletedAt: String
+}
+
+type RoomMessage {
+  id: ID!
+  user: RoomUser!
+  content: String
+  createdAt: String!
+  deletedAt: String
+}
+
+interface RoomUser {
+  name: String!
+  email: String!
+  name: String!
+  email: String!
 }
 
 type Token {
@@ -69,8 +84,10 @@ type User {
   password: String!
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: [User!]
+  verified: Boolean
+  isOnline: Boolean
+  following: [User!]!
+  followers: [User!]!
   rooms: [Room!]
   createdAt: String!
   updatedAt: String!
