@@ -3,8 +3,21 @@ type Room {
   userId: String!
   roomName: String!
   participants: [User!]!
-  messages: [Message!]
+  messages: [RoomMessage!]
   createdAt: String!
   updatedAt: String!
   deletedAt: String
+}
+
+type RoomMessage {
+  id: ID!
+  user: RoomUser!
+  content: String
+  createdAt: String!
+  deletedAt: String
+}
+
+type RoomUser implements User {
+  name: String!
+  email: String!
 }

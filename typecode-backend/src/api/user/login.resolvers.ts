@@ -1,8 +1,5 @@
 import bcrypt from "bcryptjs";
-import {
-  createAccessToken,
-  createRefreshToken
-} from "../../../utils/createJWT";
+import { createAccessToken, createRefreshToken } from "../../utils/createJWT";
 import { Resolvers } from "src/types/resolvers";
 import { TokenModel } from "src/types/graph";
 

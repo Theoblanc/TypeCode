@@ -2,6 +2,10 @@ type Mutation {
   createMessage(roomId: String, text: String!): createMessageResponse!
 }
 
+type Query {
+  sendMessage(roomId: String!): Message
+}
+
 type createMessageResponse {
   ok: Boolean!
   error: String

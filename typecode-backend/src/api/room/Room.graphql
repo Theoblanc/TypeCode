@@ -2,6 +2,10 @@ type Mutation {
   createMyRoom(roomName: String!): createMyRoomResponse!
 }
 
+type Query {
+  findMyrooms: [Room!]
+}
+
 type createMyRoomResponse {
   ok: Boolean!
   error: String

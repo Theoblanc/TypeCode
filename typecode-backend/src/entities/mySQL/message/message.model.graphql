@@ -1,8 +1,10 @@
+# direct Message
+
 type Message {
   id: ID!
   text: String!
   from: User!
-  room: Room!
+  to: User!
   createdAt: String!
   updatedAt: String!
 }

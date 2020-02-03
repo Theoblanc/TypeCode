@@ -1,0 +1,10 @@
+type Mutation {
+  login(email: String!, password: String!): TokenModel
+  signup(name: String!, email: String!, password: String!): Boolean!
+  follow(id: String!): Boolean
+}
+
+type Query {
+  me: User!
+  getUsers: User
+}

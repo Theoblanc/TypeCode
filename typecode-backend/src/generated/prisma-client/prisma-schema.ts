@@ -10,6 +10,10 @@ type AggregateRoom {
   count: Int!
 }
 
+type AggregateRoomMessage {
+  count: Int!
+}
+
 type AggregateToken {
   count: Int!
 }
@@ -30,6 +34,7 @@ type Message {
   id: ID!
   text: String!
   from: User!
+  to: User!
   room: Room!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -45,18 +50,8 @@ input MessageCreateInput {
   id: ID
   text: String!
   from: UserCreateOneInput!
-  room: RoomCreateOneWithoutMessagesInput!
-}
-
-input MessageCreateManyWithoutRoomInput {
-  create: [MessageCreateWithoutRoomInput!]
-  connect: [MessageWhereUniqueInput!]
-}
-
-input MessageCreateWithoutRoomInput {
-  id: ID
-  text: String!
-  from: UserCreateOneInput!
+  to: UserCreateOneInput!
+  room: RoomCreateOneInput!
 }
 
 type MessageEdge {
@@ -82,56 +77,6 @@ type MessagePreviousValues {
   updatedAt: DateTime!
 }
 
-input MessageScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [MessageScalarWhereInput!]
-  OR: [MessageScalarWhereInput!]
-  NOT: [MessageScalarWhereInput!]
-}
-
 type MessageSubscriptionPayload {
   mutation: MutationType!
   node: Message
@@ -153,48 +98,12 @@ input MessageSubscriptionWhereInput {
 input MessageUpdateInput {
   text: String
   from: UserUpdateOneRequiredInput
-  room: RoomUpdateOneRequiredWithoutMessagesInput
-}
-
-input MessageUpdateManyDataInput {
-  text: String
+  to: UserUpdateOneRequiredInput
+  room: RoomUpdateOneRequiredInput
 }
 
 input MessageUpdateManyMutationInput {
   text: String
-}
-
-input MessageUpdateManyWithoutRoomInput {
-  create: [MessageCreateWithoutRoomInput!]
-  delete: [MessageWhereUniqueInput!]
-  connect: [MessageWhereUniqueInput!]
-  set: [MessageWhereUniqueInput!]
-  disconnect: [MessageWhereUniqueInput!]
-  update: [MessageUpdateWithWhereUniqueWithoutRoomInput!]
-  upsert: [MessageUpsertWithWhereUniqueWithoutRoomInput!]
-  deleteMany: [MessageScalarWhereInput!]
-  updateMany: [MessageUpdateManyWithWhereNestedInput!]
-}
-
-input MessageUpdateManyWithWhereNestedInput {
-  where: MessageScalarWhereInput!
-  data: MessageUpdateManyDataInput!
-}
-
-input MessageUpdateWithoutRoomDataInput {
-  text: String
-  from: UserUpdateOneRequiredInput
-}
-
-input MessageUpdateWithWhereUniqueWithoutRoomInput {
-  where: MessageWhereUniqueInput!
-  data: MessageUpdateWithoutRoomDataInput!
-}
-
-input MessageUpsertWithWhereUniqueWithoutRoomInput {
-  where: MessageWhereUniqueInput!
-  update: MessageUpdateWithoutRoomDataInput!
-  create: MessageCreateWithoutRoomInput!
 }
 
 input MessageWhereInput {
@@ -227,6 +136,7 @@ input MessageWhereInput {
   text_ends_with: String
   text_not_ends_with: String
   from: UserWhereInput
+  to: UserWhereInput
   room: RoomWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
@@ -266,6 +176,12 @@ type Mutation {
   upsertRoom(where: RoomWhereUniqueInput!, create: RoomCreateInput!, update: RoomUpdateInput!): Room!
   deleteRoom(where: RoomWhereUniqueInput!): Room
   deleteManyRooms(where: RoomWhereInput): BatchPayload!
+  createRoomMessage(data: RoomMessageCreateInput!): RoomMessage!
+  updateRoomMessage(data: RoomMessageUpdateInput!, where: RoomMessageWhereUniqueInput!): RoomMessage
+  updateManyRoomMessages(data: RoomMessageUpdateManyMutationInput!, where: RoomMessageWhereInput): BatchPayload!
+  upsertRoomMessage(where: RoomMessageWhereUniqueInput!, create: RoomMessageCreateInput!, update: RoomMessageUpdateInput!): RoomMessage!
+  deleteRoomMessage(where: RoomMessageWhereUniqueInput!): RoomMessage
+  deleteManyRoomMessages(where: RoomMessageWhereInput): BatchPayload!
   createToken(data: TokenCreateInput!): Token!
   updateToken(data: TokenUpdateInput!, where: TokenWhereUniqueInput!): Token
   updateManyTokens(data: TokenUpdateManyMutationInput!, where: TokenWhereInput): BatchPayload!
@@ -304,6 +220,9 @@ type Query {
   room(where: RoomWhereUniqueInput!): Room
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room]!
   roomsConnection(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoomConnection!
+  roomMessage(where: RoomMessageWhereUniqueInput!): RoomMessage
+  roomMessages(where: RoomMessageWhereInput, orderBy: RoomMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RoomMessage]!
+  roomMessagesConnection(where: RoomMessageWhereInput, orderBy: RoomMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RoomMessageConnection!
   token(where: TokenWhereUniqueInput!): Token
   tokens(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Token]!
   tokensConnection(where: TokenWhereInput, orderBy: TokenOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TokenConnection!
@@ -318,7 +237,7 @@ type Room {
   userId: String!
   roomName: String!
   participants(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
-  messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+  messages(where: RoomMessageWhereInput, orderBy: RoomMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RoomMessage!]
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime
@@ -335,7 +254,7 @@ input RoomCreateInput {
   userId: String!
   roomName: String!
   participants: UserCreateManyWithoutRoomsInput
-  messages: MessageCreateManyWithoutRoomInput
+  messages: RoomMessageCreateManyInput
   deletedAt: DateTime
 }
 
@@ -344,30 +263,267 @@ input RoomCreateManyWithoutParticipantsInput {
   connect: [RoomWhereUniqueInput!]
 }
 
-input RoomCreateOneWithoutMessagesInput {
-  create: RoomCreateWithoutMessagesInput
+input RoomCreateOneInput {
+  create: RoomCreateInput
   connect: RoomWhereUniqueInput
-}
-
-input RoomCreateWithoutMessagesInput {
-  id: ID
-  userId: String!
-  roomName: String!
-  participants: UserCreateManyWithoutRoomsInput
-  deletedAt: DateTime
 }
 
 input RoomCreateWithoutParticipantsInput {
   id: ID
   userId: String!
   roomName: String!
-  messages: MessageCreateManyWithoutRoomInput
+  messages: RoomMessageCreateManyInput
   deletedAt: DateTime
 }
 
 type RoomEdge {
   node: Room!
   cursor: String!
+}
+
+type RoomMessage {
+  id: ID!
+  user: User!
+  content: String
+  createdAt: String!
+  deletedAt: String
+}
+
+type RoomMessageConnection {
+  pageInfo: PageInfo!
+  edges: [RoomMessageEdge]!
+  aggregate: AggregateRoomMessage!
+}
+
+input RoomMessageCreateInput {
+  user: UserCreateOneInput!
+  content: String
+  deletedAt: String
+}
+
+input RoomMessageCreateManyInput {
+  create: [RoomMessageCreateInput!]
+  connect: [RoomMessageWhereUniqueInput!]
+}
+
+type RoomMessageEdge {
+  node: RoomMessage!
+  cursor: String!
+}
+
+enum RoomMessageOrderByInput {
+  id_ASC
+  id_DESC
+  content_ASC
+  content_DESC
+  createdAt_ASC
+  createdAt_DESC
+  deletedAt_ASC
+  deletedAt_DESC
+}
+
+type RoomMessagePreviousValues {
+  id: ID!
+  content: String
+  createdAt: String!
+  deletedAt: String
+}
+
+input RoomMessageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  createdAt: String
+  createdAt_not: String
+  createdAt_in: [String!]
+  createdAt_not_in: [String!]
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_contains: String
+  createdAt_not_contains: String
+  createdAt_starts_with: String
+  createdAt_not_starts_with: String
+  createdAt_ends_with: String
+  createdAt_not_ends_with: String
+  deletedAt: String
+  deletedAt_not: String
+  deletedAt_in: [String!]
+  deletedAt_not_in: [String!]
+  deletedAt_lt: String
+  deletedAt_lte: String
+  deletedAt_gt: String
+  deletedAt_gte: String
+  deletedAt_contains: String
+  deletedAt_not_contains: String
+  deletedAt_starts_with: String
+  deletedAt_not_starts_with: String
+  deletedAt_ends_with: String
+  deletedAt_not_ends_with: String
+  AND: [RoomMessageScalarWhereInput!]
+  OR: [RoomMessageScalarWhereInput!]
+  NOT: [RoomMessageScalarWhereInput!]
+}
+
+type RoomMessageSubscriptionPayload {
+  mutation: MutationType!
+  node: RoomMessage
+  updatedFields: [String!]
+  previousValues: RoomMessagePreviousValues
+}
+
+input RoomMessageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RoomMessageWhereInput
+  AND: [RoomMessageSubscriptionWhereInput!]
+  OR: [RoomMessageSubscriptionWhereInput!]
+  NOT: [RoomMessageSubscriptionWhereInput!]
+}
+
+input RoomMessageUpdateDataInput {
+  user: UserUpdateOneRequiredInput
+  content: String
+  deletedAt: String
+}
+
+input RoomMessageUpdateInput {
+  user: UserUpdateOneRequiredInput
+  content: String
+  deletedAt: String
+}
+
+input RoomMessageUpdateManyDataInput {
+  content: String
+  deletedAt: String
+}
+
+input RoomMessageUpdateManyInput {
+  create: [RoomMessageCreateInput!]
+  update: [RoomMessageUpdateWithWhereUniqueNestedInput!]
+  upsert: [RoomMessageUpsertWithWhereUniqueNestedInput!]
+  delete: [RoomMessageWhereUniqueInput!]
+  connect: [RoomMessageWhereUniqueInput!]
+  set: [RoomMessageWhereUniqueInput!]
+  disconnect: [RoomMessageWhereUniqueInput!]
+  deleteMany: [RoomMessageScalarWhereInput!]
+  updateMany: [RoomMessageUpdateManyWithWhereNestedInput!]
+}
+
+input RoomMessageUpdateManyMutationInput {
+  content: String
+  deletedAt: String
+}
+
+input RoomMessageUpdateManyWithWhereNestedInput {
+  where: RoomMessageScalarWhereInput!
+  data: RoomMessageUpdateManyDataInput!
+}
+
+input RoomMessageUpdateWithWhereUniqueNestedInput {
+  where: RoomMessageWhereUniqueInput!
+  data: RoomMessageUpdateDataInput!
+}
+
+input RoomMessageUpsertWithWhereUniqueNestedInput {
+  where: RoomMessageWhereUniqueInput!
+  update: RoomMessageUpdateDataInput!
+  create: RoomMessageCreateInput!
+}
+
+input RoomMessageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  createdAt: String
+  createdAt_not: String
+  createdAt_in: [String!]
+  createdAt_not_in: [String!]
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_contains: String
+  createdAt_not_contains: String
+  createdAt_starts_with: String
+  createdAt_not_starts_with: String
+  createdAt_ends_with: String
+  createdAt_not_ends_with: String
+  deletedAt: String
+  deletedAt_not: String
+  deletedAt_in: [String!]
+  deletedAt_not_in: [String!]
+  deletedAt_lt: String
+  deletedAt_lte: String
+  deletedAt_gt: String
+  deletedAt_gte: String
+  deletedAt_contains: String
+  deletedAt_not_contains: String
+  deletedAt_starts_with: String
+  deletedAt_not_starts_with: String
+  deletedAt_ends_with: String
+  deletedAt_not_ends_with: String
+  AND: [RoomMessageWhereInput!]
+  OR: [RoomMessageWhereInput!]
+  NOT: [RoomMessageWhereInput!]
+}
+
+input RoomMessageWhereUniqueInput {
+  id: ID
 }
 
 enum RoomOrderByInput {
@@ -484,11 +640,19 @@ input RoomSubscriptionWhereInput {
   NOT: [RoomSubscriptionWhereInput!]
 }
 
+input RoomUpdateDataInput {
+  userId: String
+  roomName: String
+  participants: UserUpdateManyWithoutRoomsInput
+  messages: RoomMessageUpdateManyInput
+  deletedAt: DateTime
+}
+
 input RoomUpdateInput {
   userId: String
   roomName: String
   participants: UserUpdateManyWithoutRoomsInput
-  messages: MessageUpdateManyWithoutRoomInput
+  messages: RoomMessageUpdateManyInput
   deletedAt: DateTime
 }
 
@@ -521,24 +685,17 @@ input RoomUpdateManyWithWhereNestedInput {
   data: RoomUpdateManyDataInput!
 }
 
-input RoomUpdateOneRequiredWithoutMessagesInput {
-  create: RoomCreateWithoutMessagesInput
-  update: RoomUpdateWithoutMessagesDataInput
-  upsert: RoomUpsertWithoutMessagesInput
+input RoomUpdateOneRequiredInput {
+  create: RoomCreateInput
+  update: RoomUpdateDataInput
+  upsert: RoomUpsertNestedInput
   connect: RoomWhereUniqueInput
-}
-
-input RoomUpdateWithoutMessagesDataInput {
-  userId: String
-  roomName: String
-  participants: UserUpdateManyWithoutRoomsInput
-  deletedAt: DateTime
 }
 
 input RoomUpdateWithoutParticipantsDataInput {
   userId: String
   roomName: String
-  messages: MessageUpdateManyWithoutRoomInput
+  messages: RoomMessageUpdateManyInput
   deletedAt: DateTime
 }
 
@@ -547,9 +704,9 @@ input RoomUpdateWithWhereUniqueWithoutParticipantsInput {
   data: RoomUpdateWithoutParticipantsDataInput!
 }
 
-input RoomUpsertWithoutMessagesInput {
-  update: RoomUpdateWithoutMessagesDataInput!
-  create: RoomCreateWithoutMessagesInput!
+input RoomUpsertNestedInput {
+  update: RoomUpdateDataInput!
+  create: RoomCreateInput!
 }
 
 input RoomUpsertWithWhereUniqueWithoutParticipantsInput {
@@ -604,9 +761,9 @@ input RoomWhereInput {
   participants_every: UserWhereInput
   participants_some: UserWhereInput
   participants_none: UserWhereInput
-  messages_every: MessageWhereInput
-  messages_some: MessageWhereInput
-  messages_none: MessageWhereInput
+  messages_every: RoomMessageWhereInput
+  messages_some: RoomMessageWhereInput
+  messages_none: RoomMessageWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -643,6 +800,7 @@ input RoomWhereUniqueInput {
 type Subscription {
   message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
   room(where: RoomSubscriptionWhereInput): RoomSubscriptionPayload
+  roomMessage(where: RoomMessageSubscriptionWhereInput): RoomMessageSubscriptionPayload
   token(where: TokenSubscriptionWhereInput): TokenSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
@@ -799,8 +957,10 @@ type User {
   password: String!
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  verified: Boolean
+  isOnline: Boolean
+  following(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  followers(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room!]
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -820,14 +980,21 @@ input UserCreateInput {
   password: String!
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: UserCreateManyInput
+  verified: Boolean
+  isOnline: Boolean
+  following: UserCreateManyWithoutFollowersInput
+  followers: UserCreateManyWithoutFollowingInput
   rooms: RoomCreateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
 
-input UserCreateManyInput {
-  create: [UserCreateInput!]
+input UserCreateManyWithoutFollowersInput {
+  create: [UserCreateWithoutFollowersInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateManyWithoutFollowingInput {
+  create: [UserCreateWithoutFollowingInput!]
   connect: [UserWhereUniqueInput!]
 }
 
@@ -841,6 +1008,34 @@ input UserCreateOneInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateWithoutFollowersInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+  profile: String
+  phoneNumber: String
+  verified: Boolean
+  isOnline: Boolean
+  following: UserCreateManyWithoutFollowersInput
+  rooms: RoomCreateManyWithoutParticipantsInput
+  deletedAt: DateTime
+}
+
+input UserCreateWithoutFollowingInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+  profile: String
+  phoneNumber: String
+  verified: Boolean
+  isOnline: Boolean
+  followers: UserCreateManyWithoutFollowingInput
+  rooms: RoomCreateManyWithoutParticipantsInput
+  deletedAt: DateTime
+}
+
 input UserCreateWithoutRoomsInput {
   id: ID
   name: String!
@@ -848,8 +1043,10 @@ input UserCreateWithoutRoomsInput {
   password: String!
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: UserCreateManyInput
+  verified: Boolean
+  isOnline: Boolean
+  following: UserCreateManyWithoutFollowersInput
+  followers: UserCreateManyWithoutFollowingInput
   deletedAt: DateTime
 }
 
@@ -871,8 +1068,10 @@ enum UserOrderByInput {
   profile_DESC
   phoneNumber_ASC
   phoneNumber_DESC
-  phoneNumberVerified_ASC
-  phoneNumberVerified_DESC
+  verified_ASC
+  verified_DESC
+  isOnline_ASC
+  isOnline_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -888,7 +1087,8 @@ type UserPreviousValues {
   password: String!
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
+  verified: Boolean
+  isOnline: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime
@@ -979,8 +1179,10 @@ input UserScalarWhereInput {
   phoneNumber_not_starts_with: String
   phoneNumber_ends_with: String
   phoneNumber_not_ends_with: String
-  phoneNumberVerified: Boolean
-  phoneNumberVerified_not: Boolean
+  verified: Boolean
+  verified_not: Boolean
+  isOnline: Boolean
+  isOnline_not: Boolean
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1034,8 +1236,10 @@ input UserUpdateDataInput {
   password: String
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: UserUpdateManyInput
+  verified: Boolean
+  isOnline: Boolean
+  following: UserUpdateManyWithoutFollowersInput
+  followers: UserUpdateManyWithoutFollowingInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -1046,8 +1250,10 @@ input UserUpdateInput {
   password: String
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: UserUpdateManyInput
+  verified: Boolean
+  isOnline: Boolean
+  following: UserUpdateManyWithoutFollowersInput
+  followers: UserUpdateManyWithoutFollowingInput
   rooms: RoomUpdateManyWithoutParticipantsInput
   deletedAt: DateTime
 }
@@ -1058,20 +1264,9 @@ input UserUpdateManyDataInput {
   password: String
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
+  verified: Boolean
+  isOnline: Boolean
   deletedAt: DateTime
-}
-
-input UserUpdateManyInput {
-  create: [UserCreateInput!]
-  update: [UserUpdateWithWhereUniqueNestedInput!]
-  upsert: [UserUpsertWithWhereUniqueNestedInput!]
-  delete: [UserWhereUniqueInput!]
-  connect: [UserWhereUniqueInput!]
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  deleteMany: [UserScalarWhereInput!]
-  updateMany: [UserUpdateManyWithWhereNestedInput!]
 }
 
 input UserUpdateManyMutationInput {
@@ -1080,8 +1275,33 @@ input UserUpdateManyMutationInput {
   password: String
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
+  verified: Boolean
+  isOnline: Boolean
   deletedAt: DateTime
+}
+
+input UserUpdateManyWithoutFollowersInput {
+  create: [UserCreateWithoutFollowersInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutFollowersInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutFollowersInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithoutFollowingInput {
+  create: [UserCreateWithoutFollowingInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutFollowingInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutFollowingInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
 }
 
 input UserUpdateManyWithoutRoomsInput {
@@ -1108,20 +1328,53 @@ input UserUpdateOneRequiredInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdateWithoutFollowersDataInput {
+  name: String
+  email: String
+  password: String
+  profile: String
+  phoneNumber: String
+  verified: Boolean
+  isOnline: Boolean
+  following: UserUpdateManyWithoutFollowersInput
+  rooms: RoomUpdateManyWithoutParticipantsInput
+  deletedAt: DateTime
+}
+
+input UserUpdateWithoutFollowingDataInput {
+  name: String
+  email: String
+  password: String
+  profile: String
+  phoneNumber: String
+  verified: Boolean
+  isOnline: Boolean
+  followers: UserUpdateManyWithoutFollowingInput
+  rooms: RoomUpdateManyWithoutParticipantsInput
+  deletedAt: DateTime
+}
+
 input UserUpdateWithoutRoomsDataInput {
   name: String
   email: String
   password: String
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: UserUpdateManyInput
+  verified: Boolean
+  isOnline: Boolean
+  following: UserUpdateManyWithoutFollowersInput
+  followers: UserUpdateManyWithoutFollowingInput
   deletedAt: DateTime
 }
 
-input UserUpdateWithWhereUniqueNestedInput {
+input UserUpdateWithWhereUniqueWithoutFollowersInput {
   where: UserWhereUniqueInput!
-  data: UserUpdateDataInput!
+  data: UserUpdateWithoutFollowersDataInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutFollowingInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutFollowingDataInput!
 }
 
 input UserUpdateWithWhereUniqueWithoutRoomsInput {
@@ -1134,10 +1387,16 @@ input UserUpsertNestedInput {
   create: UserCreateInput!
 }
 
-input UserUpsertWithWhereUniqueNestedInput {
+input UserUpsertWithWhereUniqueWithoutFollowersInput {
   where: UserWhereUniqueInput!
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
+  update: UserUpdateWithoutFollowersDataInput!
+  create: UserCreateWithoutFollowersInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutFollowingInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutFollowingDataInput!
+  create: UserCreateWithoutFollowingInput!
 }
 
 input UserUpsertWithWhereUniqueWithoutRoomsInput {
@@ -1231,11 +1490,16 @@ input UserWhereInput {
   phoneNumber_not_starts_with: String
   phoneNumber_ends_with: String
   phoneNumber_not_ends_with: String
-  phoneNumberVerified: Boolean
-  phoneNumberVerified_not: Boolean
-  friends_every: UserWhereInput
-  friends_some: UserWhereInput
-  friends_none: UserWhereInput
+  verified: Boolean
+  verified_not: Boolean
+  isOnline: Boolean
+  isOnline_not: Boolean
+  following_every: UserWhereInput
+  following_some: UserWhereInput
+  following_none: UserWhereInput
+  followers_every: UserWhereInput
+  followers_some: UserWhereInput
+  followers_none: UserWhereInput
   rooms_every: RoomWhereInput
   rooms_some: RoomWhereInput
   rooms_none: RoomWhereInput
@@ -1270,6 +1534,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  name: String
   email: String
 }
 `

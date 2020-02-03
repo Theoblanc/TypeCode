@@ -1,12 +1,14 @@
 type User {
   id: ID! @id
-  name: String!
+  name: String! @unique
   email: String! @unique
   password: String!
   profile: String
   phoneNumber: String
-  phoneNumberVerified: Boolean
-  friends: [User!]
+  verified: Boolean
+  isOnline: Boolean
+  following: [User!]! @relation(name: "FollowRelation")
+  followers: [User!]! @relation(name: "FollowRelation")
   rooms: [Room!]
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -18,16 +20,25 @@ type Room {
   userId: String!
   roomName: String!
   participants: [User!]!
-  messages: [Message!]
+  messages: [RoomMessage!]
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   deletedAt: DateTime @deletedAt
+}
+
+type RoomMessage {
+  id: ID! @id
+  user: User! @relation(name: "MessageOfUser")
+  content: String
+  createdAt: String!
+  deletedAt: String
 }
 
 type Message {
   id: ID! @id
   text: String!
   from: User! @relation(name: "From")
+  to: User! @relation(name: "To")
   room: Room!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

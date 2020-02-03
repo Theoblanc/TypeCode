@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./src:/backend/src
+      - ./prisma:/backend/prisma
     ports:
       - 4000:4000
     env_file:
@@ -26,10 +27,10 @@ services:
         port: 4466
         databases:
           default:
-            connector: mysql  # or `postgres`
+            connector: mysql  
             migrations: true
             host: mysql
-            port: 3306        # or `5432` for `postgres`
+            port: 3306  
             user: root
             password: prisma
   mysql:
