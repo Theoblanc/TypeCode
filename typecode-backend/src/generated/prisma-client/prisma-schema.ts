@@ -285,8 +285,8 @@ type RoomMessage {
   id: ID!
   user: User!
   content: String
-  createdAt: String!
-  deletedAt: String
+  createdAt: DateTime!
+  deletedAt: DateTime
 }
 
 type RoomMessageConnection {
@@ -296,9 +296,10 @@ type RoomMessageConnection {
 }
 
 input RoomMessageCreateInput {
+  id: ID
   user: UserCreateOneInput!
   content: String
-  deletedAt: String
+  deletedAt: DateTime
 }
 
 input RoomMessageCreateManyInput {
@@ -325,8 +326,8 @@ enum RoomMessageOrderByInput {
 type RoomMessagePreviousValues {
   id: ID!
   content: String
-  createdAt: String!
-  deletedAt: String
+  createdAt: DateTime!
+  deletedAt: DateTime
 }
 
 input RoomMessageScalarWhereInput {
@@ -358,34 +359,22 @@ input RoomMessageScalarWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  createdAt: String
-  createdAt_not: String
-  createdAt_in: [String!]
-  createdAt_not_in: [String!]
-  createdAt_lt: String
-  createdAt_lte: String
-  createdAt_gt: String
-  createdAt_gte: String
-  createdAt_contains: String
-  createdAt_not_contains: String
-  createdAt_starts_with: String
-  createdAt_not_starts_with: String
-  createdAt_ends_with: String
-  createdAt_not_ends_with: String
-  deletedAt: String
-  deletedAt_not: String
-  deletedAt_in: [String!]
-  deletedAt_not_in: [String!]
-  deletedAt_lt: String
-  deletedAt_lte: String
-  deletedAt_gt: String
-  deletedAt_gte: String
-  deletedAt_contains: String
-  deletedAt_not_contains: String
-  deletedAt_starts_with: String
-  deletedAt_not_starts_with: String
-  deletedAt_ends_with: String
-  deletedAt_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  deletedAt: DateTime
+  deletedAt_not: DateTime
+  deletedAt_in: [DateTime!]
+  deletedAt_not_in: [DateTime!]
+  deletedAt_lt: DateTime
+  deletedAt_lte: DateTime
+  deletedAt_gt: DateTime
+  deletedAt_gte: DateTime
   AND: [RoomMessageScalarWhereInput!]
   OR: [RoomMessageScalarWhereInput!]
   NOT: [RoomMessageScalarWhereInput!]
@@ -412,18 +401,18 @@ input RoomMessageSubscriptionWhereInput {
 input RoomMessageUpdateDataInput {
   user: UserUpdateOneRequiredInput
   content: String
-  deletedAt: String
+  deletedAt: DateTime
 }
 
 input RoomMessageUpdateInput {
   user: UserUpdateOneRequiredInput
   content: String
-  deletedAt: String
+  deletedAt: DateTime
 }
 
 input RoomMessageUpdateManyDataInput {
   content: String
-  deletedAt: String
+  deletedAt: DateTime
 }
 
 input RoomMessageUpdateManyInput {
@@ -440,7 +429,7 @@ input RoomMessageUpdateManyInput {
 
 input RoomMessageUpdateManyMutationInput {
   content: String
-  deletedAt: String
+  deletedAt: DateTime
 }
 
 input RoomMessageUpdateManyWithWhereNestedInput {
@@ -489,34 +478,22 @@ input RoomMessageWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  createdAt: String
-  createdAt_not: String
-  createdAt_in: [String!]
-  createdAt_not_in: [String!]
-  createdAt_lt: String
-  createdAt_lte: String
-  createdAt_gt: String
-  createdAt_gte: String
-  createdAt_contains: String
-  createdAt_not_contains: String
-  createdAt_starts_with: String
-  createdAt_not_starts_with: String
-  createdAt_ends_with: String
-  createdAt_not_ends_with: String
-  deletedAt: String
-  deletedAt_not: String
-  deletedAt_in: [String!]
-  deletedAt_not_in: [String!]
-  deletedAt_lt: String
-  deletedAt_lte: String
-  deletedAt_gt: String
-  deletedAt_gte: String
-  deletedAt_contains: String
-  deletedAt_not_contains: String
-  deletedAt_starts_with: String
-  deletedAt_not_starts_with: String
-  deletedAt_ends_with: String
-  deletedAt_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  deletedAt: DateTime
+  deletedAt_not: DateTime
+  deletedAt_in: [DateTime!]
+  deletedAt_not_in: [DateTime!]
+  deletedAt_lt: DateTime
+  deletedAt_lte: DateTime
+  deletedAt_gt: DateTime
+  deletedAt_gte: DateTime
   AND: [RoomMessageWhereInput!]
   OR: [RoomMessageWhereInput!]
   NOT: [RoomMessageWhereInput!]

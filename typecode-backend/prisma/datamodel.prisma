@@ -30,8 +30,8 @@ type RoomMessage {
   id: ID! @id
   user: User! @relation(name: "MessageOfUser")
   content: String
-  createdAt: String!
-  deletedAt: String
+  createdAt: DateTime! @createdAt
+  deletedAt: DateTime @deletedAt
 }
 
 type Message {
