@@ -5,6 +5,23 @@ import {
 } from "src/types/graph";
 
 const resolvers: Resolvers = {
+  Query: {
+    fetchMyrooms: async (_, __, ctx): Promise<any> => {
+      const userId = ctx.user;
+
+      try {
+        return await ctx.prisma.rooms({
+          where: {
+            participants_some: {
+              id: userId.id
+            }
+          }
+        });
+      } catch (e) {
+        return new Error(e);
+      }
+    }
+  },
   Mutation: {
     createMyRoom: async (
       _,

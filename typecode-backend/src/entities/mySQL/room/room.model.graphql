@@ -17,6 +17,11 @@ type RoomMessage {
   deletedAt: String
 }
 
+interface RoomUser {
+  name: String!
+  email: String!
+}
+
 type RoomUser implements User {
   name: String!
   email: String!
