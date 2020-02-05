@@ -6,8 +6,9 @@ import {
 
 const resolvers: Resolvers = {
   Query: {
-    fetchMyrooms: async (_, __, ctx): Promise<any> => {
-      const userId = ctx.user;
+    fetchMyRooms: async (_, __, ctx): Promise<any> => {
+      const userId = ctx.user.id;
+      console.log("userId", userId);
 
       try {
         return await ctx.prisma.rooms({

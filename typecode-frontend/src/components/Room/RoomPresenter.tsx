@@ -10,32 +10,38 @@ import { ListButton } from "../Button/ListButton";
 import RoomModal from "../RoomModal/RoomModal";
 interface IProps {
   moverRoom?: any;
-  fetchRoom?: any;
+  fetchMyRooms?: any;
   openMakeRoom?: VoidFunction;
   closeMakeRoom?: VoidFunction;
   openModal?: Boolean;
 }
 const RoomPresenter: React.FC<IProps> = ({
   moverRoom,
-  fetchRoom,
+  fetchMyRooms,
   openMakeRoom,
   closeMakeRoom,
   openModal
 }) => {
+  if (fetchMyRooms) {
+    console.log("fetchMyRooms", fetchMyRooms.fetchMyRooms);
+  }
   return (
     <Container>
       <HomeButton />
       <ListContainer>
-        {fetchRoom &&
-          fetchRoom.findMyrooms &&
-          fetchRoom.findMyrooms.map(v => (
-            <ListButton
-              key={v.id}
-              id={v.id}
-              roomName={v.roomName}
-              moverRoom={moverRoom}
-            />
-          ))}
+        {fetchMyRooms &&
+          fetchMyRooms.fetchMyRooms &&
+          fetchMyRooms.fetchMyRooms.map(item => {
+            console.log("item", item);
+            return (
+              <ListButton
+                key={item.id}
+                id={item.id}
+                roomName={item.roomName}
+                moverRoom={moverRoom}
+              />
+            );
+          })}
       </ListContainer>
 
       <BtnContainer>

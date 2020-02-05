@@ -16,10 +16,10 @@ import useForm from "react-hook-form";
 // import useForm from "react-hook-form";
 
 interface IProps {
-  fetchRoom?: any;
+  fetchMyRooms?: any;
 }
 
-const ChatView: React.FC<IProps> = ({ fetchRoom }) => {
+const ChatView: React.FC<IProps> = ({ fetchMyRooms }) => {
   const { register, handleSubmit } = useForm();
 
   const _onSubmit = (data: any) => {

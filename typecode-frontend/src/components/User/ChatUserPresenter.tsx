@@ -16,7 +16,7 @@ import { ChatUserList } from "./ChatUserList";
 
 interface IProps {
   me: any;
-  fetchRoom: any;
+  fetchMyRooms: any;
 }
 
 const ChatUser: React.FC<IProps> = ({ me }) => {
