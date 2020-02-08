@@ -8,13 +8,13 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #ee7752, #e73c7e);
+  background: linear-gradient(90deg, #1687ed, #14375a);
   color: #ffffff;
   width: 100%;
   font-weight: bold;
   :hover {
-    border-bottom: 2px solid #ee7752;
-    border-right: 2px solid #ee7753;
+    border-bottom: 1px solid #1687ed;
+    border-right: 1px solid #1687ed;
 
     background: #ffffff;
   }
@@ -30,7 +30,7 @@ const Link = styled.a`
   text-decoration: none;
   color: #ffffff;
   :hover {
-    color: #ee7752;
+    color: #1687ed;
   }
 `;
 interface IProps {

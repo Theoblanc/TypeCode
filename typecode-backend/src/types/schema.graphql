@@ -53,9 +53,7 @@ type RoomMessage {
   deletedAt: String
 }
 
-interface RoomUser {
-  name: String!
-  email: String!
+type RoomUser {
   name: String!
   email: String!
 }
@@ -81,7 +79,7 @@ type User {
   id: ID!
   name: String!
   email: String!
-  password: String!
+  # password: String!
   profile: String
   phoneNumber: String
   verified: Boolean

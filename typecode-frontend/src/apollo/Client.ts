@@ -2,10 +2,8 @@ import ApolloClient, { InMemoryCache } from "apollo-boost";
 import jwtDecode from "jwt-decode";
 
 const defaults = {
-  isLoggedIn: Boolean(localStorage.getItem("refresh_token")) || false
+  isLoggedIn: Boolean(localStorage.getItem("access_token")) || false
 };
-
-///여기가 잘못되었음 왜냐하면 refresh_token으로 판단함
 
 const resolvers = {
   Mutation: {
@@ -37,7 +35,6 @@ const resolvers = {
 
 const getToken = async () => {
   const refresh_token = await localStorage.getItem("refresh_token");
-  console.log("123", refresh_token);
 
   if (refresh_token) {
     const access_token = await localStorage.getItem("access_token");
@@ -46,11 +43,15 @@ const getToken = async () => {
       try {
         const { exp } = jwtDecode(access_token);
 
+        console.log(exp);
+        //토큰이 만료기간 안끝나면
         if (Date.now() < (exp - 600) * 1000) {
           return access_token;
         }
       } catch (e) {}
     }
+
+    //acess_token 이 없으면
 
     const res = await fetch("http://localhost:4000/graphql", {
       method: "POST",
@@ -96,7 +97,8 @@ const client = new ApolloClient({
     let token: String | null;
     try {
       token = await getToken();
-      console.log("access_ token111", token);
+      //accsstoke
+      console.log(token);
 
       //만약 기간이 만료되어 refresh token이 넘어온다면 여기서 처리 해야 할듯
       //createRefreshToken 호출하면 될려나?

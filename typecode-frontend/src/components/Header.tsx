@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   position: sticky;
-  background: linear-gradient(45deg, #ee7752, #e73c7e);
+  background: linear-gradient(45deg, #14375a, #1687ed);
   width: 100%;
   min-width: 500px;
   height: 10vh;

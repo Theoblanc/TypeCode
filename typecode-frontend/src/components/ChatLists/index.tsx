@@ -12,6 +12,7 @@ import {
   ChatListWrap
 } from "./ChatListStyles";
 import ChatList from "../ChatList";
+import useForm from "react-hook-form";
 // import useForm from "react-hook-form";
 
 interface IProps {
@@ -19,8 +20,11 @@ interface IProps {
 }
 
 const ChatView: React.FC<IProps> = ({ fetchRoom }) => {
-  // const { register, handleSubmit } = useForm();
-  console.log(fetchRoom);
+  const { register, handleSubmit } = useForm();
+
+  const _onSubmit = (data: any) => {
+    console.log(data);
+  };
   return (
     <Container>
       <ChatHeader>
@@ -42,8 +46,8 @@ const ChatView: React.FC<IProps> = ({ fetchRoom }) => {
         </ChatListWrap>
       </ScrollView>
       <ChatInputWrap>
-        <input type="text" name="chat"></input>
-        <Button>보내기</Button>
+        <input type="text" name="chat" ref={register}></input>
+        <Button onClick={handleSubmit(_onSubmit)}>보내기</Button>
       </ChatInputWrap>
     </Container>
   );

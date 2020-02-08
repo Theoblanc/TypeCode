@@ -120,7 +120,7 @@ export const EmailLoginLabel = styled.div`
   color: #ffffff;
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   p {
@@ -167,12 +167,16 @@ export const LoginBtn = styled.button`
     box-shadow: none;
   }
   &:hover {
+    background: #1687ed;
+    color: #ffffff;
+    font-weight: bold;
     cursor: pointer;
   }
 `;
 
 export const Singup = styled.div`
   font-size: 12px;
+  color: #ffffff;
   margin-bottom: 10px;
   &:hover {
     text-decoration: underline;
@@ -182,6 +186,7 @@ export const Singup = styled.div`
 
 export const ForgotEmailOrPassword = styled.div`
   display: flex;
+  color: #ffffff;
   flex-direction: row;
 `;
 

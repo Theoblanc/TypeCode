@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(90deg, #ee7752, #e73c7e);
+  background: linear-gradient(45deg, #1687ed, #14375a);
 `;
 
 export const ListContainer = styled.div`
@@ -20,10 +20,15 @@ export const BtnContainer = styled.div`
   width: 100%;
   height: 60px;
   display: flex;
+  cursor: pointer;
+  :hover {
+    background: #14375a;
+  }
 `;
 export const CreateRoomBtn = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #ffffff;
 `;

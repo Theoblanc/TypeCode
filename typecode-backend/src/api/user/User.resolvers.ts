@@ -48,8 +48,7 @@ const resolvers: Resolvers = {
       const user = await ctx.prisma.user({ email });
 
       if (!user) throw new Error("아이디가 없습니다.");
-      if (!user.phoneNumberVerified)
-        throw new Error("핸드폰 인증이 안되어 있습니다.");
+      // if (!user.verified) throw new Error("핸드폰 인증이 안되어 있습니다.");
       const isCorrectPassword = await bcrypt.compareSync(
         password,
         user.password

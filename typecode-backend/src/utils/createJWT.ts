@@ -9,8 +9,6 @@ const JWT_DEFAULT_AUDIENCE = process.env.JWT_DEFAULT_AUDIENCE || "";
 const PRIVATE_KEY = fs.readFileSync("../certs/private.pem");
 const PUBLIC_KEY = fs.readFileSync("../certs/public.pem");
 
-//토큰 종류
-
 const protectedSubject = [
   "access_token",
   "refresh_token",
@@ -77,7 +75,7 @@ export const createAccessToken = async (
       name: user.name,
       email: user.email,
       phoneNumber: user.phoneNumber,
-      phoneNumberVerified: user.phoneNumberVerified
+      verified: user.verified
     },
     PRIVATE_KEY,
     {

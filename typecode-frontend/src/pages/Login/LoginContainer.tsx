@@ -23,6 +23,7 @@ const LoginContainer: React.FC = () => {
   };
 
   const onSubmit = async data => {
+    console.log(data);
     const variables = {
       email: data.email,
       password: data.password
@@ -35,10 +36,14 @@ const LoginContainer: React.FC = () => {
         }
       } = await mutateLogin({ variables });
 
+      console.log("login success");
+
       await localStorage.setItem("access_token", access_token);
       await localStorage.setItem("refresh_token", refresh_token);
       window.location.href = "/";
-    } catch (e) {}
+    } catch (e) {
+      console.log("login fail");
+    }
 
     console.log("로그인 완료");
   };

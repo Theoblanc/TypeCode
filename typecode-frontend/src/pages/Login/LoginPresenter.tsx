@@ -72,7 +72,7 @@ const LoginPresenter: React.FC<IProps> = ({
 
         <EmailLoginWrap>
           <EmailLoginLabel>e-mail login</EmailLoginLabel>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form>
             <UserNameForm
               placeholder="Email"
               name="email"
@@ -95,7 +95,7 @@ const LoginPresenter: React.FC<IProps> = ({
               })}
             />
             <p> {errors.password && errors.password.message}</p>
-            <LoginBtn type="submit">Log in</LoginBtn>
+            <LoginBtn onClick={handleSubmit(onSubmit)}>Log in</LoginBtn>
           </Form>
         </EmailLoginWrap>
 

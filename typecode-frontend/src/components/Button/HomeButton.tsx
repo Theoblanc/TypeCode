@@ -8,13 +8,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #ee7752, #e73c7e);
   color: #ffffff;
   width: 100%;
   font-weight: bold;
   :hover {
-    border-bottom: 2px solid #ee7752;
-    border-right: 2px solid #ee7753;
+    border-bottom: 1px solid #14375a;
+    border-right: 1px solid #14375a;
 
     background: #ffffff;
   }
@@ -27,10 +26,11 @@ const Link = styled.a`
   width: 100%;
   height: 100%;
   font-weight: bold;
-  text-decoration: none;
   color: #ffffff;
+  text-decoration: none;
   :hover {
-    color: #ee7752;
+    background: #1687ed;
+    color: #ffffff;
   }
 `;
 
