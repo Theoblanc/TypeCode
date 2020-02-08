@@ -28,8 +28,13 @@ const resolvers: Resolvers = {
       args: CreateMyRoomMutationArgs,
       ctx
     ): Promise<createMyRoomResponse> => {
+      console.log("id", ctx.user);
       const userId = ctx.user.id;
       const { roomName } = args;
+
+      if (!userId) {
+        console.log("user가 없어요");
+      }
 
       // const roomExist = await ctx.prisma.$exists.room({
       //   userId: { id: userId },

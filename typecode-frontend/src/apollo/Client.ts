@@ -78,6 +78,7 @@ const getToken = async () => {
 
     const { data } = await res.json();
     const token = data.token.access_token;
+    console.log("token", token);
     await localStorage.setItem("access_token", token);
     return token;
   }
