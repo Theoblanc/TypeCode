@@ -2,7 +2,7 @@ import styled from "src/typed-components";
 
 export const Container = styled.div`
   background-color: #ffffff;
-  width: 320px;
+  width: 260px;
   display: flex;
   flex-direction: column;
   color: ${props => props.theme.chatUesrNameColor};
@@ -31,13 +31,12 @@ export const FindChatInput = styled.div`
   border-radius: 4px;
   width: 100%;
   height: 30px;
-  background: linear-gradient(90deg, #ee7752, #e73c7e);
+  background: linear-gradient(45deg, #ee7752, #e73c7e);
 `;
 
 export const FindChatInputText = styled.span`
   font-size: 14px;
   color: #ffffff;
-  font-weight: bold;
 `;
 
 //선택 사항
@@ -52,7 +51,10 @@ export const LibraryWrap = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px;
-  border-bottom: 2px solid #ee7752;
+  cursor: pointer;
+  :hover {
+    background-color: #dce2e6;
+  }
 `;
 
 export const ImageWrap = styled.div`
@@ -92,10 +94,9 @@ export const DirectMessageTitle = styled.div`
     border-radius: 4px;
     width: 100%;
     height: 30px;
-    background: linear-gradient(90deg, #ee7752, #e73c7e);
+    background: linear-gradient(45deg, #ee7752, #e73c7e);
     color: #ffffff;
     font-size: 14px;
-    font-weight: bold;
   }
 `;
 

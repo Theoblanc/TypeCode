@@ -3,7 +3,7 @@ type Mutation {
 }
 
 type Query {
-  fetchMyrooms: [Room!]
+  fetchMyRooms: [Room!]
 }
 
 type createMyRoomResponse {

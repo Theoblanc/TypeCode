@@ -7,7 +7,7 @@ import ChatView from "src/components/ChatLists";
 
 interface IProps {
   moverRoom: any;
-  fetchRoom: any;
+  fetchMyRooms: any;
   openMakeRoom: VoidFunction;
   closeMakeRoom: VoidFunction;
   openModal: Boolean;
@@ -16,7 +16,7 @@ interface IProps {
 
 const RoomPresenter: React.FC<IProps> = ({
   moverRoom,
-  fetchRoom,
+  fetchMyRooms,
   openMakeRoom,
   closeMakeRoom,
   openModal,
@@ -27,12 +27,12 @@ const RoomPresenter: React.FC<IProps> = ({
     <MainWrapper>
       <Room
         moverRoom={moverRoom}
-        fetchRoom={fetchRoom}
+        fetchMyRooms={fetchMyRooms}
         openMakeRoom={openMakeRoom}
         closeMakeRoom={closeMakeRoom}
         openModal={openModal}
       />
-      <ChatView fetchRoom={fetchRoom} />
+      <ChatView fetchMyRooms={fetchMyRooms} />
       <ChatUser me={me} />
     </MainWrapper>
   </Container>

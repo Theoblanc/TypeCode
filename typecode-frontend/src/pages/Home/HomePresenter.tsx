@@ -6,7 +6,7 @@ import ChatUser from "src/components/User";
 
 interface IProps {
   moverRoom: any;
-  fetchRoom: any;
+  fetchMyRooms: any;
   openMakeRoom: VoidFunction;
   closeMakeRoom: VoidFunction;
   openModal: Boolean;
@@ -15,7 +15,7 @@ interface IProps {
 
 const HomePresenter: React.FC<IProps> = ({
   moverRoom,
-  fetchRoom,
+  fetchMyRooms,
   openMakeRoom,
   closeMakeRoom,
   openModal,
@@ -27,7 +27,7 @@ const HomePresenter: React.FC<IProps> = ({
       <MainWrapper>
         <Room
           moverRoom={moverRoom}
-          fetchRoom={fetchRoom}
+          fetchMyRooms={fetchMyRooms}
           openMakeRoom={openMakeRoom}
           closeMakeRoom={closeMakeRoom}
           openModal={openModal}

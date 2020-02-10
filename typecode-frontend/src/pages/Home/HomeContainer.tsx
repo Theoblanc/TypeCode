@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HomePresenter from "./HomePresenter";
 import { useQuery } from "react-apollo";
-import { FIND_MY_ROOMS } from "src/components/Room/RoomQueries";
+import { FETCH_MY_ROOMS } from "src/components/Room/RoomQueries";
 import Loading from "src/routes/Loading";
 import { ME } from "src/components/User/ChatUserQueries";
 
@@ -9,10 +9,14 @@ interface IProps {}
 
 const HomeContainer: React.FC<IProps> = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { data: fetchRoom, loading } = useQuery(FIND_MY_ROOMS);
+  const { data: fetchMyRooms, loading: myRoomLoading } = useQuery(
+    FETCH_MY_ROOMS
+  );
   const { data: me, loading: meLoading } = useQuery(ME);
 
-  if (loading && meLoading) {
+  console.log("fetchMyRooms", fetchMyRooms);
+
+  if (myRoomLoading && meLoading) {
     return <Loading />;
   }
 
@@ -30,7 +34,7 @@ const HomeContainer: React.FC<IProps> = () => {
   return (
     <HomePresenter
       moverRoom={moverRoom}
-      fetchRoom={fetchRoom}
+      fetchMyRooms={fetchMyRooms}
       openMakeRoom={openMakeRoom}
       closeMakeRoom={closeMakeRoom}
       openModal={openModal}
