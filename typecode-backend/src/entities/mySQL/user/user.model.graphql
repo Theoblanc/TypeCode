@@ -14,3 +14,9 @@ type User {
   updatedAt: String!
   deletedAt: String
 }
+
+fragment friends on User {
+  id
+  name
+  profile
+}

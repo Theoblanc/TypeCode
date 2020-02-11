@@ -1,3 +1,9 @@
+fragment friends on User {
+  id
+  name
+  profile
+}
+
 type Mutation {
   createMessage(roomId: String, text: String!): createMessageResponse!
   createMyRoom(roomName: String!): createMyRoomResponse!

@@ -6,7 +6,7 @@ import { TokenModel } from "src/types/graph";
 const resolvers: Resolvers = {
   Query: {
     me: async (_, __, ctx): Promise<any> => {
-      if (!ctx.user) {
+      if (!ctx.user.id) {
         throw Error("로그인이 안되어 있습니다.");
       }
 
@@ -16,13 +16,7 @@ const resolvers: Resolvers = {
         id: userId
       });
 
-      const friends = await ctx.prisma
-        .user({
-          id: userId
-        })
-        .friends();
-
-      return { user, friends };
+      return user;
     },
     fetchUsers: async (_, __, ctx): Promise<any> => {
       if (!ctx.user) {
@@ -46,6 +40,15 @@ const resolvers: Resolvers = {
       const { email, password } = args;
 
       const user = await ctx.prisma.user({ email });
+
+      await ctx.prisma.updateUser({
+        where: {
+          id: ctx.user.id
+        },
+        data: {
+          isOnline: true
+        }
+      });
 
       if (!user) throw new Error("아이디가 없습니다.");
       // if (!user.verified) throw new Error("핸드폰 인증이 안되어 있습니다.");

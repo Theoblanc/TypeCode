@@ -47,6 +47,8 @@ const getToken = async () => {
         //토큰이 만료기간 안끝나면
         if (Date.now() < (exp - 600) * 1000) {
           return access_token;
+        } else {
+          localStorage.removeItem("access_token");
         }
       } catch (e) {}
     }

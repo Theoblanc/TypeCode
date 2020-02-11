@@ -42,7 +42,15 @@ const Header = () => {
       <Wrapper>
         <Logo href="/">TYPE CODE</Logo>
         <Login>
-          <Link to="#">로그아웃</Link>
+          <Link
+            to="/"
+            onClick={() => {
+              localStorage.removeItem("access_token");
+              window.location.href = "/";
+            }}
+          >
+            로그아웃
+          </Link>
         </Login>
       </Wrapper>
     </Container>

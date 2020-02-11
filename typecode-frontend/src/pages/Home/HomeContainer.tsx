@@ -14,7 +14,7 @@ const HomeContainer: React.FC<IProps> = () => {
   );
   const { data: me, loading: meLoading } = useQuery(ME);
 
-  console.log("fetchMyRooms", fetchMyRooms);
+  console.log("ME", me);
 
   if (myRoomLoading && meLoading) {
     return <Loading />;

@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 export const ME = gql`
   query me {
     me {
-      friends {
+      followers {
         id
         name
       }
